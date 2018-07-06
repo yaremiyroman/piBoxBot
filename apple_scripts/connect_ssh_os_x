@@ -1,0 +1,3 @@
+tell application "Terminal"
+	do script "ssh pi|raspberrypi@raspberrypi.local"
+end tell
