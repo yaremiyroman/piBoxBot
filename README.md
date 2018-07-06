@@ -186,3 +186,12 @@ To see a list of possible options for running raspivid or raspistill, you can ru
 # raspivid -t 5000 -o –
 # Encode a 5s camera stream and send image data to file
 # raspivid -t 5000 -o – > my_file.h264
+
+
+
+
+
+
+# TELEBOT
+
+$ pip3 install pytelegrambotapi
