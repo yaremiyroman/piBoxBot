@@ -6,6 +6,9 @@ __pycache__/
 # C extensions
 *.so
 
+# Ignore bot config in sensitive data protetion purposes
+config.py
+
 # Distribution / packaging
 .Python
 build/
