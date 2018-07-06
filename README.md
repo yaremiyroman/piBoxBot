@@ -1,5 +1,5 @@
 # piBoxBot
-# JUST CHECK RPI GIT SERVICE
+
 # how to run?
 
 $ python3.6 bot.py
