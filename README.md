@@ -1,4 +1,5 @@
 # piBoxBot
 
-#How to run?
+# how to run?
+
 python3.6 bot.py
