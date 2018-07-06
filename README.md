@@ -45,3 +45,26 @@ $ cat ~/.ssh/id_rsa.pub | ssh <USERNAME>@<IP-ADDRESS> 'mkdir -p ~/.ssh && cat >>
 # if this did not work, delete your keys with rm ~/.ssh/id* and follow the instructions again.
 
 # you can also send files over SSH using the scp command (secure copy). See the SCP guide for more information.
+
+
+
+
+# Check Raspberry Pi temperature from SSH (CLI)
+
+$ cat /opt/vc/bin/vcgencmd measure_temp
+$ cat /sys/class/thermal/thermal_zone0/temp
+$ watch /opt/vc/bin/vcgencmd measure_temp
+$ vcgencmd measure_temp
+
+# INFO
+
+$ cat /proc/version
+$ cat /proc/meminfo
+$ cat /proc/partitions
+$ cat /proc/cpuinfo
+$ cat /proc/cpuinfo
+$ cat /proc/cpuinfo
+
+
+
+$ vcgencmd get_mem arm && vcgencmd get_mem gpu
