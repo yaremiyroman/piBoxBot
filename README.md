@@ -1,5 +1,8 @@
 # piBoxBot
 
+# IMPORTANT SYSTEM FILES
+/boot/config.txt
+
 # how to run?
 
 $ python3.6 bot.py
@@ -195,3 +198,36 @@ To see a list of possible options for running raspivid or raspistill, you can ru
 # TELEBOT
 
 $ pip3 install pytelegrambotapi
+
+
+
+
+
+# DHT 22
+
+$ sudo apt-get update
+$ sudo apt-get install build-essential python-dev python-openssl
+$ git clone https://github.com/adafruit/Adafruit_Python_DHT.git
+# rename it
+$ cd dht
+$ sudo python setup.py install
+$ cd examples
+$ sudo ./AdafruitDHT.py 2302 4
+$ sudo ./AdafruitDHT.py 22 P8_11
+
+# do something with interval
+$ watch <SOME_COMMAND>
+
+
+# RTC DS3231
+#enable i2c
+# add to /boot/config.txt
+dtoverlay=i2c-rtc,ds3231
+# comment in /lib/udev/hwclock-set with sharp-symbol
+if [ -e /run/systemd/system ] ; then
+exit 0
+fi
+
+$ sudo reboot
+# and test
+$ sudo hwclock -r
