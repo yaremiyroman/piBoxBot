@@ -4,9 +4,24 @@ import telebot
 
 bot = telebot.TeleBot(config.token)
 
-@bot.message_handler(content_types=["text"])
-def repeat_all_messages(message): # Название функции не играет никакой роли, в принципе
-    bot.send_message(message.chat.id, message.text)
+@bot.message_handler(commands=['menu'])
+def send_welcome(message):
+    msg = bot.send_message(message.chat.id, '/start - Приветствие\n/state - Мониторинг\n/photo - Сделать фото\n/weather - Температура и влажность\n')
 
-if __name__ == '__main__':
-    bot.polling(none_stop=True)
+@bot.message_handler(commands=['start', 'help'])
+def send_welcome(message):
+    msg = bot.send_message(message.chat.id, 'Привет Cука!')
+
+@bot.message_handler(commands=['state'])
+def send_welcome(message):
+    msg = bot.send_message(message.chat.id, 'Тут будет состояние системы')
+
+@bot.message_handler(commands=['photo'])
+def send_welcome(message):
+    msg = bot.send_message(message.chat.id, 'Тут будет состояние системы')
+
+@bot.message_handler(commands=['weather'])
+def send_welcome(message):
+    msg = bot.send_message(message.chat.id, 'Тут будет состояние системы')
+
+bot.polling()
