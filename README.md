@@ -231,3 +231,7 @@ fi
 $ sudo reboot
 # and test
 $ sudo hwclock -r
+
+$ sudo pip3 install telegram-send
+$ pip3 install telegram-send
+$

@@ -4,10 +4,6 @@ import telebot
 
 bot = telebot.TeleBot(config.token)
 
-@bot.message_handler(commands=['menu'])
-def send_welcome(message):
-    msg = bot.send_message(message.chat.id, '/start - Приветствие\n/state - Мониторинг\n/photo - Сделать фото\n/weather - Температура и влажность\n')
-
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
     msg = bot.send_message(message.chat.id, 'Привет Cука!')
