@@ -49,8 +49,18 @@ $ cat ~/.ssh/id_rsa.pub | ssh <USERNAME>@<IP-ADDRESS> 'mkdir -p ~/.ssh && cat >>
 
 # you can also send files over SSH using the scp command (secure copy). See the SCP guide for more information.
 
+
+
+
+
+
+
 # STRESS
 $ stress --cpu 4
+
+
+
+
 
 
 
@@ -83,6 +93,9 @@ $ cat /proc/cpuinfo
 $ vcgencmd get_mem arm && vcgencmd get_mem gpu
 
 
+
+
+
 # If you're running a headless Raspberry Pi, there's no need to power the display circuitry, and you can save a little power by running /usr/bin/tvservice -o (-p to re-enable).
 # Add the line to /etc/rc.local to disable HDMI on boot.
 
@@ -110,6 +123,7 @@ $ aplay -l
 
 
 # SWITCH OFF NETWORK INTERFACES
+$ ifconfig
 $ ifconfig
 $ crontab -e
 # So that command runs at each boot.
