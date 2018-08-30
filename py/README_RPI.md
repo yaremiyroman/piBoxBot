@@ -266,3 +266,15 @@ $ sensors
 
 $ sudo apt-get install bc
 $ echo "$(cat /sys/class/i2c-adapter/i2c-1/1-0068/hwmon/hwmon0/temp1_input)/1000" | bc -l
+
+############## AUTORUN PY SCRIPTS ON STARTUP ###################################################
+#Now we need to tell the operating system to run the script for the Pi user. In the command prompt or in a terminal window type :
+
+$ sudo nano /etc/profile
+#Scroll to the bottom and add the following line :
+
+$ sudo python /home/pi/myscript.py
+# where “/home/pi/myscript.py” is the path to your script.
+
+# If your script contains an endless loop then you may want to use this line in the profile file instead :
+$ sudo python /home/pi/myscript.py &

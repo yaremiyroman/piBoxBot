@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import glob
 import os
-import psutil
+# import psutil
 import platform
 import sys
 import config
