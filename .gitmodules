@@ -1,0 +1,3 @@
+[submodule "py/lib/RaspberryPiVcgencmd"]
+	path = py/lib/RaspberryPiVcgencmd
+	url = https://github.com/chewett/RaspberryPiVcgencmd

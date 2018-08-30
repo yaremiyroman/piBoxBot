@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import glob
 import os
+import platform
 import sys
 import config
 import telebot
@@ -45,7 +46,15 @@ def say_hi(message):
 @bot.message_handler(commands=['state'])
 def get_system_state(message):
     bot.send_message(message.chat.id, '-------------- System state ---------------')
-    bot.send_message(message.chat.id, 'Real Time Clock > ')
+    sysname = os.uname().sysname
+    release = os.uname().release
+    machine = os.uname().machine
+    bot.send_message(message.chat.id, 'OS > ' + sysname)
+    bot.send_message(message.chat.id, 'Core  > ' + release)
+    bot.send_message(message.chat.id, 'Platform > ' + machine)
+
+    # core_temp = vcgencmd measure_temp
+
     rtc = open('/sys/class/i2c-adapter/i2c-1/1-0068/hwmon/hwmon0/temp1_input', 'r')
     rtc_data = rtc.read()
     rtc_temp = int(rtc_data)/1000
