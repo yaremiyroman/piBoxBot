@@ -106,13 +106,13 @@ def get_temperature(message):
 
 
 
-
 ####################### PHOTO ##############################################
 @bot.message_handler(commands=['photo'])
 def get_photo(message):
-    bot.send_message(message.chat.id, 'Фоткаю...')
-    bot.send_message(message.chat.id, 'Фотка готова =) ')
-    # bot.send_photo(message.chat.id, open('/home/pi/Pictures/cam/box_30_08_18__20_47_24.jpg', 'rb'))
+    bot.send_message(message.chat.id, 'Ищу свежую фотку...')
+    bot.send_message(message.chat.id, 'Держи =) ')
+    recent_photo = max(glob.iglob('/home/pi/Pictures/cam/*.jpg'), key=os.path.getctime)
+    bot.send_photo(message.chat.id, open(recent_photo, 'rb'))
 
 
 ####################### LIGHTS #############################################
