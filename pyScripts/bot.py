@@ -2,9 +2,10 @@
 import config
 import telebot
 import RPi.GPIO as GPIO
+from picamera import PiCamera
+# from time import sleep
 
 bot = telebot.TeleBot(config.token)
-
 
 # It is possible that you have more than one
 # script/circuit on the GPIO of your Raspberry Pi.
@@ -39,7 +40,9 @@ def send_welcome(message):
 
 @bot.message_handler(commands=['photo'])
 def send_welcome(message):
-    msg = bot.send_message(message.chat.id, 'Тут будет состояние системы')
+    msg = bot.send_message(message.chat.id, 'Делаю фото...')
+    camera = PiCamera()
+    camera.capture('/home/pi/Pictures/cam/bot_photo.jpg')
 
 @bot.message_handler(commands=['weather'])
 def send_welcome(message):
