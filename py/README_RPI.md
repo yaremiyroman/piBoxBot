@@ -268,13 +268,32 @@ $ sudo apt-get install bc
 $ echo "$(cat /sys/class/i2c-adapter/i2c-1/1-0068/hwmon/hwmon0/temp1_input)/1000" | bc -l
 
 ############## AUTORUN PY SCRIPTS ON STARTUP ###################################################
-#Now we need to tell the operating system to run the script for the Pi user. In the command prompt or in a terminal window type :
+Start your bot automatically at Raspberry Pi boot
 
-$ sudo nano /etc/profile
-#Scroll to the bottom and add the following line :
+Let’s create startup script in the telepot root folder:
 
-$ sudo python /home/pi/myscript.py
-# where “/home/pi/myscript.py” is the path to your script.
+sudo nano /home/pi/telepot/telegrambot.sh
 
-# If your script contains an endless loop then you may want to use this line in the profile file instead :
-$ sudo python /home/pi/myscript.py &
+Add the following lines:
+
+#!/bin/sh
+sleep 10
+sudo python /home/pi/telepot/telegrambot.py
+
+Hit CTRL + X, press Y, press Enter. Add some execute permissions:
+
+sudo chmod +x /home/pi/telepot/telegrambot.sh
+
+Now we need this script to run at boot. Edit rc.local:
+
+sudo nano /etc/rc.local
+
+Add these lines at the bottom:
+
+/home/pi/telepot/telegrambot.sh &
+
+exit 0
+
+Hit CTRL + X, press Y, press Enter
+
+#####################################################################

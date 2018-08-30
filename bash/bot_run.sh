@@ -1,2 +1,4 @@
-#!/bin/bash
-nohup python3 ../py/cameraLoop.py &
+#!/bin/sh
+
+sleep 10
+sudo python3 /home/pi/piBoxBot/py/bot.py

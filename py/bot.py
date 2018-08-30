@@ -11,7 +11,6 @@ import io
 import telebot
 import RPi.GPIO as GPIO
 import Adafruit_DHT
-# import camera
 
 ############################################################################
 #########################################################################
@@ -113,7 +112,6 @@ def get_temperature(message):
 def get_photo(message):
     bot.send_message(message.chat.id, 'Фоткаю...')
     bot.send_message(message.chat.id, 'Фотка готова =) ')
-    # camera.one_shot_photo()
     # bot.send_photo(message.chat.id, open('/home/pi/Pictures/cam/box_30_08_18__20_47_24.jpg', 'rb'))
 
 
