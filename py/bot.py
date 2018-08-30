@@ -2,11 +2,13 @@
 import config
 import telebot
 import RPi.GPIO as GPIO
-from picamera import PiCamera
+# from picamera import PiCamera
 # from time import sleep
 
-bot = telebot.TeleBot(config.token)
 
+
+####################### INIT ###############################################
+bot = telebot.TeleBot(config.token)
 # It is possible that you have more than one
 # script/circuit on the GPIO of your Raspberry Pi.
 # As a result of this, if RPi.GPIO detects that a
@@ -14,48 +16,43 @@ bot = telebot.TeleBot(config.token)
 # the default (input), you get a warning when you
 # try to configure a script. To disable these warnings:
 GPIO.setwarnings(False)
-
 # set up GPIO using BCM numbering
 GPIO.setmode(GPIO.BCM)
-# setup GPIO using Board numbering
-# GPIO.setmode(GPIO.BOARD)
 
-# set up LED pins to OUT MODE
-# for multiple pins control array can be uase as argument
-# example: GPIO.output(lights, 1)
-# will turn on all light pins
+
+
+####################### START ##############################################
+@bot.message_handler(commands=['start'])
+def say_hi(message):
+    bot.send_message(message.chat.id, 'Привет bitch!')
+
+
+
+####################### PHOTO ##############################################
+# @bot.message_handler(commands=['photo'])
+# def send_welcome(message):
+#     msg = bot.send_message(message.chat.id, 'Делаю фото...')
+#     camera = PiCamera()
+#     camera.capture('/home/pi/Pictures/cam/bot_photo.jpg')
+
+
+
+####################### LIGHTS #############################################
+# all BCM numbers of corresponding lights
 lights = [23, 24]
+# set OUT MODE for all PINs with light
 GPIO.setup(lights, GPIO.OUT)
 
-light_1 = 23
-light_1 = 24
-
-@bot.message_handler(commands=['start', 'help'])
-def send_welcome(message):
-    msg = bot.send_message(message.chat.id, 'Привет Cука!')
-
-@bot.message_handler(commands=['state'])
-def send_welcome(message):
-    msg = bot.send_message(message.chat.id, 'Тут будет состояние системы')
-
-@bot.message_handler(commands=['photo'])
-def send_welcome(message):
-    msg = bot.send_message(message.chat.id, 'Делаю фото...')
-    camera = PiCamera()
-    camera.capture('/home/pi/Pictures/cam/bot_photo.jpg')
-
-@bot.message_handler(commands=['weather'])
-def send_welcome(message):
-    msg = bot.send_message(message.chat.id, 'Тут будет состояние системы')
-
 @bot.message_handler(commands=['light'])
-def send_welcome(message):
-    light_state = GPIO.input(light_1)
-    if light_state == 1:
-        msg = bot.send_message(message.chat.id, 'Выключаем... :(')
+def switch(message):
+    # switch all illumination according to first light
+    if GPIO.input(lights[0]) == 1:
+        bot.send_message(message.chat.id, 'Выключаем... :(')
         GPIO.output(lights, 0)
     else:
-        msg = bot.send_message(message.chat.id, ':) Включаем!!!')
+        bot.send_message(message.chat.id, ':) Включаем!!!')
         GPIO.output(lights, 1)
+
+
 
 bot.polling()
