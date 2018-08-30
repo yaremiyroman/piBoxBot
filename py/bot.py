@@ -3,13 +3,15 @@ import sys
 import config
 import telebot
 import RPi.GPIO as GPIO
-# from picamera import PiCamera
-# from time import sleep
 import Adafruit_DHT
 
 
-
+############################################################################
+############################################################################
 ####################### INIT ###############################################
+############################################################################
+############################################################################
+
 bot = telebot.TeleBot(config.token)
 # It is possible that you have more than one
 # script/circuit on the GPIO of your Raspberry Pi.
@@ -21,12 +23,21 @@ GPIO.setwarnings(False)
 # set up GPIO using BCM numbering
 GPIO.setmode(GPIO.BCM)
 
+############################################################################
+############################################################################
+####################### Bot Commands Handlers###############################
+############################################################################
+############################################################################
+
 
 
 ####################### START ##############################################
 @bot.message_handler(commands=['start'])
 def say_hi(message):
     bot.send_message(message.chat.id, 'Привет bitch!')
+
+
+
 
 ####################### TEMPERATURE/HUMIDITY ###############################
 dht22_pin = 17
@@ -40,7 +51,7 @@ def get_temperature(message):
     bot.send_message(message.chat.id, '------------------ DHT_22 ------------------------')
     if humidity22 is not None and temperature22 is not None:
         bot.send_message(message.chat.id, 'Температура={0:0.1f}*  Влажность={1:0.1f}%'.format(temperature22, humidity22))
-        bot.send_message(message.chat.id, 'DHT 22 подгорел, влажнасть некорректна :(')
+        bot.send_message(message.chat.id, 'DHT 22 подгорел, влажность некорректна :(')
     else:
         bot.send_message(message.chat.id, 'Не удалось снять показания сенсора, попробуй через время')
         sys.exit(1)
@@ -54,12 +65,13 @@ def get_temperature(message):
 
 
 
+
 ####################### PHOTO ##############################################
-# @bot.message_handler(commands=['photo'])
-# def send_welcome(message):
-#     msg = bot.send_message(message.chat.id, 'Делаю фото...')
-#     camera = PiCamera()
-#     camera.capture('/home/pi/Pictures/cam/bot_photo.jpg')
+@bot.message_handler(commands=['photo'])
+def make_photo(message):
+    bot.send_message(message.chat.id, 'Захватываю...')
+    bot.send_message(message.chat.id, 'Фотка готова =) ')
+
 
 
 
@@ -70,7 +82,7 @@ lights = [23, 24]
 GPIO.setup(lights, GPIO.OUT)
 
 @bot.message_handler(commands=['light'])
-def switch(message):
+def switch_light(message):
     # switch all illumination according to first light
     if GPIO.input(lights[0]) == 1:
         bot.send_message(message.chat.id, 'Выключаем... :(')
@@ -80,5 +92,10 @@ def switch(message):
         GPIO.output(lights, 1)
 
 
+
+
+############################################################################
+############################################################################
+############################################################################
 
 bot.polling()
