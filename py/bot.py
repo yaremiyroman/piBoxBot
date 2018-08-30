@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
 import glob
 import os
+import psutil
 import platform
 import sys
 import config
+import time
+import math
+import io
 import telebot
 import RPi.GPIO as GPIO
 import Adafruit_DHT
@@ -49,11 +53,27 @@ def get_system_state(message):
     sysname = os.uname().sysname
     release = os.uname().release
     machine = os.uname().machine
-    bot.send_message(message.chat.id, 'OS > ' + sysname)
-    bot.send_message(message.chat.id, 'Core  > ' + release)
-    bot.send_message(message.chat.id, 'Platform > ' + machine)
+    bot.send_message(message.chat.id, 'OS > ' + sysname + ' ' + release + ' ' + machine)
 
-    # core_temp = vcgencmd measure_temp
+    bot.send_message(message.chat.id, 'Date@Time > ' + time.strftime('%a %d-%m-%y @ %H:%M'))
+
+    uptime = os.popen("awk '{print $1}' /proc/uptime").readline()
+    uptime_time = int(float(uptime))
+    uptime_hrs = math.floor(uptime_time / 3600)
+    uptime_mins = math.floor((uptime_time % 3600) / 60)
+
+    bot.send_message(message.chat.id, 'Uptime > ' + str(uptime_hrs) + 'hrs ' + str(uptime_mins) + 'mins')
+
+    df_data = os.popen('df -h /')
+    line = df_data.readline()
+    line = df_data.readline()
+    disk_data = line.split()[0:6]
+    # ['/dev/root', '15G', '4.9G', '8.9G', '36%', '/']
+    bot.send_message(message.chat.id, 'Total space  > ' + disk_data[1])
+    bot.send_message(message.chat.id, 'Free space  > ' + disk_data[3])
+
+    core_temp = os.popen('vcgencmd measure_temp').readline().replace('temp=','').replace("'C\n", '°C')
+    bot.send_message(message.chat.id, 'Core temperature > ' + core_temp)
 
     rtc = open('/sys/class/i2c-adapter/i2c-1/1-0068/hwmon/hwmon0/temp1_input', 'r')
     rtc_data = rtc.read()

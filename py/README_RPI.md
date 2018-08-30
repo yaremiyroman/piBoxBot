@@ -71,8 +71,6 @@ $ cat /proc/version
 $ cat /proc/meminfo
 $ cat /proc/partitions
 $ cat /proc/cpuinfo
-$ cat /proc/cpuinfo
-$ cat /proc/cpuinfo
 
 
 
