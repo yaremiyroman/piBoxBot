@@ -28,7 +28,7 @@ GPIO.setmode(GPIO.BCM)
 def say_hi(message):
     bot.send_message(message.chat.id, 'Привет bitch!')
 
-####################### START ##############################################
+####################### TEMPERATURE/HUMIDITY ###############################
 dht22_pin = 17
 dht11_pin = 27
 
@@ -40,11 +40,12 @@ def get_temperature(message):
     bot.send_message(message.chat.id, '------------------ DHT_22 ------------------------')
     if humidity22 is not None and temperature22 is not None:
         bot.send_message(message.chat.id, 'Температура={0:0.1f}*  Влажность={1:0.1f}%'.format(temperature22, humidity22))
+        bot.send_message(message.chat.id, 'DHT 22 подгорел, влажнасть некорректна :(')
     else:
         bot.send_message(message.chat.id, 'Не удалось снять показания сенсора, попробуй через время')
         sys.exit(1)
 
-    bot.send_message(message.chat.id, '------------------ DHT_11 ------------------------')
+    bot.send_message(message.chat.id, '------------------ DHT_11 -------------------------')
     if humidity11 is not None and temperature11 is not None:
         bot.send_message(message.chat.id, 'Температура={0:0.1f}*  Влажность={1:0.1f}%'.format(temperature11, humidity11))
     else:

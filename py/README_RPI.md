@@ -191,6 +191,9 @@ To see a list of possible options for running raspivid or raspistill, you can ru
 # raspivid -t 5000 -o – > my_file.h264
 
 # DHT 22
+# RTFM!!!!
+# https://github.com/adafruit/Adafruit_Python_DHT
+# RTFM!!!!
 
 $ sudo apt-get update
 $ sudo apt-get install build-essential python-dev python-openssl
