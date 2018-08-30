@@ -1,8 +1,0 @@
-
-alias cc='clear'
-alias pi='ssh pi@box.local'
-alias pi_photos='scp -r pi@box.local:/home/pi/Pictures/cam/ /Users/rom/Documents/'
-alias sublime='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
-
-export PATH="/Users/rom/pear/bin:$PATH"
-export PATH="$PATH:/Users/rom/pear/bin/phpcs"
