@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
+import sys
 import config
 import telebot
 import RPi.GPIO as GPIO
 # from picamera import PiCamera
 # from time import sleep
+import Adafruit_DHT
 
 
 
@@ -25,6 +27,29 @@ GPIO.setmode(GPIO.BCM)
 @bot.message_handler(commands=['start'])
 def say_hi(message):
     bot.send_message(message.chat.id, 'Привет bitch!')
+
+####################### START ##############################################
+dht22_pin = 17
+dht11_pin = 27
+
+@bot.message_handler(commands=['temp'])
+def get_temperature(message):
+    humidity22, temperature22 = Adafruit_DHT.read_retry(22, dht22_pin)
+    humidity11, temperature11 = Adafruit_DHT.read_retry(11, dht11_pin)
+
+    bot.send_message(message.chat.id, '------------------ DHT_22 ------------------------')
+    if humidity22 is not None and temperature22 is not None:
+        bot.send_message(message.chat.id, 'Температура={0:0.1f}*  Влажность={1:0.1f}%'.format(temperature22, humidity22))
+    else:
+        bot.send_message(message.chat.id, 'Не удалось снять показания сенсора, попробуй через время')
+        sys.exit(1)
+
+    bot.send_message(message.chat.id, '------------------ DHT_11 ------------------------')
+    if humidity11 is not None and temperature11 is not None:
+        bot.send_message(message.chat.id, 'Температура={0:0.1f}*  Влажность={1:0.1f}%'.format(temperature11, humidity11))
+    else:
+        bot.send_message(message.chat.id, 'Не удалось снять показания сенсора, попробуй через время')
+        sys.exit(1)
 
 
 
