@@ -221,3 +221,50 @@ fi
 $ sudo reboot
 # and test
 $ sudo hwclock -r
+
+# Подключение RTC (часы реального времени) к Raspberry Pi
+# АВТОР RASPIMAN  24 ЯНВАРЬ 2016, 22:12
+#
+#В Raspberry Pi отсутствуют встроенные часы реального времени, а значит после выключения компьютера время сбрасывается, что не очень удобно.
+
+#Решить данную проблему могут часы реального времени с памятью, питаемой от батарейки, и управляемые по шине i2c.
+#Самыми популярными RTC являются часы на основе чипов DS1307,DS3231 и т.д. Я рекомендую часы на основе DS3231, т.к они одни из самых точных.
+
+#Рассмотрим, как с ними работать:
+
+$ echo ds3231 0x68 > /sys/class/i2c-adapter/i2c-1/new_device
+#регистрируем часы в системе
+
+#Для работы с RTC в Linux существует утилита hwclock
+# hwclock -r - считать время, сохранённое в RTC
+# hwclock -s - синхронизировать время системы с временем RTC
+# hwclock -w - записать текущее системное время в RTC
+
+#Таким образом, после того, как вы установите в системе точное время при помощи утилиты date (например date --set=”20140125 09:17:00”, если есть доступ к сети, то можно синхронизировать системное время с точным временем при помощи сетевой службы ntp - ntpd -gq), необходимо записать это время в RTC -
+$ hwclock -w
+
+#При каждой загрузке системы необходимо в качестве системного времени, устанавливать время, сохранённое в RTC.
+#Для этого пропишите в /etc/rc.local перед exit0 следующие команды:
+echo ds3231 0x68 > /sys/class/i2c-adapter/i2c-1/new_device
+hwclock -s
+
+
+#Опционально можно отключить синхронизацию системного времени через Интернет:
+sudo update-rc.d ntp disable
+
+# ПРОЧИТАТЬ ТЕМПЕРАТУРУ ИЗ DS3231
+
+# 1
+# Once your module is loaded it is recognised by the sensors command (package lm-sensors).
+
+$ sudo apt-get install lm-sensors
+$ sensors
+# ds3231-i2c-1-68
+# Adapter: 3f804000.i2c
+# temp1: +21.5°C
+
+#2
+# Simply read the following file: /sys/class/i2c-adapter/i2c-1/1-0068/hwmon/hwmon0/temp1_input (note that this is on a Raspberry Pi 2, it might be different path on older Raspberry Pies, my DS3231 is exposed on address 68 on SPI2 bus and I'm also running Raspbian Jessie with Kernel 4.8).
+
+$ sudo apt-get install bc
+$ echo "$(cat /sys/class/i2c-adapter/i2c-1/1-0068/hwmon/hwmon0/temp1_input)/1000" | bc -l

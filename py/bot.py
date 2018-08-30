@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
+import glob
+import os
 import sys
 import config
 import telebot
 import RPi.GPIO as GPIO
 import Adafruit_DHT
-
+# import camera
 
 ############################################################################
-############################################################################
+#########################################################################
 ####################### INIT ###############################################
 ############################################################################
 ############################################################################
@@ -39,6 +41,17 @@ def say_hi(message):
 
 
 
+####################### STATE ##############################################
+@bot.message_handler(commands=['state'])
+def get_system_state(message):
+    bot.send_message(message.chat.id, '-------------- System state ---------------')
+    bot.send_message(message.chat.id, 'Real Time Clock > ')
+    rtc = open('/sys/class/i2c-adapter/i2c-1/1-0068/hwmon/hwmon0/temp1_input', 'r')
+    rtc_data = rtc.read()
+    rtc_temp = int(rtc_data)/1000
+    bot.send_message(message.chat.id, 'RTC Temperature = ' + str(rtc_temp) + '°C')
+
+
 ####################### TEMPERATURE/HUMIDITY ###############################
 dht22_pin = 17
 dht11_pin = 27
@@ -68,11 +81,11 @@ def get_temperature(message):
 
 ####################### PHOTO ##############################################
 @bot.message_handler(commands=['photo'])
-def make_photo(message):
-    bot.send_message(message.chat.id, 'Захватываю...')
+def get_photo(message):
+    bot.send_message(message.chat.id, 'Фоткаю...')
     bot.send_message(message.chat.id, 'Фотка готова =) ')
-
-
+    # camera.one_shot_photo()
+    # bot.send_photo(message.chat.id, open('/home/pi/Pictures/cam/box_30_08_18__20_47_24.jpg', 'rb'))
 
 
 ####################### LIGHTS #############################################

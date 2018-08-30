@@ -10,6 +10,7 @@ command2 - Another description
 
 # Actual commands
 start - Приветульки
+state - Данные состояния системы
 temp - Температура/Влажность с цифровых датчиков
 photo - Покажи, что на камере
 light - Поморгать диодами

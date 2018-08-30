@@ -1,2 +1,2 @@
 #!/bin/bash
-nohup python3 bot/bot.py &
+nohup python3 ../py/cameraLoop.py &
