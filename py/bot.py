@@ -110,9 +110,13 @@ def get_temperature(message):
 @bot.message_handler(commands=['photo'])
 def get_photo(message):
     bot.send_message(message.chat.id, 'Ищу свежую фотку...')
-    bot.send_message(message.chat.id, 'Держи =) ')
-    recent_photo = max(glob.iglob('/home/pi/Pictures/cam/*.jpg'), key=os.path.getctime)
-    bot.send_photo(message.chat.id, open(recent_photo, 'rb'))
+    try:
+        recent_photo = open('/home/pi/box_recent_photo.jpg', 'rb')
+    except Exception:
+        bot.send_message(message.chat.id, 'Сейчас занят, попробуй позже =\ ')
+    else:
+        bot.send_message(message.chat.id, 'Держи =) ')
+        bot.send_photo(message.chat.id, recent_photo)
 
 
 ####################### LIGHTS #############################################
