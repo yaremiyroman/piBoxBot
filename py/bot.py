@@ -136,6 +136,20 @@ def switch_light(message):
         GPIO.output(lights, 1)
 
 
+####################### REBOOT #############################################
+@bot.message_handler(commands=['reboot'])
+def reboot(message):
+    bot.send_message(message.chat.id, 'Перезагружаюсь -> ')
+    os.system('sudo reboot')
+    time.sleep(1)
+
+
+####################### TURN OFF #############################################
+@bot.message_handler(commands=['shutdown'])
+def shutdown(message):
+    bot.send_message(message.chat.id, 'Выключаюсь =\ ')
+    os.system('sudo shutdown -h now')
+    time.sleep(1)
 
 
 ############################################################################
