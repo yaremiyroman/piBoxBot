@@ -11,6 +11,7 @@ import io
 import telebot
 import RPi.GPIO as GPIO
 import Adafruit_DHT
+from functools import wraps
 
 ############################################################################
 #########################################################################
@@ -28,6 +29,47 @@ bot = telebot.TeleBot(config.token)
 GPIO.setwarnings(False)
 # set up GPIO using BCM numbering
 GPIO.setmode(GPIO.BCM)
+
+
+
+############################################################################
+############################################################################
+####################### ADMIN ACCESS RESTRICTIONS ##########################
+############################################################################
+############################################################################
+
+# found with help of @MyTelegramID_bot
+ADMINS = [285956437] # mine ID
+
+####################### ADMIN CHECKING #############################################
+# @bot.message_handler(commands=['admin'])
+# def admin_test(message):
+#     sender_ID = message.chat.id
+#     # good to turn this to decorator
+#     if sender_ID not in ADMINS:
+#         bot.send_message(sender_ID, 'Go f*ck youtself *!@&%$^(#)@%:(')
+#         return
+#     return bot.send_message(sender_ID, 'Админ!!!')
+
+
+############################################################################
+############################################################################
+####################### MENU KEYBOARD ######################################
+############################################################################
+############################################################################
+
+
+
+# def build_menu(buttons, n_cols, header_buttons=None, footer_buttons=None):
+#     menu = [buttons[i:i + n_cols] for i in range(0, len(buttons), n_cols)]
+#     if header_buttons:
+#         menu.insert(0, header_buttons)
+#     if footer_buttons:
+#         menu.append(footer_buttons)
+#     return menu
+
+
+
 
 ############################################################################
 ############################################################################
@@ -139,17 +181,26 @@ def switch_light(message):
 ####################### REBOOT #############################################
 @bot.message_handler(commands=['reboot'])
 def reboot(message):
-    bot.send_message(message.chat.id, 'Перезагружаюсь -> ')
+    sender_ID = message.chat.id
+    if sender_ID not in ADMINS:
+        bot.send_message(sender_ID, 'Go f*ck youtself *!@&%$^(#)@%:(')
+        return
+    bot.send_message(sender_ID, 'Перезагружаюсь -> ')
     os.system('sudo reboot')
     time.sleep(1)
 
 
-####################### TURN OFF #############################################
+# ####################### TURN OFF #############################################
 @bot.message_handler(commands=['shutdown'])
 def shutdown(message):
-    bot.send_message(message.chat.id, 'Выключаюсь =\ ')
+    sender_ID = message.chat.id
+    if sender_ID not in ADMINS:
+        bot.send_message(sender_ID, 'Go f*ck youtself *!@&%$^(#)@%:(')
+        return
+    bot.send_message(sender_ID, 'Выключаюсь =\ ')
     os.system('sudo shutdown -h now')
     time.sleep(1)
+
 
 
 ############################################################################
