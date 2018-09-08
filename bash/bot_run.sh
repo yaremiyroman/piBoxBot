@@ -1,4 +1,4 @@
 #!/bin/sh
 
-sleep 10
-sudo python3 /home/pi/piBoxBot/py/bot.py
+sleep 50;
+sudo python3 /home/pi/piBoxBot/py/bot.py;

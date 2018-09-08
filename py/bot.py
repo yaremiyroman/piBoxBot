@@ -66,20 +66,26 @@ def show_menu():
     state_button = telebot.types.InlineKeyboardButton(text='System state', callback_data='state')
     temp_button = telebot.types.InlineKeyboardButton(text='Temperature/Humidity', callback_data='temp')
     light_button = telebot.types.InlineKeyboardButton(text='Switch lights on/off', callback_data='light')
+    photo_button = telebot.types.InlineKeyboardButton(text='Get recent photo', callback_data='photo')
     keyboard.add(state_button)
     keyboard.add(temp_button)
     keyboard.add(light_button)
+    keyboard.add(photo_button)
     bot.send_message(chat_id, 'Menu', reply_markup=keyboard)
 
 
 @bot.callback_query_handler(func=lambda call: True)
 def callback_inline(call):
+    chat_id = call.message.chat.id
+
     if call.data == "state":
-        show_system_state(call.message.chat.id)
+        show_system_state(chat_id)
     if call.data == "temp":
-        show_temperature(call.message.chat.id)
+        show_temperature(chat_id)
     if call.data == "light":
-        make_light(call.message.chat.id)
+        make_light(chat_id)
+    if call.data == "photo":
+        open_recent_photo(chat_id)
 
 
 ############################################################################
@@ -175,18 +181,21 @@ def get_temperature(message):
 
 
 ####################### PHOTO ##############################################
-@bot.message_handler(commands=['photo'])
-def get_photo(message):
-    bot.send_message(message.chat.id, 'Ищу свежую фотку...')
+def open_recent_photo(reply_to_ID):
+    bot.send_message(reply_to_ID, 'Ищу свежую фотку...')
     try:
         recent_photo = open('/home/pi/box_recent_photo.jpg', 'rb')
     except Exception:
-        bot.send_message(message.chat.id, 'Сейчас занят, попробуй позже =\ ')
+        bot.send_message(reply_to_ID, 'Сейчас занят, попробуй позже =\ ')
     else:
-        bot.send_message(message.chat.id, 'Держи =) ')
-        bot.send_photo(message.chat.id, recent_photo)
+        bot.send_message(reply_to_ID, 'Держи =) ')
+        bot.send_photo(reply_to_ID, recent_photo)
 
     show_menu()
+
+@bot.message_handler(commands=['photo'])
+def get_photo(message):
+    open_recent_photo(message.chat.id)
 
 
 
