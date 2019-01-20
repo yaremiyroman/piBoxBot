@@ -12,6 +12,7 @@ import telebot
 import RPi.GPIO as GPIO
 import Adafruit_DHT
 from functools import wraps
+import serial
 
 ############################################################################
 #########################################################################
@@ -64,13 +65,15 @@ chat_id = 285956437
 def show_menu():
     keyboard = telebot.types.InlineKeyboardMarkup()
     state_button = telebot.types.InlineKeyboardButton(text='System state', callback_data='state')
-    temp_button = telebot.types.InlineKeyboardButton(text='Temperature/Humidity', callback_data='temp')
-    light_button = telebot.types.InlineKeyboardButton(text='Switch lights on/off', callback_data='light')
-    photo_button = telebot.types.InlineKeyboardButton(text='Get recent photo', callback_data='photo')
+    # temp_button = telebot.types.InlineKeyboardButton(text='Temperature/Humidity', callback_data='temp')
+    # light_button = telebot.types.InlineKeyboardButton(text='Switch lights on/off', callback_data='light')
+    # photo_button = telebot.types.InlineKeyboardButton(text='Get recent photo', callback_data='photo')
+    # arduino_1_button = telebot.types.InlineKeyboardButton(text='Get analogue data #1', callback_data='arduino1')
     keyboard.add(state_button)
-    keyboard.add(temp_button)
-    keyboard.add(light_button)
-    keyboard.add(photo_button)
+    # keyboard.add(temp_button)
+    # keyboard.add(light_button)
+    # keyboard.add(photo_button)
+    # keyboard.add(arduino_1_button)
     bot.send_message(chat_id, 'Menu', reply_markup=keyboard)
 
 
@@ -80,12 +83,14 @@ def callback_inline(call):
 
     if call.data == "state":
         show_system_state(chat_id)
-    if call.data == "temp":
-        show_temperature(chat_id)
-    if call.data == "light":
-        make_light(chat_id)
-    if call.data == "photo":
-        open_recent_photo(chat_id)
+    # if call.data == "temp":
+    #     show_temperature(chat_id)
+    # if call.data == "light":
+    #     make_light(chat_id)
+    # if call.data == "arduino1":
+    #     get_analogue_1(chat_id)
+    # if call.data == "photo":
+    #     open_recent_photo(chat_id)
 
 
 ############################################################################
@@ -146,84 +151,6 @@ def get_system_state(message):
 
 
 
-
-####################### TEMPERATURE/HUMIDITY ###############################
-dht22_pin = 17
-dht11_pin = 27
-
-def show_temperature(reply_to_ID):
-    humidity22, temperature22 = Adafruit_DHT.read_retry(22, dht22_pin)
-    humidity11, temperature11 = Adafruit_DHT.read_retry(11, dht11_pin)
-
-    bot.send_message(reply_to_ID, '------------------ DHT_22 ------------------------')
-
-    if humidity22 is not None and temperature22 is not None:
-        bot.send_message(reply_to_ID, 'Температура={0:0.1f}*  Влажность={1:0.1f}%'.format(temperature22, humidity22))
-        bot.send_message(reply_to_ID, 'DHT 22 подгорел, влажность некорректна :(')
-    else:
-        bot.send_message(reply_to_ID, 'Не удалось снять показания сенсора, попробуй через время')
-        sys.exit(1)
-
-    bot.send_message(reply_to_ID, '------------------ DHT_11 -------------------------')
-    if humidity11 is not None and temperature11 is not None:
-        bot.send_message(reply_to_ID, 'Температура={0:0.1f}*  Влажность={1:0.1f}%'.format(temperature11, humidity11))
-    else:
-        bot.send_message(reply_to_ID, 'Не удалось снять показания сенсора, попробуй через время')
-        sys.exit(1)
-
-    show_menu()
-
-
-@bot.message_handler(commands=['temp'])
-def get_temperature(message):
-    show_temperature(message.chat.id)
-
-
-
-####################### PHOTO ##############################################
-def open_recent_photo(reply_to_ID):
-    bot.send_message(reply_to_ID, 'Ищу свежую фотку...')
-    try:
-        recent_photo = open('/home/pi/box_recent_photo.jpg', 'rb')
-    except Exception:
-        bot.send_message(reply_to_ID, 'Сейчас занят, попробуй позже =\ ')
-    else:
-        bot.send_message(reply_to_ID, 'Держи =) ')
-        bot.send_photo(reply_to_ID, recent_photo)
-
-    show_menu()
-
-@bot.message_handler(commands=['photo'])
-def get_photo(message):
-    open_recent_photo(message.chat.id)
-
-
-
-
-####################### LIGHTS #############################################
-# all BCM numbers of corresponding lights
-lights = [23, 24]
-# set OUT MODE for all PINs with light
-GPIO.setup(lights, GPIO.OUT)
-
-def make_light(reply_to_ID):
-    # switch all illumination according to first light
-    if GPIO.input(lights[0]) == 1:
-        bot.send_message(reply_to_ID, 'Выключаем... :(')
-        GPIO.output(lights, 0)
-    else:
-        bot.send_message(reply_to_ID, ':) Включаем!!!')
-        GPIO.output(lights, 1)
-
-    time.sleep(3)
-    show_menu()
-
-@bot.message_handler(commands=['light'])
-def switch_light(message):
-    make_light(message.chat.id)
-
-
-
 ####################### REBOOT #############################################
 @bot.message_handler(commands=['reboot'])
 def reboot(message):
@@ -247,7 +174,6 @@ def shutdown(message):
     bot.send_message(sender_ID, 'Выключаюсь =\ ')
     os.system('sudo shutdown -h now')
     time.sleep(1)
-
 
 
 
