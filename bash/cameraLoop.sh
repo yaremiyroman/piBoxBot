@@ -1,6 +1,6 @@
 #!/bin/sh
 
-sleep 100;
+sleep 60;
 
 while true;
   do
@@ -11,5 +11,5 @@ while true;
   #sleep 100;
   # raspistill -t 1000 -ex auto -awb fluorescent -sh 75  -sa 10 -br 50 -o /home/pi/Pictures/cam/box_$(date +"%d_%m_%y__%H_%M_%S").jpg;
   raspistill -q 40 -w 1440 -h 1080 -o /home/pi/Pictures/cam/box_$(date +"%d_%m_%y__%H_%M_%S").jpg;
-  sleep 120;
+  sleep 600;
 done
