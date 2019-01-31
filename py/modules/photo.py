@@ -12,8 +12,6 @@ import telebot
 import RPi.GPIO as GPIO
 import Adafruit_DHT
 from functools import wraps
-import serial
-
 
 ####################### PHOTO ##############################################
 # def open_recent_photo(reply_to_ID):

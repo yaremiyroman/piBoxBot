@@ -12,8 +12,6 @@ import telebot
 import RPi.GPIO as GPIO
 import Adafruit_DHT
 from functools import wraps
-import serial
-
 
 ####################### TEMPERATURE/HUMIDITY ###############################
 # dht22_pin = 17
