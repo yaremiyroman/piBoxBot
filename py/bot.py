@@ -143,11 +143,11 @@ def show_system_state(reply_to_ID):
     rtc_temp = int(rtc_data)/1000
     bot.send_message(reply_to_ID, 'RTC Temperature = ' + str(rtc_temp) + '°C')
 
-    bot.send_message(reply_to_ID, '-------------------------------')
-    uno_1 = serial.Serial('/dev/ttyACM0', 9600)
-    bot.send_message(reply_to_ID, 'UNO #1 measurements >')
-    bot.send_message(uno_1.readline())
-    bot.send_message(reply_to_ID, '-------------------------------')
+    # bot.send_message(reply_to_ID, '-------------------------------')
+    # uno_1 = serial.Serial('/dev/ttyACM0', 9600)
+    # bot.send_message(reply_to_ID, 'UNO #1 measurements >')
+    # bot.send_message(uno_1.readline())
+    # bot.send_message(reply_to_ID, '-------------------------------')
 
     show_menu()
 
