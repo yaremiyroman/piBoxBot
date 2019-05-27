@@ -9,8 +9,9 @@ while true;
     # fswebcam -r 640x480 /home/pi/Pictures/usbCam/$(date +"%d_%m_%y")/usbCam_$(date +"%H_%M_%S").jpg
     # sleep 60
 
+    rtcTemp = $(cat /sys/devices/platform/soc/3f804000.i2c/i2c-1/1-0068/hwmon/hwmon1/temp1_input)
     mkdir -p /home/pi/Pictures/cam/$(date +"%d_%m_%y")
-    raspistill -q 40 -w 1440 -h 1080 -o /home/pi/Pictures/cam/$(date +"%d_%m_%y")/box_$(date +"%H_%M_%S").jpg;
+    raspistill -q 40 -w 1440 -h 1080 -o /home/pi/Pictures/cam/$(date +"%d_%m_%y")/box_$(date +"%H_%M_%S")_$(rtcTemp / 1000)^C.jpg;
     sleep 600;
 done
 
