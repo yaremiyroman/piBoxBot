@@ -1,8 +1,15 @@
 #include <stdio.h>
 #include <OneWire.h>
 #include "DHT.h"
+#include <Adafruit_Sensor.h>
+
+#define pin_pirania_1 4
+#define pin_pirania_2 5
+#define pin_pirania_3 6
 
 #define DHT1pin 8
+#define DHT3pin 9
+#define DHT4pin 10
 #define DHT2pin 7
 
 int DS18S20_Pin = 2; //DS18S20 Signal pin on digital 2
@@ -11,19 +18,29 @@ int DS18S20_Pin = 2; //DS18S20 Signal pin on digital 2
 OneWire ds(DS18S20_Pin);  // on digital pin 2
 
 DHT dht11(DHT1pin, DHT11);
+DHT dht11_2(DHT3pin, DHT11);
+DHT dht11_3(DHT4pin, DHT11);
 DHT dht22(DHT2pin, DHT22);
 
 void setup()
 {
-  Serial.begin(9600);// open serial port, set the baud rate to 9600 bps
-  //  dht.begin();
+  Serial.begin(115200);// open serial port, set the baud rate to 9600 bps
+
+  pinMode (pin_pirania_1, OUTPUT);
+  digitalWrite (pin_pirania_1, HIGH);
+
+  pinMode (pin_pirania_2, OUTPUT);
+  digitalWrite (pin_pirania_2, HIGH);
+
+  pinMode (pin_pirania_3, OUTPUT);
+  digitalWrite (pin_pirania_3, HIGH);
 }
 
 void loop()
 {
   Serial.println();
-  delay(100);
   Serial.println("=========================================");
+  digitalWrite (4, HIGH); 
   delay(300);
 
 
@@ -98,7 +115,44 @@ void loop()
 
   delay(300);
 
+  // DHT_11 TEMPERATURE AND HUMIDITY
+
+  float h3 = dht11_2.readHumidity(false);
+  float t3 = dht11_2.readTemperature();
+
+  if (isnan(h3) || isnan(t3)) {
+    Serial.print("\033[1;36mDHT_11_2 \033[0m >>> ");
+    Serial.println("Не удается считать показания.");
+  } else {
+    Serial.print("\033[1;36mDHT_11_2 t\033[0m = ");
+    Serial.print(t3);
+    Serial.print("\033[1;32m deg/C\033[0m >>> \033[1;36mh\033[0m = ");
+    Serial.print(h3);
+    Serial.println("\033[1;32m % \033[0m");
+  }
+
+  delay(300);
+
+  // DHT_11 TEMPERATURE AND HUMIDITY
+
+  float h4 = dht11_3.readHumidity(false);
+  float t4 = dht11_3.readTemperature();
+
+  if (isnan(h4) || isnan(t4)) {
+    Serial.print("\033[1;36mDHT_11_3 \033[0m >>> ");
+    Serial.println("Не удается считать показания.");
+  } else {
+    Serial.print("\033[1;36mDHT_11_3 t\033[0m = ");
+    Serial.print(t4);
+    Serial.print("\033[1;32m deg/C\033[0m >>> \033[1;36mh\033[0m = ");
+    Serial.print(h4);
+    Serial.println("\033[1;32m % \033[0m");
+  }
+
+  delay(300);
+
   // DHT_22 TEMPERATURE AND HUMIDITY
+  
   float h2 = dht22.readHumidity(false);
   float t2 = dht22.readTemperature();
 
@@ -113,6 +167,31 @@ void loop()
     Serial.println("\033[1;32m % \033[0m");
   }
 
+  delay(300);
+
+  // FIRE SENSOR
+
+  int fireSensor = digitalRead(3);
+  Serial.print("\033[1;36mFIRE SENSOR\033[0m: ");
+
+  if (!fireSensor) {
+    Serial.println("\033[1;31mON FIRE!\033[0m");
+  } else {
+    Serial.println("\033[1;32m CALM :)\033[0m");
+  }
+
+  delay(300);
+
+
+  // LIGHT SENSOR
+
+  //  int lightSensor2 = digitalRead(4);
+  int lightSensor2 = analogRead(4);
+
+  Serial.print("\033[1;36mLIGHT SENSOR\033[0m = ");
+  Serial.println(lightSensor2);
+
+  digitalWrite (4, LOW);
   delay(5000);
 }
 
