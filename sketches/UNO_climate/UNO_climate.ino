@@ -1,15 +1,15 @@
 #include <stdio.h>
 #include <DHT.h>
 
-#define DHT11_1 0
-#define DHT11_2 1
-#define DHT11_3 2
-#define DHT11_4 3
+#define DHT11_1 4
+#define DHT11_2 5
+#define DHT11_3 6
+#define DHT11_4 7
 
-#define DHT22_1 4
-//#define DHT22_1 5
-//#define DHT22_1 6
-//#define DHT22_1 7
+#define DHT22_1 8
+//#define DHT22_1 9
+//#define DHT22_1 10
+//#define DHT22_1 11
 
 DHT dht111(DHT11_1, DHT11);
 DHT dht112(DHT11_2, DHT11);
