@@ -10,7 +10,7 @@ import math
 import io
 import telebot
 import RPi.GPIO as GPIO
-import Adafruit_DHT
+# import Adafruit_DHT
 from functools import wraps
 import serial
 
@@ -30,8 +30,6 @@ bot = telebot.TeleBot(config.token)
 GPIO.setwarnings(False)
 # set up GPIO using BCM numbering
 GPIO.setmode(GPIO.BCM)
-
-
 
 ############################################################################
 ############################################################################
@@ -62,22 +60,22 @@ ADMINS = [285956437] # mine ID
 # current BOT ID
 chat_id = 285956437
 
-def show_menu():
-    keyboard = telebot.types.InlineKeyboardMarkup()
-    state_button = telebot.types.InlineKeyboardButton(text='System state', callback_data='state')
+# def show_menu():
+    # keyboard = telebot.types.InlineKeyboardMarkup()
+    # state_button = telebot.types.InlineKeyboardButton(text='System state', callback_data='state')
     # temp_button = telebot.types.InlineKeyboardButton(text='Temperature/Humidity', callback_data='temp')
     # light_button = telebot.types.InlineKeyboardButton(text='Switch lights on/off', callback_data='light')
     # photo_button = telebot.types.InlineKeyboardButton(text='Get recent photo', callback_data='photo')
     # arduino_1_button = telebot.types.InlineKeyboardButton(text='Get analogue data #1', callback_data='arduino1')
-    keyboard.add(state_button)
+    # keyboard.add(state_button)
     # keyboard.add(temp_button)
     # keyboard.add(light_button)
     # keyboard.add(photo_button)
     # keyboard.add(arduino_1_button)
-    bot.send_message(chat_id, 'Menu', reply_markup=keyboard)
+    # bot.send_message(chat_id, 'Menu', reply_markup=keyboard)
 
 
-@bot.callback_query_handler(func=lambda call: True)
+# @bot.callback_query_handler(func=lambda call: True)
 def callback_inline(call):
     chat_id = call.message.chat.id
 
@@ -105,13 +103,16 @@ def callback_inline(call):
 @bot.message_handler(commands=['start'])
 def say_hi(message):
     bot.send_message(message.chat.id, 'Привет bitch!')
-    show_menu()
+    # show_menu()
 
 
 
 
 ####################### STATE ##############################################
 def show_system_state(reply_to_ID):
+    print('send reply')
+    print('chat ID: ')
+    print(reply_to_ID)
     bot.send_message(reply_to_ID, '-------------- System state ---------------')
     sysname = os.uname().sysname
     release = os.uname().release
@@ -127,21 +128,21 @@ def show_system_state(reply_to_ID):
 
     bot.send_message(reply_to_ID, 'Uptime > ' + str(uptime_hrs) + 'hrs ' + str(uptime_mins) + 'mins')
 
-    df_data = os.popen('df -h /')
-    line = df_data.readline()
-    line = df_data.readline()
-    disk_data = line.split()[0:6]
+    # df_data = os.popen('df -h /')
+    # line = df_data.readline()
+    # line = df_data.readline()
+    # disk_data = line.split()[0:6]
     # ['/dev/root', '15G', '4.9G', '8.9G', '36%', '/']
-    bot.send_message(reply_to_ID, 'Total space  > ' + disk_data[1])
-    bot.send_message(reply_to_ID, 'Free space  > ' + disk_data[3])
+    # bot.send_message(reply_to_ID, 'Total space  > ' + disk_data[1])
+    # bot.send_message(reply_to_ID, 'Free space  > ' + disk_data[3])
 
-    core_temp = os.popen('vcgencmd measure_temp').readline().replace('temp=','').replace("'C\n", '°C')
-    bot.send_message(reply_to_ID, 'Core temperature > ' + core_temp)
+    # core_temp = os.popen('vcgencmd measure_temp').readline().replace('temp=','').replace("'C\n", '°C')
+    # bot.send_message(reply_to_ID, 'Core temperature > ' + core_temp)
 
-    rtc = open('/sys/class/i2c-adapter/i2c-1/1-0068/hwmon/hwmon0/temp1_input', 'r')
-    rtc_data = rtc.read()
-    rtc_temp = int(rtc_data)/1000
-    bot.send_message(reply_to_ID, 'RTC Temperature = ' + str(rtc_temp) + '°C')
+    # rtc = open('/sys/class/i2c-adapter/i2c-1/1-0068/hwmon/hwmon0/temp1_input', 'r')
+    # rtc_data = rtc.read()
+    # rtc_temp = int(rtc_data)/1000
+    # bot.send_message(reply_to_ID, 'RTC Temperature = ' + str(rtc_temp) + '°C')
 
     # bot.send_message(reply_to_ID, '-------------------------------')
     # uno_1 = serial.Serial('/dev/ttyACM0', 9600)
@@ -149,7 +150,7 @@ def show_system_state(reply_to_ID):
     # bot.send_message(uno_1.readline())
     # bot.send_message(reply_to_ID, '-------------------------------')
 
-    show_menu()
+    # show_menu()
 
 @bot.message_handler(commands=['state'])
 def get_system_state(message):

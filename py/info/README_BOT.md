@@ -19,8 +19,7 @@ $ pip3 install telegram-send
 
 ##############################################
 # AttributeError: 'TeleBot' object has no attribute
-$ pip3 uninstall telebot
-$ pip3 uninstall PyTelegramBotAPI
+$ pip3 uninstall telebot PyTelegramBotAPI
 $ pip3 install PyTelegramBotAPI==2.2.3
 # and it works now!
 
