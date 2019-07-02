@@ -6,34 +6,38 @@
 #define DHT11_3 6
 #define DHT11_4 7
 
-//#define DHT22_1 4
-//#define DHT22_1 5
-//#define DHT22_1 6
-//#define DHT22_1 7
+#define DHT22_1 8
+//#define DHT22_1 9
+//#define DHT22_1 10
+//#define DHT22_1 11
 
 DHT dht111(DHT11_1, DHT11);
 DHT dht112(DHT11_2, DHT11);
 DHT dht113(DHT11_3, DHT11);
 DHT dht114(DHT11_4, DHT11);
 
-//DHT dht221(DHT22_1, DHT22);
+DHT dht221(DHT22_1, DHT22);
 
 int pause = 500;
 int interval = 2000;
 int rest = 5000;
 
 void setup() {
-  //  pinMode(DHT11_1, OUTPUT);
-  //  pinMode(DHT11_2, OUTPUT);
+  pinMode(DHT11_1, OUTPUT);
+  pinMode(DHT11_2, OUTPUT);
+  pinMode(DHT11_3, OUTPUT);
+  pinMode(DHT11_4, OUTPUT);
+
+  pinMode(DHT22_1, OUTPUT);
 
   dht111.begin();
   dht112.begin();
   dht113.begin();
   dht114.begin();
 
-  //  dht221.begin();
+  dht221.begin();
 
-  Serial.begin(9600);// open serial port, set the baud rate to 9600 bps
+  Serial.begin(9600);
 }
 
 void loop() {
@@ -61,7 +65,7 @@ void loop() {
 
   if (isnan(h1) || isnan(t1)) {
     Serial.print("\033[1;36mDHT11_1 \033[0m >>> ");
-    Serial.println("Не удается считать показания.");
+    Serial.println("<=-Something is going somehow-=>");
   } else {
     Serial.print("\033[1;36mDHT11_1 t\033[0m = ");
     Serial.print(t1);
@@ -72,7 +76,7 @@ void loop() {
 
   if (isnan(h2) || isnan(t2)) {
     Serial.print("\033[1;36mDHT11_2 \033[0m >>> ");
-    Serial.println("Не удается считать показания.");
+    Serial.println("<=-Something is going somehow-=>");
   } else {
     Serial.print("\033[1;36mDHT11_2 t\033[0m = ");
     Serial.print(t2);
@@ -83,7 +87,7 @@ void loop() {
 
   if (isnan(h3) || isnan(t3)) {
     Serial.print("\033[1;36mDHT11_3 \033[0m >>> ");
-    Serial.println("Не удается считать показания.");
+    Serial.println("<=-Something is going somehow-=>");
   } else {
     Serial.print("\033[1;36mDHT11_3 t\033[0m = ");
     Serial.print(t3);
@@ -94,7 +98,7 @@ void loop() {
 
   if (isnan(h4) || isnan(t4)) {
     Serial.print("\033[1;36mDHT11_4 \033[0m >>> ");
-    Serial.println("Не удается считать показания.");
+    Serial.println("<=-Something is going somehow-=>");
   } else {
     Serial.print("\033[1;36mDHT11_4 t\033[0m = ");
     Serial.print(t4);
@@ -103,22 +107,22 @@ void loop() {
     Serial.println("\033[1;32m % \033[0m");
   }
 
-  //  delay(interval);
+  delay(interval);
 
   // DHT22
-  //  float h5 = dht221.readHumidity();
-  //  delay(pause);
-  //  float t5 = dht221.readTemperature();
-  //  delay(pause);
-  //
-  //  if (isnan(h5) || isnan(t5)) {
-  //    Serial.print("\033[1;36mDHT22_1 \033[0m >>> ");
-  //    Serial.println("Не удается считать показания.");
-  //  } else {
-  //    Serial.print("\033[1;36mDHT22_1 t\033[0m = ");
-  //    Serial.print(t5);
-  //    Serial.print("\033[1;32m deg/C\033[0m >>> \033[1;36mh\033[0m = ");
-  //    Serial.print(h5);
-  //    Serial.println("\033[1;32m % \033[0m");
-  //  }
+  float h5 = dht221.readHumidity();
+  delay(pause);
+  float t5 = dht221.readTemperature();
+  delay(pause);
+
+  if (isnan(h5) || isnan(t5)) {
+    Serial.print("\033[1;36mDHT22_1 \033[0m >>> ");
+    Serial.println("<=-Something is going somehow-=>");
+  } else {
+    Serial.print("\033[1;36mDHT22_1 t\033[0m = ");
+    Serial.print(t5);
+    Serial.print("\033[1;32m deg/C\033[0m >>> \033[1;36mh\033[0m = ");
+    Serial.print(h5);
+    Serial.println("\033[1;32m % \033[0m");
+  }
 }
