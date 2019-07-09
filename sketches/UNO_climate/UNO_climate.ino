@@ -18,9 +18,9 @@ DHT dht114(DHT11_4, DHT11);
 
 DHT dht221(DHT22_1, DHT22);
 
-int pause = 500;
-int interval = 2000;
-int rest = 5000;
+int pause = 2500;
+int interval = 5000;
+int rest = 15000;
 
 void setup() {
   pinMode(DHT11_1, OUTPUT);

@@ -3,6 +3,11 @@ BEGIN;
 CREATE TABLE DHT22_1 (tdate DATE, ttime TIME, temperature NUMERIC, humidity NUMERIC);
 COMMIT;
 
+-- create table for DHT D4
+BEGIN;
+CREATE TABLE D4 (ttime TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, temperature REAL, humidity REAL);
+COMMIT;
+
 -- add data
 BEGIN;
 INSERT INTO DHT22_1 values(date('now'), time('now'), 27.50, 47.00);
