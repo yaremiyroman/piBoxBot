@@ -67,48 +67,56 @@ void loop() {
   delay(pause);
 
   if (!isnan(h1) && !isnan(t1)) {
-    Serial.print(">>>t4=");
+    // START OF SERIAL OUTPUT
+
+    Serial.print("t4=");
     Serial.print(t1);
-    Serial.print("<<<");
-    Serial.print(">>>h4=");
+
+    Serial.print("<<<>>>");
+    Serial.print("h4=");
     Serial.print(h1);
-    Serial.print("<<<");
   }
 
   if (!isnan(h2) && !isnan(t2)) {
-    Serial.print(">>>t5=");
+    Serial.print("<<<>>>");
+    Serial.print("t5=");
     Serial.print(t2);
-    Serial.print("<<<");
-    Serial.print(">>>h5=");
+
+    Serial.print("<<<>>>");
+    Serial.print("h5=");
     Serial.print(h2);
-    Serial.print("<<<");
   }
 
   if (!isnan(h3) && !isnan(t3)) {
-    Serial.print(">>>t6=");
+    Serial.print("<<<>>>");
+    Serial.print("t6=");
     Serial.print(t3);
-    Serial.print("<<<");
-    Serial.print(">>>h6=");
+
+    Serial.print("<<<>>>");
+    Serial.print("h6=");
     Serial.print(h3);
-    Serial.print("<<<");
   }
 
   if (!isnan(h4) && !isnan(t4)) {
-    Serial.print(">>>t7=");
+    Serial.print("<<<>>>");
+    Serial.print("t7=");
     Serial.print(t4);
-    Serial.print("<<<");
-    Serial.print(">>>h7=");
+
+    Serial.print("<<<>>>");
+    Serial.print("h7=");
     Serial.print(h4);
-    Serial.print("<<<");
   }
 
   if (!isnan(h5) && !isnan(t5)) {
-    Serial.print(">>>t8=");
+    Serial.print("<<<>>>");
+    Serial.print("t8=");
     Serial.print(t5);
-    Serial.print("<<<");
-    Serial.print(">>>h8=");
+    
+    Serial.print("<<<>>>");
+    Serial.print("h8=");
     Serial.print(h5);
-    Serial.print("<<<");
+    
+    // END OF SERIAL OUTPUT
   }
 
   Serial.println();
