@@ -3,13 +3,21 @@
 #include <Adafruit_Sensor.h>
 #include <OneWire.h>
 
-// PINS
+// DIGITAL PINS
 #define DS18B20 3
 #define DHT11_1 4
 #define DHT11_2 5
 #define DHT11_3 6
 #define DHT11_4 7
 #define DHT22_1 8
+
+// ANALOGUE PINS
+#define MOUSTURE_1 0
+#define MOUSTURE_2 1
+#define MOUSTURE_3 2
+#define MOUSTURE_4 3
+#define STEAM 6
+#define LIGHT 7
 
 // INIT
 OneWire ds(DS18B20);
@@ -178,6 +186,54 @@ void loop() {
   }
     
   delay(pause);
+
+  ////////////////////////////////////
+  // MOUSTURE
+  ////////////////////////////////////
+
+  int mousture_1 = analogRead(MOUSTURE_1);
+
+  Serial.print("mousture_1=");
+  Serial.print(mousture_1);
+  Serial.print(">>>");
+
+  int mousture_2 = analogRead(MOUSTURE_2);
+
+  Serial.print("mousture_2=");
+  Serial.print(mousture_2);
+  Serial.print(">>>");
+
+  int mousture_3 = analogRead(MOUSTURE_3);
+
+  Serial.print("mousture_3=");
+  Serial.print(mousture_3);
+  Serial.print(">>>");
+
+  int mousture_4 = analogRead(MOUSTURE_4);
+
+  Serial.print("mousture_4=");
+  Serial.print(mousture_4);
+  Serial.print(">>>");
+
+  ////////////////////////////////////
+  // STEAM SENSOR
+  ////////////////////////////////////
+
+  int steam_1 = analogRead(STEAM);
+
+  Serial.print("steam_1=");
+  Serial.print(steam_1);
+  Serial.print(">>>");
+
+  ////////////////////////////////////
+  // ANALOG AMBIENT LIGHT SENSOR
+  ////////////////////////////////////
+  
+  int light_1 = analogRead(LIGHT);
+
+  Serial.print("light_1=");
+  Serial.print(light_1);
+  Serial.print(">>>");
   
   ////////////////////////////////////
   ////////////////////////////////////
@@ -186,29 +242,3 @@ void loop() {
   Serial.println();
   delay(rest);
 }
-
-//  // STEAM SENSOR
-//
-//  int steamSensor = analogRead(0);
-//  float steamVoltage = steamSensor * (5.0 / 1023.0);
-//Serial.println("---- Analog Ambient Light Sensor ----");
-//int steamSensor;
-//steamSensor = analogRead(0);   //connect Steam sensors to Analog 0
-//Serial.println("Analog value >>> "); //print the value to serial
-//Serial.println(steamSensor); //print the value to serial
-//float voltage = steamSensor * (5.0 / 1023.0);
-//Serial.println("Voltage >>>"); //print the value to serial
-//Serial.println(voltage); //print the value to serial
-
-//  // ANALOG AMBIENT LIGHT SENSOR
-//
-//  int lightSensor = analogRead(1);
-//  float lightVoltage = lightSensor * (5.0 / 1023.0);
-//
-//  Serial.print("\033[1;36mLight\033[0m = ");
-//  Serial.print(lightSensor);
-//  Serial.print("\033[1;32m @ \033[0m");
-//  Serial.print(lightVoltage);
-//  Serial.println("V");
-//
-//  delay(300);
