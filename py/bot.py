@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 import os
-import config
 import time
 import math
 import telebot
 import io
+
+import config
 
 #########################################################################
 ####################### INIT ###############################################
@@ -46,7 +47,6 @@ def show_system_state(message):
     bot.send_message(message.chat.id, 'OS > ' + sysname + ' ' + release + ' ' + machine)
     bot.send_message(message.chat.id, 'Date@Time > ' + time.strftime('%a %d-%m-%y @ %H:%M'))
     bot.send_message(message.chat.id, 'Uptime > ' + str(uptime_hrs) + ' hr ' + str(uptime_mins) + ' min')
-    bot.send_message(message.chat.id, 'Total space  > ' + disk_data[1])
     bot.send_message(message.chat.id, 'Free space  > ' + disk_data[3])
     bot.send_message(message.chat.id, 'Core temperature > ' + core_temp)
 

@@ -39,6 +39,9 @@ sqlite> SELECT * FROM DHT22_1;
 sqlite> SELECT t FROM temps WHERE zone="garage";
 -- 18.6
 
+-- CORRECT TIME OUTPUT
+SELECT DATETIME(date_time, 'localtime') FROM steam_1;
+
 
 --  search for records from one day ago:
 sqlite> SELECT * FROM temps WHERE tdate=date('now','-1 day');
