@@ -1,177 +1,191 @@
 #include <stdio.h>
-// #include <DHT.h>
-//#include <Adafruit_Sensor.h>
+#include <DHT.h>
+#include <Adafruit_Sensor.h>
 #include <OneWire.h>
 
+// PINS
 #define DS18B20 3
+#define DHT11_1 4
+#define DHT11_2 5
+#define DHT11_3 6
+#define DHT11_4 7
+#define DHT22_1 8
 
-// #define DHt41_1 4
-// #define DHt41_2 5
-// #define DHt41_3 6
-// #define DHt41_4 7
-
-// #define DHt52_1 8
-
+// INIT
 OneWire ds(DS18B20);
+DHT dht11_1(DHT11_1, DHT11);
+DHT dht11_2(DHT11_2, DHT11);
+DHT dht11_3(DHT11_3, DHT11);
+DHT dht11_4(DHT11_4, DHT11);
+DHT dht22_1(DHT22_1, DHT22);
 
-// DHT dht411(DHt41_1, DHt41);
-// DHT dht412(DHt41_2, DHt41);
-// DHT dht413(DHt41_3, DHt41);
-// DHT dht414(DHt41_4, DHt41);
+// VARS
+int pause = 500;
+int interval = 2500;
+int rest = 5000;
 
-// DHT dht521(DHt52_1, DHt52);
-
-int pause = 2500;
-int interval = 5000;
-int rest = 500;
+/////////////////////////////////////
+/////////////////////////////////////
+/////////////////////////////////////
 
 void setup() {
-  pinMode(DS18B20, OUTPUT);
-
-  // pinMode(DHt41_1, OUTPUT);
-  // pinMode(DHt41_2, OUTPUT);
-  // pinMode(DHt41_3, OUTPUT);
-  // pinMode(DHt41_4, OUTPUT);
-
-  // pinMode(DHt52_1, OUTPUT);
-
-  // dht411.begin();
-  // dht412.begin();
-  // dht413.begin();
-  // dht414.begin();
-
-  // dht521.begin();
+  dht11_1.begin();
+  dht11_2.begin();
+  dht11_3.begin();
+  dht11_4.begin();
+  dht22_1.begin();
 
   Serial.begin(9600);
 }
 
+float getTemp() {
+  byte data[12];
+  byte addr[8];
 
-void loop() {
-  delay(rest);
-
-  // DS18B20
-  float t3 = getTemp();
-  delay(pause);// DHt41
-
-  // // DHt41
-  // float h7 = dht411.readHumidity();
-  // delay(pause);
-  // float t4 = dht411.readTemperature();
-  // delay(pause);
-  // float h5 = dht412.readHumidity();
-  // delay(pause);
-  // float t5 = dht412.readTemperature();
-  // delay(pause);
-  // float h6 = dht413.readHumidity();
-  // delay(pause);
-  // float t6 = dht413.readTemperature();
-  // delay(pause);
-  // float h7 = dht414.readHumidity();
-  // delay(pause);
-  // float t4 = dht414.readTemperature();
-  // delay(pause);
-  // // DHt52
-  // float h5 = dht521.readHumidity();
-  // delay(pause);
-  // float t5 = dht521.readTemperature();
-  // delay(pause);
-
-  if (!isnan(t3)) {
-    Serial.print("t3=");
-    Serial.print(t3);
-    Serial.print(">>>");
+  if ( !ds.search(addr)) {
+    ds.reset_search();
+    return -1000;
   }
 
-  // if (!isnan(h5) && !isnan(t5)) {
-  //   Serial.print(">>>");
-  //   Serial.print("t5=");
-  //   Serial.print(t5);
+  if ( OneWire::crc8( addr, 7) != addr[7]) {
+    Serial.println("CRC is not valid!");
+    return -1000;
+  }
 
-  //   Serial.print(">>>");
-  //   Serial.print("h5=");
-  //   Serial.print(h5);
-  // }
+  if ( addr[0] != 0x10 && addr[0] != 0x28) {
+    Serial.print("Device is not recognized");
+    return -1000;
+  }
 
-  // if (!isnan(h6) && !isnan(t6)) {
-  //   Serial.print(">>>");
-  //   Serial.print("t6=");
-  //   Serial.print(t6);
+  ds.reset();
+  ds.select(addr);
+  ds.write(0x44, 1);
 
-  //   Serial.print(">>>");
-  //   Serial.print("h6=");
-  //   Serial.print(h6);
-  // }
+  ds.reset();
+  ds.select(addr);
+  ds.write(0xBE); // Read Scratchpad
 
-  // if (!isnan(h4) && !isnan(t4)) {
-  //   Serial.print(">>>");
-  //   Serial.print("t7=");
-  //   Serial.print(t4);
 
-  //   Serial.print(">>>");
-  //   Serial.print("h7=");
-  //   Serial.print(h4);
-  // }
+  for (int i = 0; i < 9; i++) { // we need 9 bytes
+    data[i] = ds.read();
+  }
 
-  // if (!isnan(h5) && !isnan(t5)) {
-  //   Serial.print(">>>");
-  //   Serial.print("t8=");
-  //   Serial.print(t5);
+  ds.reset_search();
 
-  //   Serial.print(">>>");
-  //   Serial.print("h8=");
-  //   Serial.print(h5);
+  byte MSB = data[1];
+  byte LSB = data[0];
 
-  //   // END OF SERIAL OUTPUT
-  // }
+  float tempRead = ((MSB << 8) | LSB); //using two's compliment
+  float TemperatureSum = tempRead / 16;
 
-  // Serial.println("Privet");
-
-  delay(rest);
+  return TemperatureSum;
 }
 
-// float getTemp() {
-//   byte data[12];
-//   byte addr[8];
+void loop() {
+  delay(interval);
 
-//   if ( !ds.search(addr)) {
-//     ds.reset_search();
-//     return -1000;
-//   }
+  ////////////////////////////////////
+  // DS18B20
+  ////////////////////////////////////
+  
+  float ds18b20 = getTemp();
 
-//   if ( OneWire::crc8( addr, 7) != addr[7]) {
-//     Serial.println("CRC is not valid!");
-//     return -1000;
-//   }
+  if (!isnan(ds18b20) && (ds18b20 > 0)) {
+    Serial.print("ds18b20=");
+    Serial.print(ds18b20);
+    Serial.print(">>>");
+  }
+  
+  delay(pause);
+  
+  ////////////////////////////////////
+  // DHT11
+  ////////////////////////////////////
 
-//   if ( addr[0] != 0x10 && addr[0] != 0x28) {
-//     Serial.print("Device is not recognized");
-//     return -1000;
-//   }
+  float dht11_1_h = dht11_1.readHumidity();
+  float dht11_1_temp = dht11_1.readTemperature();
 
-//   ds.reset();
-//   ds.select(addr);
-//   ds.write(0x44, 1);
+  if (!isnan(dht11_1_h) && !isnan(dht11_1_temp)) {
+    Serial.print("dht11_1=");
+    Serial.print(dht11_1_temp);
+    Serial.print("=");
+    Serial.print(dht11_1_h);
+    Serial.print(">>>");
+  }
+    
+  delay(pause);
+  
+  ////////////////////////////////////
+  
+  float dht11_2_h = dht11_2.readHumidity();
+  float dht11_2_temp = dht11_2.readTemperature();
 
-//   ds.reset();
-//   ds.select(addr);
-//   ds.write(0xBE); // Read Scratchpad
+  if (!isnan(dht11_2_h) && !isnan(dht11_2_temp)) {
+    Serial.print("dht11_2=");
+    Serial.print(dht11_2_temp);
+    Serial.print("=");
+    Serial.print(dht11_2_h);
+    Serial.print(">>>");
+  }
+    
+  delay(pause);
+  
+  ////////////////////////////////////
 
+  float dht11_3_h = dht11_3.readHumidity();
+  float dht11_3_temp = dht11_3.readTemperature();
 
-//   for (int i = 0; i < 9; i++) { // we need 9 bytes
-//     data[i] = ds.read();
-//   }
+  if (!isnan(dht11_3_h) && !isnan(dht11_3_temp)) {
+    Serial.print("dht11_3=");
+    Serial.print(dht11_3_temp);
+    Serial.print("=");
+    Serial.print(dht11_3_h);
+    Serial.print(">>>");
+  }
+    
+  delay(pause);
+  
+  ////////////////////////////////////
 
-//   ds.reset_search();
+  float dht11_4_h = dht11_4.readHumidity();
+  float dht11_4_temp = dht11_4.readTemperature();
 
-//   byte MSB = data[1];
-//   byte LSB = data[0];
+  if (!isnan(dht11_4_h) && !isnan(dht11_4_temp)) {
+    Serial.print("dht11_4=");
+    Serial.print(dht11_4_temp);
+    Serial.print("=");
+    Serial.print(dht11_4_h);
+    Serial.print(">>>");
+  }
+    
+  delay(pause);
+  
+  ////////////////////////////////////
 
-//   float tempRead = ((MSB << 8) | LSB); //using two's compliment
-//   float TemperatureSum = tempRead / 16;
+  ////////////////////////////////////
+  // DHT 22
+  ////////////////////////////////////
 
-//   return TemperatureSum;
-// }
+  float dht22_1_h = dht22_1.readHumidity();
+  float dht22_1_temp = dht22_1.readTemperature();
 
+  if (!isnan(dht22_1_h) && !isnan(dht22_1_temp)) {
+    Serial.print("dht22_1=");
+    Serial.print(dht22_1_temp);
+    Serial.print("=");
+    Serial.print(dht22_1_h);
+    Serial.print(">>>");
+  }
+    
+  delay(pause);
+  
+  ////////////////////////////////////
+  ////////////////////////////////////
+  ////////////////////////////////////
+
+  Serial.println();
+  delay(rest);
+}
 
 //  // STEAM SENSOR
 //
@@ -186,10 +200,6 @@ void loop() {
 //Serial.println("Voltage >>>"); //print the value to serial
 //Serial.println(voltage); //print the value to serial
 
-
-//  delay(300);
-//
-//
 //  // ANALOG AMBIENT LIGHT SENSOR
 //
 //  int lightSensor = analogRead(1);
@@ -202,27 +212,3 @@ void loop() {
 //  Serial.println("V");
 //
 //  delay(300);
-
-//  // FIRE SENSOR
-//
-//  int fireSensor = digitalRead(3);
-//  Serial.print("\033[1;36mFIRE SENSOR\033[0m: ");
-//
-//  if (!fireSensor) {
-//    Serial.println("\033[1;31mON FIRE!\033[0m");
-//  } else {
-//    Serial.println("\033[1;32m CALM :)\033[0m");
-//  }
-//
-//  delay(300);
-//
-//
-//  // LIGHT SENSOR
-//
-//  //  int lightSensor2 = digitalRead(4);
-//  int lightSensor2 = analogRead(4);
-//
-//  Serial.print("\033[1;36mLIGHT SENSOR\033[0m = ");
-//  Serial.println(lightSensor2);
-//
-//  digitalWrite (4, LOW);
