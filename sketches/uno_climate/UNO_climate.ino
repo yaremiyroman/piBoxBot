@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include <DHT.h>
 #include <Adafruit_Sensor.h>
+#include <DHT.h>
 #include <OneWire.h>
 
 // DIGITAL PINS
@@ -37,7 +37,17 @@ int rest = 5000;
 /////////////////////////////////////
 
 void setup() {
+  pinMode(DS18B20, OUTPUT);
+
+  pinMode(DHT11_1, OUTPUT);
+  pinMode(DHT11_2, OUTPUT);
+  pinMode(DHT11_3, OUTPUT);
+  pinMode(DHT11_4, OUTPUT);
+
+  pinMode(DHT22_1, OUTPUT);
+
   dht11_1.begin();
+
   dht11_2.begin();
   dht11_3.begin();
   dht11_4.begin();
@@ -96,155 +106,155 @@ void loop() {
   // DS18B20
   ////////////////////////////////////
   
-  float ds18b20 = getTemp();
+  float DS18B20_temp = getTemp();
 
-  if (!isnan(ds18b20) && (ds18b20 > 0)) {
+  if (!isnan(DS18B20_temp) && (DS18B20_temp > 0)) {
     Serial.print("ds18b20=");
-    Serial.print(ds18b20);
-    Serial.print(">>>");
+    Serial.print(DS18B20_temp);
+    // Serial.print(">>>");
   }
   
   delay(pause);
   
-  ////////////////////////////////////
-  // DHT11
-  ////////////////////////////////////
+  // ////////////////////////////////////
+  // // DHT11
+  // ////////////////////////////////////
 
-  float dht11_1_h = dht11_1.readHumidity();
-  float dht11_1_temp = dht11_1.readTemperature();
+  // float dht11_1_h = dht11_1.readHumidity();
+  // float dht11_1_temp = dht11_1.readTemperature();
 
-  if (!isnan(dht11_1_h) && !isnan(dht11_1_temp)) {
-    Serial.print("dht11_1=");
-    Serial.print(dht11_1_temp);
-    Serial.print("=");
-    Serial.print(dht11_1_h);
-    Serial.print(">>>");
-  }
+  // if (!isnan(dht11_1_h) && !isnan(dht11_1_temp)) {
+  //   Serial.print("dht11_1=");
+  //   Serial.print(dht11_1_temp);
+  //   Serial.print("=");
+  //   Serial.print(dht11_1_h);
+  //   Serial.print(">>>");
+  // }
     
-  delay(pause);
+  // delay(pause);
   
-  ////////////////////////////////////
+  // ////////////////////////////////////
   
-  float dht11_2_h = dht11_2.readHumidity();
-  float dht11_2_temp = dht11_2.readTemperature();
+  // float dht11_2_h = dht11_2.readHumidity();
+  // float dht11_2_temp = dht11_2.readTemperature();
 
-  if (!isnan(dht11_2_h) && !isnan(dht11_2_temp)) {
-    Serial.print("dht11_2=");
-    Serial.print(dht11_2_temp);
-    Serial.print("=");
-    Serial.print(dht11_2_h);
-    Serial.print(">>>");
-  }
+  // if (!isnan(dht11_2_h) && !isnan(dht11_2_temp)) {
+  //   Serial.print("dht11_2=");
+  //   Serial.print(dht11_2_temp);
+  //   Serial.print("=");
+  //   Serial.print(dht11_2_h);
+  //   Serial.print(">>>");
+  // }
     
-  delay(pause);
+  // delay(pause);
   
-  ////////////////////////////////////
+  // ////////////////////////////////////
 
-  float dht11_3_h = dht11_3.readHumidity();
-  float dht11_3_temp = dht11_3.readTemperature();
+  // float dht11_3_h = dht11_3.readHumidity();
+  // float dht11_3_temp = dht11_3.readTemperature();
 
-  if (!isnan(dht11_3_h) && !isnan(dht11_3_temp)) {
-    Serial.print("dht11_3=");
-    Serial.print(dht11_3_temp);
-    Serial.print("=");
-    Serial.print(dht11_3_h);
-    Serial.print(">>>");
-  }
+  // if (!isnan(dht11_3_h) && !isnan(dht11_3_temp)) {
+  //   Serial.print("dht11_3=");
+  //   Serial.print(dht11_3_temp);
+  //   Serial.print("=");
+  //   Serial.print(dht11_3_h);
+  //   Serial.print(">>>");
+  // }
     
-  delay(pause);
+  // delay(pause);
   
-  ////////////////////////////////////
+  // ////////////////////////////////////
 
-  float dht11_4_h = dht11_4.readHumidity();
-  float dht11_4_temp = dht11_4.readTemperature();
+  // float dht11_4_h = dht11_4.readHumidity();
+  // float dht11_4_temp = dht11_4.readTemperature();
 
-  if (!isnan(dht11_4_h) && !isnan(dht11_4_temp)) {
-    Serial.print("dht11_4=");
-    Serial.print(dht11_4_temp);
-    Serial.print("=");
-    Serial.print(dht11_4_h);
-    Serial.print(">>>");
-  }
+  // if (!isnan(dht11_4_h) && !isnan(dht11_4_temp)) {
+  //   Serial.print("dht11_4=");
+  //   Serial.print(dht11_4_temp);
+  //   Serial.print("=");
+  //   Serial.print(dht11_4_h);
+  //   Serial.print(">>>");
+  // }
     
-  delay(pause);
+  // delay(pause);
   
-  ////////////////////////////////////
+  // ////////////////////////////////////
 
-  ////////////////////////////////////
-  // DHT 22
-  ////////////////////////////////////
+  // ////////////////////////////////////
+  // // DHT 22
+  // ////////////////////////////////////
 
-  float dht22_1_h = dht22_1.readHumidity();
-  float dht22_1_temp = dht22_1.readTemperature();
+  // float dht22_1_h = dht22_1.readHumidity();
+  // float dht22_1_temp = dht22_1.readTemperature();
 
-  if (!isnan(dht22_1_h) && !isnan(dht22_1_temp)) {
-    Serial.print("dht22_1=");
-    Serial.print(dht22_1_temp);
-    Serial.print("=");
-    Serial.print(dht22_1_h);
-    Serial.print(">>>");
-  }
+  // if (!isnan(dht22_1_h) && !isnan(dht22_1_temp)) {
+  //   Serial.print("dht22_1=");
+  //   Serial.print(dht22_1_temp);
+  //   Serial.print("=");
+  //   Serial.print(dht22_1_h);
+  //   Serial.print(">>>");
+  // }
     
-  delay(pause);
+  // delay(pause);
 
-  ////////////////////////////////////
-  // MOUSTURE
-  ////////////////////////////////////
+  // ////////////////////////////////////
+  // // MOUSTURE
+  // ////////////////////////////////////
 
-  int mousture_1 = analogRead(MOUSTURE_1);
+  // int mousture_1 = analogRead(MOUSTURE_1);
 
-  Serial.print("mousture_1=");
-  Serial.print(mousture_1);
-  Serial.print(">>>");
+  // Serial.print("mousture_1=");
+  // Serial.print(mousture_1);
+  // Serial.print(">>>");
 
-  delay(pause);
+  // delay(pause);
 
-  int mousture_2 = analogRead(MOUSTURE_2);
+  // int mousture_2 = analogRead(MOUSTURE_2);
 
-  Serial.print("mousture_2=");
-  Serial.print(mousture_2);
-  Serial.print(">>>");
+  // Serial.print("mousture_2=");
+  // Serial.print(mousture_2);
+  // Serial.print(">>>");
 
-  delay(pause);
+  // delay(pause);
 
-  int mousture_3 = analogRead(MOUSTURE_3);
+  // int mousture_3 = analogRead(MOUSTURE_3);
 
-  Serial.print("mousture_3=");
-  Serial.print(mousture_3);
-  Serial.print(">>>");
+  // Serial.print("mousture_3=");
+  // Serial.print(mousture_3);
+  // Serial.print(">>>");
 
-  delay(pause);
+  // delay(pause);
 
-  int mousture_4 = analogRead(MOUSTURE_4);
+  // int mousture_4 = analogRead(MOUSTURE_4);
 
-  Serial.print("mousture_4=");
-  Serial.print(mousture_4);
-  Serial.print(">>>");
+  // Serial.print("mousture_4=");
+  // Serial.print(mousture_4);
+  // Serial.print(">>>");
 
-  delay(pause);
+  // delay(pause);
 
-  ////////////////////////////////////
-  // STEAM SENSOR
-  ////////////////////////////////////
+  // ////////////////////////////////////
+  // // STEAM SENSOR
+  // ////////////////////////////////////
 
-  int steam_1 = analogRead(STEAM);
+  // int steam_1 = analogRead(STEAM);
 
-  Serial.print("steam_1=");
-  Serial.print(steam_1);
-  Serial.print(">>>");
+  // Serial.print("steam_1=");
+  // Serial.print(steam_1);
+  // Serial.print(">>>");
 
-  delay(pause);
+  // delay(pause);
 
-  ////////////////////////////////////
-  // ANALOG AMBIENT LIGHT SENSOR
-  ////////////////////////////////////
+  // ////////////////////////////////////
+  // // ANALOG AMBIENT LIGHT SENSOR
+  // ////////////////////////////////////
   
-  int light_1 = analogRead(LIGHT);
+  // int light_1 = analogRead(LIGHT);
 
-  Serial.print("light_1=");
-  Serial.print(light_1);
+  // Serial.print("light_1=");
+  // Serial.print(light_1);
 
-  delay(pause);
+  // delay(pause);
   
   ////////////////////////////////////
   ////////////////////////////////////

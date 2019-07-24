@@ -1,11 +1,16 @@
 -- create table
 BEGIN;
-CREATE TABLE DHT22_1 (tdate DATE, ttime TIME, temperature NUMERIC, humidity NUMERIC);
+CREATE TABLE ds18b20 (id INTEGER PRIMARY KEY AUTOINCREMENT, t NUMERIC, date_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL);
+CREATE TABLE ds18b20 (id INTEGER PRIMARY KEY AUTOINCREMENT, t NUMERIC;
+COMMIT;
+
+BEGIN;
+CREATE TABLE DHT22_1 (tdate DATE, ttime TIME, t NUMERIC, humidity NUMERIC);
 COMMIT;
 
 -- create table for DHT D4
 BEGIN;
-CREATE TABLE D4 (ttime TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, temperature REAL, humidity REAL);
+CREATE TABLE D4 (ttime TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL, t REAL, humidity REAL);
 COMMIT;
 
 -- add data
@@ -20,8 +25,8 @@ sqlite> SELECT * FROM DHT22_1;
 -- 2013-09-04|01:41:08|garage|18.6
 -- 2013-09-05|01:42:38|garage|19.1
 
---  selects only the temperature field from each record:
-sqlite> SELECT temperature FROM temps WHERE zone="garage";
+--  selects only the 'temperature' field from each record:
+sqlite> SELECT t FROM temps WHERE zone="garage";
 -- 18.6
 
 

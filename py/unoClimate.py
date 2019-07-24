@@ -5,7 +5,7 @@ import time
 
 ser = serial.Serial('/dev/ttyACM0', 9600)
 
-conn=sqlite3.connect('../db/unoClimate.db')
+conn = sqlite3.connect('/home/pi/piBoxBot/db/unoClimate.db')
 
 mapSensorToTable = {
     't4': 'D4',
@@ -35,17 +35,22 @@ mapValueToField = {
 
 while True:
     if(ser.in_waiting > 0):
-        sensors = ser.readline().split("<<<>>>")
+        sensors = ser.readline().split(">>>")
 
-        for sensor in sensors:
-            sensorName = sensor[0:2]
-            sensorValue = sensor[3:8]
-            timestamp = str(round(time.time()))
-            # timestamp = time.time()
+        for sensorData in sensors:
+            sensorParsed = sensorData.split("=")
+            
+            if(len(sensorParsed) > 1):
+                sensorName = sensorParsed[0]
+                sensorValue = sensorParsed[1]
+                
+                # print(sensorParsed)
+                # print(sensorName)
+                # print(sensorValue)
+            
+                query = "INSERT INTO " + sensorName + " (t) VALUES("+ sensorValue + ")"
 
-            query = "INSERT INTO " + mapSensorToTable[sensorName] + " (ttime," + mapValueToField[sensorName] + ") VALUES (" + timestamp + ", " + sensorValue + ")"
-
-            conn.execute(query)
-            conn.commit()
+                conn.execute(query)
+                conn.commit()
 
 conn.close()
