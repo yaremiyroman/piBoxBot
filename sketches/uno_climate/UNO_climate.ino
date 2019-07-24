@@ -197,11 +197,15 @@ void loop() {
   Serial.print(mousture_1);
   Serial.print(">>>");
 
+  delay(pause);
+
   int mousture_2 = analogRead(MOUSTURE_2);
 
   Serial.print("mousture_2=");
   Serial.print(mousture_2);
   Serial.print(">>>");
+
+  delay(pause);
 
   int mousture_3 = analogRead(MOUSTURE_3);
 
@@ -209,11 +213,15 @@ void loop() {
   Serial.print(mousture_3);
   Serial.print(">>>");
 
+  delay(pause);
+
   int mousture_4 = analogRead(MOUSTURE_4);
 
   Serial.print("mousture_4=");
   Serial.print(mousture_4);
   Serial.print(">>>");
+
+  delay(pause);
 
   ////////////////////////////////////
   // STEAM SENSOR
@@ -225,6 +233,8 @@ void loop() {
   Serial.print(steam_1);
   Serial.print(">>>");
 
+  delay(pause);
+
   ////////////////////////////////////
   // ANALOG AMBIENT LIGHT SENSOR
   ////////////////////////////////////
@@ -233,6 +243,8 @@ void loop() {
 
   Serial.print("light_1=");
   Serial.print(light_1);
+
+  delay(pause);
   
   ////////////////////////////////////
   ////////////////////////////////////
