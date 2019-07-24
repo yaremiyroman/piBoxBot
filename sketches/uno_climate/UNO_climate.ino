@@ -1,10 +1,9 @@
 #include <stdio.h>
 // #include <DHT.h>
 //#include <Adafruit_Sensor.h>
-// #include <OneWire.h>
+#include <OneWire.h>
 
-
-// #define DS18B20 3
+#define DS18B20 3
 
 // #define DHt41_1 4
 // #define DHt41_2 5
@@ -13,7 +12,7 @@
 
 // #define DHt52_1 8
 
-// OneWire ds(DS18B20);
+OneWire ds(DS18B20);
 
 // DHT dht411(DHt41_1, DHt41);
 // DHT dht412(DHt41_2, DHt41);
@@ -27,7 +26,7 @@ int interval = 5000;
 int rest = 500;
 
 void setup() {
-  // pinMode(DS18B20, OUTPUT);
+  pinMode(DS18B20, OUTPUT);
 
   // pinMode(DHt41_1, OUTPUT);
   // pinMode(DHt41_2, OUTPUT);
@@ -51,8 +50,9 @@ void loop() {
   delay(rest);
 
   // DS18B20
-  // float h3 = getTemp();
-  // delay(pause);// DHt41
+  float t3 = getTemp();
+  delay(pause);// DHt41
+
   // // DHt41
   // float h7 = dht411.readHumidity();
   // delay(pause);
@@ -76,14 +76,11 @@ void loop() {
   // float t5 = dht521.readTemperature();
   // delay(pause);
 
-  // if (!isnan(h7) && !isnan(t4)) {
-  //   Serial.print("t4=");
-  //   Serial.print(t4);
-
-  //   Serial.print(">>>");
-  //   Serial.print("h7=");
-  //   Serial.print(h7);
-  // }
+  if (!isnan(t3)) {
+    Serial.print("t3=");
+    Serial.print(t3);
+    Serial.print(">>>");
+  }
 
   // if (!isnan(h5) && !isnan(t5)) {
   //   Serial.print(">>>");
@@ -127,7 +124,8 @@ void loop() {
   //   // END OF SERIAL OUTPUT
   // }
 
-  Serial.println("Privet");
+  // Serial.println("Privet");
+
   delay(rest);
 }
 
