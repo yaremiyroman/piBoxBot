@@ -233,7 +233,6 @@ void loop() {
 
   Serial.print("light_1=");
   Serial.print(light_1);
-  Serial.print(">>>");
   
   ////////////////////////////////////
   ////////////////////////////////////
