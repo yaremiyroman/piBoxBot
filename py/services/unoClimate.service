@@ -1,5 +1,5 @@
 [Unit]
-Description=Run TeleBot
+Description=Run Climate Sensors Recording
 After=network.target
 
 [Service]
