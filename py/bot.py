@@ -4,6 +4,7 @@ import time
 import math
 import telebot
 import io
+import sqlite3
 
 import config
 
@@ -12,8 +13,8 @@ import config
 ############################################################################
 
 bot = telebot.TeleBot(config.token)
-
-ADMINS = [285956437]
+conn = sqlite3.connect('/home/pi/piBoxBot/db/unoClimate.db')
+ADMINS = [config.adminID]
 
 ############################################################################
 ####################### BOT COMMANDS HANDLERS ##############################
@@ -50,6 +51,17 @@ def show_system_state(message):
     bot.send_message(message.chat.id, 'Free space  > ' + disk_data[3])
     bot.send_message(message.chat.id, 'Core temperature > ' + core_temp)
 
+####################### START ##############################################
+@bot.message_handler(commands=['climate'])
+def climate(message):
+    ds18b20 = conn.execute("SELECT t FROM ds18b20 WHERE id IN (select max(id) FROM ds18b20)")
+    bot.send_message(message.chat.id, 'ds18b20 t=' + ds18b20)
+
+####################### START ##############################################
+@bot.message_handler(commands=['photo'])
+def photo(message):
+    bot.send_message(message.chat.id, 'photo')
+    
 ####################### REBOOT #############################################
 @bot.message_handler(commands=['reboot'])
 def reboot(message):
@@ -83,6 +95,7 @@ def telegram_polling():
         traceback_error_string=traceback.format_exc()
         with open("Error.Log", "a") as myfile:
             myfile.write("\r\n\r\n" + time.strftime("%c")+"\r\n<<ERROR polling>>\r\n"+ traceback_error_string + "\r\n<<ERROR polling>>")
+        # conn.close()
         bot.stop_polling()
         time.sleep(30)
         telegram_polling()
