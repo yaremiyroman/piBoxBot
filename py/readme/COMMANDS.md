@@ -7,7 +7,9 @@ command1 - Description
 command2 - Another description
 
 # Actual commands
-start - Приветульки
-state - Данные состояния системы
-shutdown - Выключи меня
-reboot - Перезагрузи меня
+start - Say Hi
+state - System state
+climate - Climate data
+photo - Get photo
+reboot - Reboot
+shutdown - Shutdown

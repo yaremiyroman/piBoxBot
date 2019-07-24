@@ -117,3 +117,6 @@ venv.bak/
 build-uno
 build-uno/
 build-uno/*
+unoClimate.db
+*/unoClimate.db
+*.db
