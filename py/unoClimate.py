@@ -1,15 +1,17 @@
 # -*- coding: utf-8 -*-
-import serial
 import sqlite3
+import serial
 import time
 
-ser = serial.Serial('/dev/ttyACM0', 9600)
+import config
 
-conn = sqlite3.connect('/home/pi/piBoxBot/db/unoClimate.db')
+unoClimateSerial = serial.Serial(config.unoClimate, 9600)
+
+conn = sqlite3.connect(config.unoClimateDB)
 
 while True:
-    if(ser.in_waiting > 0):
-        sensors = ser.readline().split(">>>")
+    if(unoClimateSerial.in_waiting > 0):
+        sensors = unoClimateSerial.readline().decode().split(">>>")
 
         for sensorData in sensors:
             sensorParsed = sensorData.split("=")

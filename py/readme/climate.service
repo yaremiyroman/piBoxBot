@@ -1,5 +1,5 @@
 [Unit]
-Description=Run Climate Sensors Recording
+Description=Record Climate Measurements
 After=network.target
 
 [Service]

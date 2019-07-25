@@ -5,6 +5,7 @@ import math
 import telebot
 import io
 import sqlite3
+import time
 
 import config
 
@@ -13,7 +14,6 @@ import config
 ############################################################################
 
 bot = telebot.TeleBot(config.token)
-conn = sqlite3.connect('/home/pi/piBoxBot/db/unoClimate.db')
 ADMINS = [config.adminID]
 
 ############################################################################
@@ -54,11 +54,101 @@ def show_system_state(message):
 ####################### CLIMATE ##############################################
 @bot.message_handler(commands=['climate'])
 def climate(message):
+    conn = sqlite3.connect(config.unoClimateDB)
     cur = conn.cursor()
-    
-    cur.execute("SELECT date_time, t FROM ds18b20 WHERE id IN (select max(id) FROM ds18b20)")
-    ds18b20 = cur.fetchone()
-    bot.send_message(message.chat.id, 'ds18b20@' + ds18b20[0] + ' > t = ' + str(ds18b20[1]) + 'degC')
+    time.sleep(1)
+
+    cur.execute("SELECT date_time, t FROM ds18b20 WHERE id IN (SELECT MAX(id) FROM ds18b20)")
+    ds18b20_data = cur.fetchone()
+    ds18b20_time = str(ds18b20_data[0])
+    ds18b20 = str(ds18b20_data[1])
+    bot.send_message(message.chat.id, 'ds18b20 @ ' + ds18b20_time + ' > t = ' + ds18b20 + ' deg')
+    time.sleep(1)
+
+    cur.execute("SELECT date_time, t, h FROM dht11_1 WHERE id IN (SELECT MAX(id) FROM dht11_1)")
+    dht11_1_data = cur.fetchone()
+    dht11_1_time = str(dht11_1_data[0])
+    dht11_1_temp = str(dht11_1_data[1])
+    dht11_1_humid = str(dht11_1_data[2])
+    bot.send_message(message.chat.id, 'dht11_1 @ ' + dht11_1_time + ' > t = ' + dht11_1_temp + ' deg' + ' > h = ' + dht11_1_humid)
+    time.sleep(1)
+
+    cur.execute("SELECT date_time, t, h FROM dht11_2 WHERE id IN (SELECT MAX(id) FROM dht11_2)")
+    dht11_2_data = cur.fetchone()
+    dht11_2_time = str(dht11_2_data[0])
+    dht11_2_temp = str(dht11_2_data[1])
+    dht11_2_humid = str(dht11_2_data[2])
+    bot.send_message(message.chat.id, 'dht11_2 @ ' + dht11_2_time + ' > t = ' + dht11_2_temp + ' deg' + ' > h = ' + dht11_2_humid)
+    time.sleep(1)
+
+    cur.execute("SELECT date_time, t, h FROM dht11_3 WHERE id IN (SELECT MAX(id) FROM dht11_3)")
+    dht11_3_data = cur.fetchone()
+    dht11_3_time = str(dht11_3_data[0])
+    dht11_3_temp = str(dht11_3_data[1])
+    dht11_3_humid = str(dht11_3_data[2])
+    bot.send_message(message.chat.id, 'dht11_3 @ ' + dht11_3_time + ' > t = ' + dht11_3_temp + ' deg' + ' > h = ' + dht11_3_humid)
+    time.sleep(1)
+
+    cur.execute("SELECT date_time, t, h FROM dht11_4 WHERE id IN (SELECT MAX(id) FROM dht11_4)")
+    dht11_4_data = cur.fetchone()
+    dht11_4_time = str(dht11_4_data[0])
+    dht11_4_temp = str(dht11_4_data[1])
+    dht11_4_humid = str(dht11_4_data[2])
+    bot.send_message(message.chat.id, 'dht11_4 @ ' + dht11_4_time + ' > t = ' + dht11_4_temp + ' deg' + ' > h = ' + dht11_4_humid)
+    time.sleep(1)
+
+    cur.execute("SELECT date_time, t, h FROM dht22_1 WHERE id IN (SELECT MAX(id) FROM dht22_1)")
+    dht22_1_data = cur.fetchone()
+    dht22_1_time = str(dht22_1_data[0])
+    dht22_1_temp = str(dht22_1_data[1])
+    dht22_1_humid = str(dht22_1_data[2])
+    bot.send_message(message.chat.id, 'dht22_1 @ ' + dht22_1_time + ' > t = ' + dht22_1_temp + ' deg' + ' > h = ' + dht22_1_humid)
+    time.sleep(1)
+
+    cur.execute("SELECT date_time, h FROM mousture_1 WHERE id IN (SELECT MAX(id) FROM mousture_1)")
+    mousture_1_data = cur.fetchone()
+    mousture_1_time = str(mousture_1_data[0])
+    mousture_1 = str(mousture_1_data[1])
+    bot.send_message(message.chat.id, 'mousture_1 @ ' + mousture_1_time + ' > h = ' + mousture_1)
+    time.sleep(1)
+
+    cur.execute("SELECT date_time, h FROM mousture_2 WHERE id IN (SELECT MAX(id) FROM mousture_2)")
+    mousture_2_data = cur.fetchone()
+    mousture_2_time = str(mousture_2_data[0])
+    mousture_2 = str(mousture_2_data[1])
+    bot.send_message(message.chat.id, 'mousture_2 @ ' + mousture_2_time + ' > h = ' + mousture_2)
+    time.sleep(1)
+
+    cur.execute("SELECT date_time, h FROM mousture_3 WHERE id IN (SELECT MAX(id) FROM mousture_3)")
+    mousture_3_data = cur.fetchone()
+    mousture_3_time = str(mousture_3_data[0])
+    mousture_3 = str(mousture_3_data[1])
+    bot.send_message(message.chat.id, 'mousture_3 @ ' + mousture_3_time + ' > h = ' + mousture_3)
+    time.sleep(1)
+
+    cur.execute("SELECT date_time, h FROM mousture_4 WHERE id IN (SELECT MAX(id) FROM mousture_4)")
+    mousture_4_data = cur.fetchone()
+    mousture_4_time = str(mousture_4_data[0])
+    mousture_4 = str(mousture_4_data[1])
+    bot.send_message(message.chat.id, 'mousture_4 @ ' + mousture_4_time + ' > h = ' + mousture_4)
+    time.sleep(1)
+
+    cur.execute("SELECT date_time, h FROM steam_1 WHERE id IN (SELECT MAX(id) FROM steam_1)")
+    steam_1_data = cur.fetchone()
+    steam_1_time = str(steam_1_data[0])
+    steam_1 = str(steam_1_data[1])
+    bot.send_message(message.chat.id, 'steam_1 @ ' + steam_1_time + ' > h = ' + steam_1)
+    time.sleep(1)
+
+    cur.execute("SELECT date_time, l FROM light_1 WHERE id IN (SELECT MAX(id) FROM light_1)")
+    light_1_data = cur.fetchone()
+    light_1_time = str(light_1_data[0])
+    light_1 = str(light_1_data[1])
+    bot.send_message(message.chat.id, 'light_1 @ ' + light_1_time + ' > l = ' + light_1)
+    time.sleep(1)
+
+    conn.close()
+    time.sleep(3)
 
 ####################### PHOTO ##############################################
 @bot.message_handler(commands=['photo'])
@@ -88,6 +178,8 @@ def shutdown(message):
     time.sleep(1)
 
 ############################################################################
+
+############################################################################
 ###################### POLLING ########################################
 ############################################################################
 
@@ -95,13 +187,8 @@ def telegram_polling():
     try:
         bot.polling(none_stop = True, timeout = 600)
     except:
-        traceback_error_string=traceback.format_exc()
-        with open("Error.Log", "a") as myfile:
-            myfile.write("\r\n\r\n" + time.strftime("%c")+"\r\n<<ERROR polling>>\r\n"+ traceback_error_string + "\r\n<<ERROR polling>>")
-        # conn.close()
         bot.stop_polling()
-        time.sleep(30)
+        time.sleep(20)
         telegram_polling()
 
-if __name__ == '__main__':
-    telegram_polling()
+telegram_polling()
