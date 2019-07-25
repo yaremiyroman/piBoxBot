@@ -11,12 +11,17 @@
 #
 # By default this script does nothing.
 
+# Print the IP address
+_IP=$(hostname -I) || true
+if [ "$_IP" ]; then
+  printf "My IP address is %s\n" "$_IP"
+fi
+
 echo ds3231 0x68 > /sys/class/i2c-adapter/i2c-1/new_device
 
 sudo hwclock -s
 
-#sudo bash /home/pi/piBoxBot/bash/bot_run.sh & > /home/pi/botBashLog.txt 2>&1
-#sudo bash /home/pi/piBoxBot/bash/cameraLoop.sh &
-#/home/pi/piBoxBot/bash/shutdown.sh &
+/home/pi/piBoxBot/bash/bot_run.sh &
+/home/pi/piBoxBot/bash/cameraLoop.sh &
 
 exit 0
