@@ -153,27 +153,38 @@ def climate(message):
 ####################### PHOTO ##############################################
 @bot.message_handler(commands=['photo'])
 def photo(message):
-    bot.send_message(message.chat.id, 'photo')
+    chatID = message.chat.id
+
+    bot.send_message(chatID, 'Fetching recent photo')
     
+    try:
+        os.system('scp pi@piMedia.local:/home/pi/Pictures/cam1.jpg /home/pi/piBoxBot/media/')
+        time.sleep(3)
+        recent_photo = open('/home/pi/piBoxBot/media/cam1.jpg', 'rb')
+        time.sleep(3)
+    except Exception:
+        bot.send_message(chatID, 'Try later...')
+    else:
+        bot.send_photo(chatID, recent_photo)
+
 ####################### REBOOT #############################################
 @bot.message_handler(commands=['reboot'])
 def reboot(message):
-    sender_ID = message.chat.id
-    if sender_ID not in ADMINS:
-        bot.send_message(sender_ID, 'Go f*ck yourself')
+    if chatID not in ADMINS:
+        bot.send_message(chatID, 'Go f*ck yourself')
         return
-    bot.send_message(sender_ID, 'Rebooting --> ')
+    bot.send_message(chatID, 'Rebooting --> ')
     os.system('sudo reboot')
     time.sleep(1)
 
 # ####################### TURN OFF #############################################
 @bot.message_handler(commands=['shutdown'])
 def shutdown(message):
-    sender_ID = message.chat.id
-    if sender_ID not in ADMINS:
-        bot.send_message(sender_ID, 'Go f*ck yourself')
+    chatID = message.chat.id
+    if chatID not in ADMINS:
+        bot.send_message(chatID, 'Go f*ck yourself')
         return
-    bot.send_message(sender_ID, 'Going offline...')
+    bot.send_message(chatID, 'Going offline...')
     os.system('sudo shutdown -h now')
     time.sleep(1)
 
