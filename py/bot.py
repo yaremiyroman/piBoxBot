@@ -51,13 +51,16 @@ def show_system_state(message):
     bot.send_message(message.chat.id, 'Free space  > ' + disk_data[3])
     bot.send_message(message.chat.id, 'Core temperature > ' + core_temp)
 
-####################### START ##############################################
+####################### CLIMATE ##############################################
 @bot.message_handler(commands=['climate'])
 def climate(message):
-    ds18b20 = conn.execute("SELECT t FROM ds18b20 WHERE id IN (select max(id) FROM ds18b20)")
-    bot.send_message(message.chat.id, 'ds18b20 t=' + ds18b20)
+    cur = conn.cursor()
+    
+    cur.execute("SELECT date_time, t FROM ds18b20 WHERE id IN (select max(id) FROM ds18b20)")
+    ds18b20 = cur.fetchone()
+    bot.send_message(message.chat.id, 'ds18b20@' + ds18b20[0] + ' > t = ' + str(ds18b20[1]) + 'degC')
 
-####################### START ##############################################
+####################### PHOTO ##############################################
 @bot.message_handler(commands=['photo'])
 def photo(message):
     bot.send_message(message.chat.id, 'photo')
