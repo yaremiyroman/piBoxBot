@@ -155,7 +155,7 @@ def climate(message):
 def photo(message):
     chatID = message.chat.id
 
-    bot.send_message(chatID, 'Fetching recent photo')
+    bot.send_message(chatID, 'Recent photo --> ')
     
     try:
         os.system('scp pi@piMedia.local:/home/pi/Pictures/cam1.jpg /home/pi/piBoxBot/media/')
@@ -163,7 +163,7 @@ def photo(message):
         recent_photo = open('/home/pi/piBoxBot/media/cam1.jpg', 'rb')
         time.sleep(3)
     except Exception:
-        bot.send_message(chatID, 'Try later...')
+        bot.send_message(chatID, 'Try later :( ')
     else:
         bot.send_photo(chatID, recent_photo)
 
