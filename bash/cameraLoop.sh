@@ -9,5 +9,5 @@ while true; do
   raspistill -q 80 -w 1440 -h 1080 -o $file_path
   sleep 5
   cp $file_path /home/pi/Pictures/cam1.jpg
-  sleep 30
+  sleep 600
 done
