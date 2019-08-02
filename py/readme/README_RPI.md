@@ -76,52 +76,23 @@ $ cat /proc/cpuinfo
 
 $ vcgencmd get_mem arm && vcgencmd get_mem gpu
 
-
-
-
-
 # If you're running a headless Raspberry Pi, there's no need to power the display circuitry, and you can save a little power by running /usr/bin/tvservice -o (-p to re-enable).
-# Add the line to /etc/rc.local to disable HDMI on boot.
 
-# Disable HDMI
-/usr/bin/tvservice -o
-
-# HDMI util and switching it off
-$ tvservice
+# TURN OFF HDME add to crontab
+$ tvservice -o       
+# CHECK HDMI STATUS       
 $ tvservice  --status
-$ tvservice -o
-
 
 # hostname and IP
 $ hostname
 $ hostname -I
 
-
-# DISABLE THE BUILT-IN SOUND CARD OF RASPBERRY PI
-
-$ cd /etc/modprobe.d
-$ sudo nano alsa-blacklist.con
-$ sudo reboot
-$ aplay -l
-# "...no soundcards found" indicates that kernel module (device driver) for broadcom chip was not loaded and the card has been disabled for all intents and purposes.
-
-
 # SWITCH OFF NETWORK INTERFACES
-$ ifconfig
-$ ifconfig
-$ crontab -e
-# So that command runs at each boot.
-$ @reboot sudo ifdown wlan0
-# For stretch, you need to use
-$ ip link set wlan0 down
-# instead of ifdown
-# or add it to /etc/rc.local with full bin name prefixed with e.g. /sbin/ip
-# before exit 0
-
-# !!!! Add to /boot/config.txt:
+# POWER OFF WLAN
+$ sudo crontab -e
+$ @reboot ifconfig eth0 down
 
 # Disable WiFi and Bluetooth
-# wifi status
 $ iwconfig
 dtoverlay=pi3-disable-wifi
 dtoverlay=pi3-disable-bt
