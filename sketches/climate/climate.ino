@@ -28,9 +28,9 @@ DHT dht11_4(DHT11_4, DHT11);
 DHT dht22_1(DHT22_1, DHT22);
 
 // VARS
-int pause = 500;
-int interval = 2500;
-int rest = 5000;
+int pause = 1000;
+int interval = 2000;
+int rest = 10000;
 
 /////////////////////////////////////
 /////////////////////////////////////
@@ -105,7 +105,7 @@ void loop() {
   ////////////////////////////////////
   // DS18B20
   ////////////////////////////////////
-  
+
   float DS18B20_temp = getTemp();
 
   if (!isnan(DS18B20_temp) && (DS18B20_temp > 0)) {
@@ -113,9 +113,9 @@ void loop() {
     Serial.print(DS18B20_temp);
     Serial.print(">>>");
   }
-  
+
   delay(pause);
-  
+
   ////////////////////////////////////
   // DHT11
   ////////////////////////////////////
@@ -130,11 +130,11 @@ void loop() {
     Serial.print(dht11_1_h);
     Serial.print(">>>");
   }
-    
+
   delay(pause);
-  
+
   ////////////////////////////////////
-  
+
   float dht11_2_h = dht11_2.readHumidity();
   float dht11_2_temp = dht11_2.readTemperature();
 
@@ -145,9 +145,9 @@ void loop() {
     Serial.print(dht11_2_h);
     Serial.print(">>>");
   }
-    
+
   delay(pause);
-  
+
   ////////////////////////////////////
 
   float dht11_3_h = dht11_3.readHumidity();
@@ -160,9 +160,9 @@ void loop() {
     Serial.print(dht11_3_h);
     Serial.print(">>>");
   }
-    
+
   delay(pause);
-  
+
   ////////////////////////////////////
 
   float dht11_4_h = dht11_4.readHumidity();
@@ -175,9 +175,9 @@ void loop() {
     Serial.print(dht11_4_h);
     Serial.print(">>>");
   }
-    
+
   delay(pause);
-  
+
   ////////////////////////////////////
 
   ////////////////////////////////////
@@ -194,7 +194,7 @@ void loop() {
     Serial.print(dht22_1_h);
     Serial.print(">>>");
   }
-    
+
   delay(pause);
 
   ////////////////////////////////////
@@ -248,14 +248,14 @@ void loop() {
   ////////////////////////////////////
   // ANALOG AMBIENT LIGHT SENSOR
   ////////////////////////////////////
-  
+
   int light_1 = analogRead(LIGHT);
 
   Serial.print("light_1=");
   Serial.print(light_1);
 
   delay(pause);
-  
+
   ////////////////////////////////////
   ////////////////////////////////////
   ////////////////////////////////////
