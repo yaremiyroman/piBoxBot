@@ -43,6 +43,7 @@ def show_system_state(message):
     disk_data = line.split()[0:6]
 
     core_temp = os.popen('vcgencmd measure_temp').readline().replace('temp=','').replace("'C\n", '°C')
+    throttling = os.popen('vcgencmd get_throttled').readline().replace('throttled=','')
 
     bot.send_message(message.chat.id, '-------------- System state ---------------')
     bot.send_message(message.chat.id, 'OS > ' + sysname + ' ' + release + ' ' + machine)
@@ -50,6 +51,7 @@ def show_system_state(message):
     bot.send_message(message.chat.id, 'Uptime > ' + str(uptime_hrs) + ' hr ' + str(uptime_mins) + ' min')
     bot.send_message(message.chat.id, 'Free space  > ' + disk_data[3])
     bot.send_message(message.chat.id, 'Core temperature > ' + core_temp)
+    bot.send_message(message.chat.id, 'Throttling > ' + throttling)
 
 ####################### CLIMATE ##############################################
 @bot.message_handler(commands=['climate'])
