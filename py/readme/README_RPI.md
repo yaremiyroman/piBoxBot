@@ -145,3 +145,11 @@ $ sensors
 # Read RTC temperature
 $ sudo apt-get install bc
 $ sudo echo "$(cat /sys/class/i2c-adapter/i2c-1/1-0068/hwmon/hwmon1/temp1_input)/1000" | bc -l
+
+# telegbot
+$ pip3 install pytelegrambotapi
+$ pip3 install telegram-send
+# AttributeError: 'TeleBot' object has no attribute
+$ pip3 uninstall telebot PyTelegramBotAPI
+$ pip3 install PyTelegramBotAPI==2.2.3
+# and it works now!
