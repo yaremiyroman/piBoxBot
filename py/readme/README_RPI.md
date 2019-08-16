@@ -187,3 +187,11 @@ $ pip3 install PyTelegramBotAPI==2.2.3
 # or bundle multiversion multiuser installation 
 $ pip install PyTelegramBotAPI==2.2.3 && sudo pip install PyTelegramBotAPI==2.2.3 && pip3 install PyTelegramBotAPI==2.2.3 && sudo pip3 install PyTelegramBotAPI==2.2.3
 # and it works now!
+
+###########################################
+# sqlite3
+###########################################
+# install
+$ sudo apt-get install sqlite3 libsqlite3-dev
+$ pip install pysqlite
+
