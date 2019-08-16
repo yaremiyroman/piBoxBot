@@ -104,21 +104,21 @@ def climate(message):
     time.sleep(3)
 
 # ####################### PHOTO ##############################################
-# @bot.message_handler(commands=['photo'])
-# def photo(message):
-#     senderID = message.chat.id
+@bot.message_handler(commands=['photo'])
+def photo(message):
+    senderID = message.chat.id
 
-#     bot.send_message(senderID, 'Recent photo --> ')
+    bot.send_message(senderID, 'Recent photo --> ')
     
-#     try:
-#         os.system('scp pi@piMedia.local:/home/pi/Pictures/cam1.jpg /home/pi/piBoxBot/media/')
-#         time.sleep(3)
-#         recent_photo = open('/home/pi/piBoxBot/media/cam1.jpg', 'rb')
-#         time.sleep(3)
-#     except Exception:
-#         bot.send_message(senderID, 'Try later :( ')
-#     else:
-#         bot.send_photo(senderID, recent_photo)
+    try:
+        os.system('scp pi@piMedia.local:/home/pi/Pictures/cam1.jpg /home/pi/piBoxBot/media/')
+        time.sleep(3)
+        recent_photo = open('/home/pi/piBoxBot/media/cam1.jpg', 'rb')
+        time.sleep(3)
+    except Exception:
+        bot.send_message(senderID, 'Try later :( ')
+    else:
+        bot.send_photo(senderID, recent_photo)
 
 ####################### REBOOT #############################################
 @bot.message_handler(commands=['reboot'])
