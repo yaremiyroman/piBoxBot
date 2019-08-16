@@ -3,6 +3,7 @@ import os
 import time
 import math
 import telebot
+from telebot.util import async
 import io
 import sqlite3
 import time
@@ -21,12 +22,14 @@ ADMINS = [config.adminID]
 ############################################################################
 
 ####################### START ##############################################
-@bot.message_handler(commands=['start'])
+    @bot.message_handler(commands=['start'])
+@async()
 def say_hi(message):
     bot.send_message(message.chat.id, 'Привет bitch!')
 
 ####################### STATE ##############################################
-@bot.message_handler(commands=['state'])
+    @bot.message_handler(commands=['state'])
+@async()
 def show_system_state(message):
     sysname = os.uname().sysname
     release = os.uname().release
@@ -43,6 +46,7 @@ def show_system_state(message):
     disk_data = line.split()[0:6]
 
     core_temp = os.popen('vcgencmd measure_temp').readline().replace('temp=','').replace("'C\n", '°C')
+    rtc_temp = os.popen('echo "$(cat /sys/class/i2c-adapter/i2c-1/1-0068/hwmon/hwmon1/temp1_input)/1000" | bc -l').readline().replace('temp=','').replace("'C\n", '°C')
     throttling = os.popen('vcgencmd get_throttled').readline().replace('throttled=','')
 
     bot.send_message(message.chat.id, '-------------- System state ---------------')
@@ -51,10 +55,12 @@ def show_system_state(message):
     bot.send_message(message.chat.id, 'Uptime > ' + str(uptime_hrs) + ' hr ' + str(uptime_mins) + ' min')
     bot.send_message(message.chat.id, 'Free space  > ' + disk_data[3])
     bot.send_message(message.chat.id, 'Core temperature > ' + core_temp)
+    bot.send_message(message.chat.id, 'RTC temperature > ' + math.floor(rtc_temp))
     bot.send_message(message.chat.id, 'Throttling > ' + throttling)
 
 ####################### CLIMATE ##############################################
-@bot.message_handler(commands=['climate'])
+    @bot.message_handler(commands=['climate'])
+@async()
 def climate(message):
     conn = sqlite3.connect(config.unoClimateDB)
     cur = conn.cursor()
@@ -153,7 +159,8 @@ def climate(message):
     time.sleep(3)
 
 ####################### PHOTO ##############################################
-@bot.message_handler(commands=['photo'])
+    @bot.message_handler(commands=['photo'])
+@async()
 def photo(message):
     chatID = message.chat.id
 
@@ -170,7 +177,8 @@ def photo(message):
         bot.send_photo(chatID, recent_photo)
 
 ####################### REBOOT #############################################
-@bot.message_handler(commands=['reboot'])
+    @bot.message_handler(commands=['reboot'])
+@async()
 def reboot(message):
     if chatID not in ADMINS:
         bot.send_message(chatID, 'Go f*ck yourself')
@@ -180,7 +188,8 @@ def reboot(message):
     time.sleep(1)
 
 # ####################### TURN OFF #############################################
-@bot.message_handler(commands=['shutdown'])
+    @bot.message_handler(commands=['shutdown'])
+@async()
 def shutdown(message):
     chatID = message.chat.id
     if chatID not in ADMINS:
