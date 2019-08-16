@@ -36,6 +36,12 @@ $ rm ~/.ssh/id*
 $ <GOTO: BEGIN>
 
 ###########################################
+# GIT configs
+###########################################
+$ git config --global user.email "yaremiyroman@gmail.com"
+$ git config --global user.name "andrdrx@piData"
+
+###########################################
 # Add an alias
 ###########################################
 $ sudo nano ~/.bashrc
@@ -149,8 +155,8 @@ $ sudo reboot
 # register RTC and sync system time on startup 
 $ sudo nano /etc/rc.local
 # add before "exit 0"
-$ echo ds3231 0x68 > /sys/class/i2c-adapter/i2c-1/new_device
-$ hwclock -s
+echo ds3231 0x68 > /sys/class/i2c-adapter/i2c-1/new_device
+hwclock -s
 $ sudo reboot
 
 # hwclock: read, write
