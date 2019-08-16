@@ -3,9 +3,7 @@ import os
 import time
 import math
 import telebot
-import io
 import sqlite3
-import time
 
 import config
 
@@ -28,9 +26,10 @@ def say_hi(message):
 ####################### STATE ##############################################
 @bot.message_handler(commands=['state'])
 def show_system_state(message):
+    bot.send_message(message.chat.id, 'State here bitch!')
     # sysname = os.uname().sysname
     # release = os.uname().release
-    machine = os.uname().machine
+    # machine = os.uname().machine
 
     # uptime = os.popen("awk '{print $1}' /proc/uptime").readline()
     # uptime_time = int(float(uptime))
@@ -103,22 +102,22 @@ def climate(message):
     conn.close()
     time.sleep(3)
 
-####################### PHOTO ##############################################
-@bot.message_handler(commands=['photo'])
-def photo(message):
-    chatID = message.chat.id
+# ####################### PHOTO ##############################################
+# @bot.message_handler(commands=['photo'])
+# def photo(message):
+#     chatID = message.chat.id
 
-    bot.send_message(chatID, 'Recent photo --> ')
+#     bot.send_message(chatID, 'Recent photo --> ')
     
-    try:
-        os.system('scp pi@piMedia.local:/home/pi/Pictures/cam1.jpg /home/pi/piBoxBot/media/')
-        time.sleep(3)
-        recent_photo = open('/home/pi/piBoxBot/media/cam1.jpg', 'rb')
-        time.sleep(3)
-    except Exception:
-        bot.send_message(chatID, 'Try later :( ')
-    else:
-        bot.send_photo(chatID, recent_photo)
+#     try:
+#         os.system('scp pi@piMedia.local:/home/pi/Pictures/cam1.jpg /home/pi/piBoxBot/media/')
+#         time.sleep(3)
+#         recent_photo = open('/home/pi/piBoxBot/media/cam1.jpg', 'rb')
+#         time.sleep(3)
+#     except Exception:
+#         bot.send_message(chatID, 'Try later :( ')
+#     else:
+#         bot.send_photo(chatID, recent_photo)
 
 ####################### REBOOT #############################################
 @bot.message_handler(commands=['reboot'])

@@ -82,10 +82,10 @@ $ stress --cpu 4
 ###########################################
 
 # HDMI ####################################
-# Disable HDMI 
-$ tvservice -o
 # Check HDMI
 $ tvservice -s
+# Disable HDMI 
+$ tvservice -o
 # Enable HDMI
 $ tvservice -p
 # Disable HDMI on cron
