@@ -136,23 +136,26 @@ $ sudo nano /boot/config.txt
 
 # enable i2c
 $ sudo nano /boot/config.txt
-# add before "exit 0"
-$ dtoverlay=i2c-rtc,ds3231
-# and comment in /lib/udev/hwclock-set
+# add
+dtoverlay=i2c-rtc,ds3231
+# in hwclock config
+$ sudo nano /lib/udev/hwclock-set
+# comment 
 if [ -e /run/systemd/system ] ; then
    exit 0
 fi
+# then
 $ sudo reboot
-
-# hwclock: read, write
-$ hwclock -r, -w
-
-# Register RTC and sync system time on startup 
+# register RTC and sync system time on startup 
 $ sudo nano /etc/rc.local
 # add before "exit 0"
 $ echo ds3231 0x68 > /sys/class/i2c-adapter/i2c-1/new_device
 $ hwclock -s
 $ sudo reboot
+
+# hwclock: read, write
+$ hwclock -r, -w
+
 
 # Read sensors and various RTC data
 $ sudo apt-get install lm-sensors
@@ -162,7 +165,11 @@ $ sensors
 $ sudo apt-get install bc
 $ sudo echo "$(cat /sys/class/i2c-adapter/i2c-1/1-0068/hwmon/hwmon1/temp1_input)/1000" | bc -l
 
-# telegbot
+
+###########################################
+# telebot
+###########################################
+
 $ pip3 install pytelegrambotapi
 $ pip3 install telegram-send
 # AttributeError: 'TeleBot' object has no attribute
