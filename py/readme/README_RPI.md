@@ -8,8 +8,22 @@
 
 ###########################################
 # SSH
+# https://help.github.com/en/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
 ###########################################
-$ ssh-keygen
+$ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+# Adding your SSH key to the ssh-agent
+$ eval "$(ssh-agent -s)"
+### -----------------------------------------
+# If you're using macOS Sierra 10.12.2 or later, you will need to modify 
+# your ~/.ssh/config file to automatically load keys into the ssh-agent 
+# and store passphrases in your keychain.
+Host *
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_rsa
+# -------
+$ ssh-add -K ~/.ssh/id_rsa
+### -----------------------------------------
 # Copy fresh Pi key to GitHub -> Preferences -> SSH keys
 $ cat ~/.ssh/id_rsa.pub
 # Copy Host's public key to Pi over SSH: authorize the key on Pi
@@ -40,6 +54,8 @@ $ sudo apt-get update
 $ sudo apt-get upgrade
 $ sudo apt-get dist-upgrade
 $ sudo apt autoremove
+# bundle
+$ sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade && sudo apt-get autoremove
 
 ###########################################
 # Set locale if terminal shows warnings about
