@@ -182,3 +182,11 @@ $ pip3 install telegram-send
 $ pip3 uninstall telebot PyTelegramBotAPI
 $ pip3 install PyTelegramBotAPI==2.2.3
 # and it works now!
+
+###########################################
+# sqlite3
+###########################################
+# install
+$ sudo apt-get install sqlite3 libsqlite3-dev
+$ pip install pysqlite
+
