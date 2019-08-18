@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import sqlite3
 import serial
-import time
 
 import config
 

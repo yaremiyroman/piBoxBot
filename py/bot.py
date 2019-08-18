@@ -60,38 +60,6 @@ def climate(message):
     cur = conn.cursor()
     time.sleep(1)
 
-    cur.execute("SELECT date_time, t, h FROM dht11_1 WHERE id IN (SELECT MAX(id) FROM dht11_1)")
-    dht11_1_data = cur.fetchone()
-    dht11_1_time = str(dht11_1_data[0])
-    dht11_1_temp = str(dht11_1_data[1])
-    dht11_1_humid = str(dht11_1_data[2])
-    bot.send_message(senderID, 'dht11_1 @ ' + dht11_1_time + ' > t = ' + dht11_1_temp + '^C' + ' > h = ' + dht11_1_humid + '%')
-    time.sleep(1)
-
-    cur.execute("SELECT date_time, t, h FROM dht11_2 WHERE id IN (SELECT MAX(id) FROM dht11_2)")
-    dht11_2_data = cur.fetchone()
-    dht11_2_time = str(dht11_2_data[0])
-    dht11_2_temp = str(dht11_2_data[1])
-    dht11_2_humid = str(dht11_2_data[2])
-    bot.send_message(senderID, 'dht11_2 @ ' + dht11_2_time + ' > t = ' + dht11_2_temp + '^C' + ' > h = ' + dht11_2_humid + '%')
-    time.sleep(1)
-
-    cur.execute("SELECT date_time, t, h FROM dht11_3 WHERE id IN (SELECT MAX(id) FROM dht11_3)")
-    dht11_3_data = cur.fetchone()
-    dht11_3_time = str(dht11_3_data[0])
-    dht11_3_temp = str(dht11_3_data[1])
-    dht11_3_humid = str(dht11_3_data[2])
-    bot.send_message(senderID, 'dht11_3 @ ' + dht11_3_time + ' > t = ' + dht11_3_temp + '^C' + ' > h = ' + dht11_3_humid + '%')
-    time.sleep(1)
-
-    cur.execute("SELECT date_time, t, h FROM dht11_4 WHERE id IN (SELECT MAX(id) FROM dht11_4)")
-    dht11_4_data = cur.fetchone()
-    dht11_4_time = str(dht11_4_data[0])
-    dht11_4_temp = str(dht11_4_data[1])
-    dht11_4_humid = str(dht11_4_data[2])
-    bot.send_message(senderID, 'dht11_4 @ ' + dht11_4_time + ' > t = ' + dht11_4_temp + '^C' + ' > h = ' + dht11_4_humid + '%')
-    time.sleep(1)
-
     cur.execute("SELECT date_time, t, h FROM dht22_1 WHERE id IN (SELECT MAX(id) FROM dht22_1)")
     dht22_1_data = cur.fetchone()
     dht22_1_time = str(dht22_1_data[0])
@@ -111,7 +79,7 @@ def photo(message):
     bot.send_message(senderID, 'Recent photo --> ')
     
     try:
-        os.system('scp pi@piMedia.local:/home/pi/Pictures/cam1.jpg /home/pi/piBoxBot/media/')
+        os.system('scp pi@192.168.31.158:/home/pi/Pictures/cam1.jpg /home/pi/piBoxBot/media/')
         time.sleep(3)
         recent_photo = open('/home/pi/piBoxBot/media/cam1.jpg', 'rb')
         time.sleep(3)
