@@ -121,8 +121,8 @@ $ sudo reboot
 $ iwconfig
 # Add rules
 $ sudo nano /boot/config.txt
-# $ dtoverlay=pi3-disable-wifi
-# $ dtoverlay=pi3-disable-bt
+dtoverlay=pi3-disable-wifi
+dtoverlay=pi3-disable-bt
 $ sudo reboot
 # Check interfaces
 $ hciconfig
