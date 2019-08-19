@@ -2,7 +2,7 @@
 import sqlite3
 import serial
 
-import config
+from config import config 
 
 unoClimateSerial = serial.Serial(config.unoClimate, 9600)
 
