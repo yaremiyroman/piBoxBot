@@ -5,7 +5,7 @@ import math
 import telebot
 import sqlite3
 
-import config
+from config import config 
 
 #########################################################################
 ####################### INIT ###############################################
@@ -71,7 +71,7 @@ def climate(message):
     conn.close()
     time.sleep(3)
 
-# ####################### PHOTO ##############################################
+######################### PHOTO ##############################################
 @bot.message_handler(commands=['photo'])
 def photo(message):
     senderID = message.chat.id
