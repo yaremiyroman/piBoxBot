@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
-import time
+import os
+import glob
+import time 
 import sqlite3
 import Adafruit_DHT
 import RPi.GPIO as GPIO
@@ -17,6 +19,14 @@ DHT11_2 = 15
 DHT11_3 = 18
 DHT11_4 = 23
 
+DS18b20 = 25
+
+PIRAHNIA_1 = 100
+PIRAHNIA_2 = 100
+
+### 1-wire interfacing for ds18b20
+ds18b20_file = glob.glob('/sys/bus/w1/devices/28*')[0] + '/w1_slave'
+
 #########################################################################
 ####################### INIT ###########################################
 #########################################################################
@@ -30,7 +40,20 @@ GPIO.setup(DHT11_2, GPIO.IN)
 GPIO.setup(DHT11_3, GPIO.IN)
 GPIO.setup(DHT11_4, GPIO.IN)
 
+GPIO.setup(DS18b20, GPIO.IN)
+
+GPIO.setup(PIRAHNIA_1, GPIO.OUT)
+GPIO.setup(PIRAHNIA_2, GPIO.OUT)
+
+os.system('modprobe w1-gpio')
+os.system('modprobe w1-therm')
+ 
 DB = sqlite3.connect(config.unoClimateDB)
+
+
+#########################################################################
+####################### MAIN LOOP #######################################
+#########################################################################
 
 while True:
     #########################################################################
@@ -86,6 +109,22 @@ while True:
 
     if dht11_4_h is not None and dht11_4_t is not None:
         query = "INSERT INTO dht11_4 (t, h) VALUES(" + str(dht11_4_t) + ", " + str(dht11_4_h) + ")"
+        DB.execute(query)
+        DB.commit()
+                
+    time.sleep(pause)
+
+    #########################################################################
+    ####################### DS18B20 ###########################################
+    #########################################################################
+    f = open(ds18b20_file, 'r')
+    lines = f.readlines()
+    f.close()
+    
+    ds18b20_temp = float(lines[1][lines[1].find('t=')+2:]) / 1000.0
+    
+    if ds18b20_temp is not None:
+        query = "INSERT INTO ds18b20 (t) VALUES(" + str(ds18b20_temp) + ")"
         DB.execute(query)
         DB.commit()
                 
