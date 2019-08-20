@@ -220,6 +220,15 @@ GPIO.output(18, GPIO.HIGH)
 ###########################################
 # SENSORS
 ###########################################
-# DHT lib
+# DHT
 $ sudo apt-get install python3-dev python3-pip
 $ sudo pip3 install Adafruit_DHT
+
+# DS18B20
+# Verify that the 1-Wire kernel modules have loaded on the next boot.
+$ lsmod | grep -i w1_
+# Find usage example in lib/ds18b20.py
+# If you would like to use a custom pin (default is BCM4) than 
+# add the following line to /boot/config.txt
+dtoverlay=w1-gpio,gpiopin=x
+# ls /sys/bus/w1/devices/
