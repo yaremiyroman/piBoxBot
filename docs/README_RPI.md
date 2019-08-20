@@ -189,6 +189,17 @@ $ pip install PyTelegramBotAPI==2.2.3 && sudo pip install PyTelegramBotAPI==2.2.
 # and it works now!
 
 ###########################################
+# Bot API commands list
+###########################################
+start - Say Hi
+state - System overview
+climate - Get climate measurements
+photo - Drop recent photo
+lights - Switch lights on/off
+reboot - Reboot Pi
+shutdown - Turn off Pi
+
+###########################################
 # sqlite3
 ###########################################
 # install
