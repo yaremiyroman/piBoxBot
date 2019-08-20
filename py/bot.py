@@ -4,12 +4,29 @@ import time
 import math
 import telebot
 import sqlite3
+import RPi.GPIO as GPIO
 
 from config import config 
 
 #########################################################################
+####################### VARS ###########################################
+#########################################################################
+rest = 1
+delay = 3
+pause = 10
+
+PIRAHNIA_1 = 5
+PIRAHNIA_2 = 6
+#########################################################################
 ####################### INIT ###############################################
 ############################################################################
+GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BCM)
+
+GPIO.setup(PIRAHNIA_1, GPIO.OUT)
+GPIO.output(PIRAHNIA_1, GPIO.LOW)
+GPIO.setup(PIRAHNIA_2, GPIO.OUT)
+GPIO.output(PIRAHNIA_2, GPIO.LOW)
 
 bot = telebot.TeleBot(config.token)
 adminID = config.adminID
@@ -58,7 +75,7 @@ def climate(message):
     senderID = message.chat.id
     conn = sqlite3.connect(config.unoClimateDB)
     cur = conn.cursor()
-    time.sleep(1)
+    time.sleep(delay)
 
     ### DHT22_1
     cur.execute("SELECT date_time, t, h FROM dht22_1 WHERE id IN (SELECT MAX(id) FROM dht22_1)")
@@ -67,7 +84,7 @@ def climate(message):
     dht22_1_temp = str(dht22_1_data[1])
     dht22_1_humid = str(dht22_1_data[2])
     bot.send_message(senderID, 'dht22_1 @ ' + dht22_1_time + ' > t = ' + dht22_1_temp + '🌡' + ' > h = ' + dht22_1_humid + '%')
-    time.sleep(1)
+    time.sleep(delay)
 
     ### DHT11_1
     cur.execute("SELECT date_time, t, h FROM dht11_1 WHERE id IN (SELECT MAX(id) FROM dht11_1)")
@@ -76,7 +93,7 @@ def climate(message):
     dht11_1_temp = str(dht11_1_data[1])
     dht11_1_humid = str(dht11_1_data[2])
     bot.send_message(senderID, 'dht11_1 @ ' + dht11_1_time + ' > t = ' + dht11_1_temp + '🌡' + ' > h = ' + dht11_1_humid + '%')
-    time.sleep(1)
+    time.sleep(delay)
 
     ### DHT11_2
     cur.execute("SELECT date_time, t, h FROM dht11_2 WHERE id IN (SELECT MAX(id) FROM dht11_2)")
@@ -85,7 +102,7 @@ def climate(message):
     dht11_2_temp = str(dht11_2_data[1])
     dht11_2_humid = str(dht11_2_data[2])
     bot.send_message(senderID, 'dht11_2 @ ' + dht11_2_time + ' > t = ' + dht11_2_temp + '🌡' + ' > h = ' + dht11_2_humid + '%')
-    time.sleep(1)
+    time.sleep(delay)
 
     ### DHT11_3
     cur.execute("SELECT date_time, t, h FROM dht11_3 WHERE id IN (SELECT MAX(id) FROM dht11_3)")
@@ -94,7 +111,7 @@ def climate(message):
     dht11_3_temp = str(dht11_3_data[1])
     dht11_3_humid = str(dht11_3_data[2])
     bot.send_message(senderID, 'dht11_3 @ ' + dht11_3_time + ' > t = ' + dht11_3_temp + '🌡' + ' > h = ' + dht11_3_humid + '%')
-    time.sleep(1)
+    time.sleep(delay)
 
     ### DHT11_4
     cur.execute("SELECT date_time, t, h FROM dht11_4 WHERE id IN (SELECT MAX(id) FROM dht11_4)")
@@ -103,7 +120,7 @@ def climate(message):
     dht11_4_temp = str(dht11_4_data[1])
     dht11_4_humid = str(dht11_4_data[2])
     bot.send_message(senderID, 'dht11_4 @ ' + dht11_4_time + ' > t = ' + dht11_4_temp + '🌡' + ' > h = ' + dht11_4_humid + '%')
-    time.sleep(1)
+    time.sleep(delay)
     
     ### DS18b20
     cur.execute("SELECT date_time, t FROM ds18b20 WHERE id IN (SELECT MAX(id) FROM ds18b20)")
@@ -111,7 +128,7 @@ def climate(message):
     ds18b20_time = str(ds18b20_data[0])
     ds18b20 = str(ds18b20_data[1])
     bot.send_message(message.chat.id, 'ds18b20 @ ' + ds18b20_time + ' > t = ' + ds18b20 + '🌡')
-    time.sleep(1)
+    time.sleep(delay)
     
     conn.close()
     time.sleep(3)
@@ -131,6 +148,24 @@ def photo(message):
     else:
         bot.send_photo(senderID, recent_photo)
 
+####################### LIGHTS ##############################################
+@bot.message_handler(commands=['lights'])
+def switch_lights(message):
+    senderID = message.chat.id
+    
+    if GPIO.input(PIRAHNIA_1) == 0:
+        bot.send_message(senderID, 'Turning on...')
+        GPIO.output(PIRAHNIA_1, GPIO.HIGH)
+        time.sleep(rest)
+        GPIO.output(PIRAHNIA_2, GPIO.HIGH)
+    else:
+        bot.send_message(senderID, 'Lights off!!')
+        GPIO.output(PIRAHNIA_1, GPIO.LOW)
+        time.sleep(rest)
+        GPIO.output(PIRAHNIA_2, GPIO.LOW)
+
+    time.sleep(delay)
+    
 ####################### REBOOT #############################################
 @bot.message_handler(commands=['reboot'])
 def reboot(message):
@@ -140,7 +175,7 @@ def reboot(message):
         return
     bot.send_message(senderID, 'Rebooting --> ')
     os.system('sudo reboot')
-    time.sleep(1)
+    time.sleep(delay)
 
 # ####################### TURN OFF #############################################
 @bot.message_handler(commands=['shutdown'])
@@ -151,7 +186,7 @@ def shutdown(message):
         return
     bot.send_message(senderID, 'Going offline...')
     os.system('sudo shutdown -h now')
-    time.sleep(1)
+    time.sleep(delay)
 
 ############################################################################
 
@@ -164,7 +199,7 @@ def telegram_polling():
         bot.polling(none_stop = True, timeout = 600)
     except:
         bot.stop_polling()
-        time.sleep(10)
+        time.sleep(pause)
         telegram_polling()
 
 telegram_polling()

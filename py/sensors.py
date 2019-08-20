@@ -21,9 +21,6 @@ DHT11_4 = 23
 
 DS18b20 = 25
 
-PIRAHNIA_1 = 5
-PIRAHNIA_2 = 6
-
 ### 1-wire interfacing for ds18b20
 ds18b20_file = glob.glob('/sys/bus/w1/devices/28*')[0] + '/w1_slave'
 
@@ -41,9 +38,6 @@ GPIO.setup(DHT11_3, GPIO.IN)
 GPIO.setup(DHT11_4, GPIO.IN)
 
 GPIO.setup(DS18b20, GPIO.IN)
-
-GPIO.setup(PIRAHNIA_1, GPIO.OUT)
-GPIO.setup(PIRAHNIA_2, GPIO.OUT)
 
 os.system('modprobe w1-gpio')
 os.system('modprobe w1-therm')
