@@ -15,4 +15,5 @@ while True:
     ds18b20_temp = float(lines[1][lines[1].find('t=')+2:]) / 1000.0
     
     print(ds18b20_temp)
-    time.sleep(5)
+    
+    time.sleep(560)

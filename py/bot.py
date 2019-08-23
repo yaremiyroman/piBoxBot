@@ -83,7 +83,7 @@ def climate(message):
     dht22_1_time = str(dht22_1_data[0])
     dht22_1_temp = str(dht22_1_data[1])
     dht22_1_humid = str(dht22_1_data[2])
-    bot.send_message(senderID, 'dht22_1 @ ' + dht22_1_time + ' > t = ' + dht22_1_temp + '🌡' + ' > h = ' + dht22_1_humid + '%')
+    bot.send_message(senderID, '🎛 > dht22_1 ⏱ > ' + dht22_1_time + ' 🌡 > ' + dht22_1_temp + '℃' + ' 💧 > ' + dht22_1_humid + '%')
     time.sleep(delay)
 
     ### DHT11_1
@@ -92,7 +92,7 @@ def climate(message):
     dht11_1_time = str(dht11_1_data[0])
     dht11_1_temp = str(dht11_1_data[1])
     dht11_1_humid = str(dht11_1_data[2])
-    bot.send_message(senderID, 'dht11_1 @ ' + dht11_1_time + ' > t = ' + dht11_1_temp + '🌡' + ' > h = ' + dht11_1_humid + '%')
+    bot.send_message(senderID, '🎛 > dht11_1 ⏱ > ' + dht11_1_time + ' 🌡 > ' + dht11_1_temp + '℃' + ' 💧 > ' + dht11_1_humid + '%')
     time.sleep(delay)
 
     ### DHT11_2
@@ -101,16 +101,16 @@ def climate(message):
     dht11_2_time = str(dht11_2_data[0])
     dht11_2_temp = str(dht11_2_data[1])
     dht11_2_humid = str(dht11_2_data[2])
-    bot.send_message(senderID, 'dht11_2 @ ' + dht11_2_time + ' > t = ' + dht11_2_temp + '🌡' + ' > h = ' + dht11_2_humid + '%')
+    bot.send_message(senderID, '🎛 > dht11_2 ⏱ > ' + dht11_2_time + ' 🌡 > ' + dht11_2_temp + '℃' + ' 💧 > ' + dht11_2_humid + '%')
     time.sleep(delay)
 
-    ### DHT11_3
+    ### DHT11_3 
     cur.execute("SELECT date_time, t, h FROM dht11_3 WHERE id IN (SELECT MAX(id) FROM dht11_3)")
     dht11_3_data = cur.fetchone()
     dht11_3_time = str(dht11_3_data[0])
     dht11_3_temp = str(dht11_3_data[1])
     dht11_3_humid = str(dht11_3_data[2])
-    bot.send_message(senderID, 'dht11_3 @ ' + dht11_3_time + ' > t = ' + dht11_3_temp + '🌡' + ' > h = ' + dht11_3_humid + '%')
+    bot.send_message(senderID, '🎛 > dht11_3 ⏱ > ' + dht11_3_time + ' 🌡 > ' + dht11_3_temp + '℃' + ' 💧 > ' + dht11_3_humid + '%')
     time.sleep(delay)
 
     ### DHT11_4
@@ -119,7 +119,7 @@ def climate(message):
     dht11_4_time = str(dht11_4_data[0])
     dht11_4_temp = str(dht11_4_data[1])
     dht11_4_humid = str(dht11_4_data[2])
-    bot.send_message(senderID, 'dht11_4 @ ' + dht11_4_time + ' > t = ' + dht11_4_temp + '🌡' + ' > h = ' + dht11_4_humid + '%')
+    bot.send_message(senderID, '🎛 > dht11_4 ⏱ > ' + dht11_4_time + ' 🌡 > ' + dht11_4_temp + '℃' + ' 💧 > ' + dht11_4_humid + '%')
     time.sleep(delay)
     
     ### DS18b20
@@ -127,7 +127,7 @@ def climate(message):
     ds18b20_data = cur.fetchone()
     ds18b20_time = str(ds18b20_data[0])
     ds18b20 = str(ds18b20_data[1])
-    bot.send_message(message.chat.id, 'ds18b20 @ ' + ds18b20_time + ' > t = ' + ds18b20 + '🌡')
+    bot.send_message(senderID, '🎛 > ds18b20 ⏱ > ' + ds18b20_time + ' 🌡 > ' + ds18b20 + '℃')
     time.sleep(delay)
     
     conn.close()
