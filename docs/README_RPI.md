@@ -126,7 +126,6 @@ dtoverlay=pi3-disable-bt
 $ sudo reboot
 # Check interfaces
 $ hciconfig
-$ iwconfig
 
 # Audio
 $ sudo nano /boot/config.txt
