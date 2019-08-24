@@ -12,14 +12,15 @@ from config import config
 #########################################################################
 pause = 10
 
+DS18b20 = 17
+
 DHT22_1 = 24
 
 DHT11_1 = 14
 DHT11_2 = 15
 DHT11_3 = 18
 DHT11_4 = 23
-
-DS18b20 = 25
+DHT11_5 = 22
 
 ### 1-wire interfacing for ds18b20
 ds18b20_file = glob.glob('/sys/bus/w1/devices/28*')[0] + '/w1_slave'
@@ -30,14 +31,15 @@ ds18b20_file = glob.glob('/sys/bus/w1/devices/28*')[0] + '/w1_slave'
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 
+GPIO.setup(DS18b20, GPIO.IN)
+
 GPIO.setup(DHT22_1, GPIO.IN)
 
 GPIO.setup(DHT11_1, GPIO.IN)
 GPIO.setup(DHT11_2, GPIO.IN)
 GPIO.setup(DHT11_3, GPIO.IN)
 GPIO.setup(DHT11_4, GPIO.IN)
-
-GPIO.setup(DS18b20, GPIO.IN)
+GPIO.setup(DHT11_5, GPIO.IN)
 
 os.system('modprobe w1-gpio')
 os.system('modprobe w1-therm')
@@ -102,6 +104,16 @@ while True:
 
     if dht11_4_h is not None and dht11_4_t is not None:
         query = "INSERT INTO dht11_4 (t, h) VALUES(" + str(dht11_4_t) + ", " + str(dht11_4_h) + ")"
+        DB.execute(query)
+        DB.commit()
+                
+    time.sleep(pause)
+
+    ### DHT11_5
+    dht11_5_h, dht11_5_t = Adafruit_DHT.read_retry(Adafruit_DHT.DHT11, DHT11_5)
+
+    if dht11_5_h is not None and dht11_5_t is not None:
+        query = "INSERT INTO dht11_5 (t, h) VALUES(" + str(dht11_5_t) + ", " + str(dht11_5_h) + ")"
         DB.execute(query)
         DB.commit()
                 
