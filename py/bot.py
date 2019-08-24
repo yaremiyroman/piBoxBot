@@ -76,6 +76,14 @@ def climate(message):
     conn = sqlite3.connect(config.unoClimateDB)
     cur = conn.cursor()
     time.sleep(delay)
+    
+    ### DS18b20
+    cur.execute("SELECT date_time, t FROM ds18b20 WHERE id IN (SELECT MAX(id) FROM ds18b20)")
+    ds18b20_data = cur.fetchone()
+    ds18b20_time = str(ds18b20_data[0])
+    ds18b20 = str(ds18b20_data[1])
+    bot.send_message(senderID, '🎛 > ds18b20 ⏱ > ' + ds18b20_time + ' 🌡 > ' + ds18b20 + '℃')
+    time.sleep(delay)
 
     ### DHT22_1
     cur.execute("SELECT date_time, t, h FROM dht22_1 WHERE id IN (SELECT MAX(id) FROM dht22_1)")
@@ -122,12 +130,13 @@ def climate(message):
     bot.send_message(senderID, '🎛 > dht11_4 ⏱ > ' + dht11_4_time + ' 🌡 > ' + dht11_4_temp + '℃' + ' 💧 > ' + dht11_4_humid + '%')
     time.sleep(delay)
     
-    ### DS18b20
-    cur.execute("SELECT date_time, t FROM ds18b20 WHERE id IN (SELECT MAX(id) FROM ds18b20)")
-    ds18b20_data = cur.fetchone()
-    ds18b20_time = str(ds18b20_data[0])
-    ds18b20 = str(ds18b20_data[1])
-    bot.send_message(senderID, '🎛 > ds18b20 ⏱ > ' + ds18b20_time + ' 🌡 > ' + ds18b20 + '℃')
+    ### DHT11_5
+    cur.execute("SELECT date_time, t, h FROM dht11_5 WHERE id IN (SELECT MAX(id) FROM dht11_5)")
+    dht11_5_data = cur.fetchone()
+    dht11_5_time = str(dht11_5_data[0])
+    dht11_5_temp = str(dht11_5_data[1])
+    dht11_5_humid = str(dht11_5_data[2])
+    bot.send_message(senderID, '🎛 > dht11_5 ⏱ > ' + dht11_5_time + ' 🌡 > ' + dht11_5_temp + '℃' + ' 💧 > ' + dht11_5_humid + '%')
     time.sleep(delay)
     
     conn.close()
