@@ -176,16 +176,11 @@ $ sudo echo "$(cat /sys/class/i2c-adapter/i2c-1/1-0068/hwmon/hwmon1/temp1_input)
 ###########################################
 # repeat same for python2 - pip
 # repeat same for superuser
-$ pip3 install telegram-send
-# or bundle multiversion multiuser installation 
-$ pip install telegram-send && sudo pip install telegram-send && pip3 install telegram-send && sudo pip3 install telegram-send
+$ pip install telegram-send
 # AttributeError: 'TeleBot' object has no attribute
-$ pip3 uninstall telebot PyTelegramBotAPI
+$ pip uninstall telebot PyTelegramBotAPI
 # install specific version without issues
-$ pip3 install PyTelegramBotAPI==2.2.3
-# or bundle multiversion multiuser installation 
-$ pip install PyTelegramBotAPI==2.2.3 && sudo pip install PyTelegramBotAPI==2.2.3 && pip3 install PyTelegramBotAPI==2.2.3 && sudo pip3 install PyTelegramBotAPI==2.2.3
-# and it works now!
+$ pip install PyTelegramBotAPI==2.2.3
 
 ###########################################
 # Bot API commands list
@@ -231,8 +226,8 @@ GPIO.output(18, GPIO.HIGH)
 # SENSORS
 ###########################################
 # DHT
-$ sudo apt-get install python3-dev python3-pip
-$ sudo pip3 install Adafruit_DHT
+$ sudo apt-get install python-dev python-pip
+$ sudo pip install Adafruit_DHT
 
 # DS18B20
 # Verify that the 1-Wire kernel modules have loaded on the next boot.
