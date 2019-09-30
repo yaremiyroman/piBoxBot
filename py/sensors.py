@@ -23,7 +23,7 @@ DHT11_4 = 23
 DHT11_5 = 22
 
 ### 1-wire interfacing for ds18b20
-ds18b20_file = glob.glob('/sys/bus/w1/devices/28*')[0] + '/w1_slave'
+# ds18b20_file = glob.glob('/sys/bus/w1/devices/28*')[0] + '/w1_slave'
 
 #########################################################################
 ####################### INIT ###########################################
@@ -41,8 +41,8 @@ GPIO.setup(DHT11_3, GPIO.IN)
 GPIO.setup(DHT11_4, GPIO.IN)
 GPIO.setup(DHT11_5, GPIO.IN)
 
-os.system('modprobe w1-gpio')
-os.system('modprobe w1-therm')
+# os.system('modprobe w1-gpio')
+# os.system('modprobe w1-therm')
  
 DB = sqlite3.connect(config.unoClimateDB)
 
@@ -69,70 +69,70 @@ while True:
     ####################### DHT11 ###########################################
     #########################################################################
     
-    ### DHT11_1
-    dht11_1_h, dht11_1_t = Adafruit_DHT.read_retry(Adafruit_DHT.DHT11, DHT11_1)
+    # ### DHT11_1
+    # dht11_1_h, dht11_1_t = Adafruit_DHT.read_retry(Adafruit_DHT.DHT11, DHT11_1)
 
-    if dht11_1_h is not None and dht11_1_t is not None:
-        query = "INSERT INTO dht11_1 (t, h) VALUES(" + str(dht11_1_t) + ", " + str(dht11_1_h) + ")"
-        DB.execute(query)
-        DB.commit()
+    # if dht11_1_h is not None and dht11_1_t is not None:
+    #     query = "INSERT INTO dht11_1 (t, h) VALUES(" + str(dht11_1_t) + ", " + str(dht11_1_h) + ")"
+    #     DB.execute(query)
+    #     DB.commit()
     
-    time.sleep(pause)
+    # time.sleep(pause)
 
-    ### DHT11_2
-    dht11_2_h, dht11_2_t = Adafruit_DHT.read_retry(Adafruit_DHT.DHT11, DHT11_2)
+    # ### DHT11_2
+    # dht11_2_h, dht11_2_t = Adafruit_DHT.read_retry(Adafruit_DHT.DHT11, DHT11_2)
 
-    if dht11_2_h is not None and dht11_2_t is not None:
-        query = "INSERT INTO dht11_2 (t, h) VALUES(" + str(dht11_2_t) + ", " + str(dht11_2_h) + ")"
-        DB.execute(query)
-        DB.commit()
+    # if dht11_2_h is not None and dht11_2_t is not None:
+    #     query = "INSERT INTO dht11_2 (t, h) VALUES(" + str(dht11_2_t) + ", " + str(dht11_2_h) + ")"
+    #     DB.execute(query)
+    #     DB.commit()
                 
-    time.sleep(pause)
+    # time.sleep(pause)
 
-    ### DHT11_3
-    dht11_3_h, dht11_3_t = Adafruit_DHT.read_retry(Adafruit_DHT.DHT11, DHT11_3)
+    # ### DHT11_3
+    # dht11_3_h, dht11_3_t = Adafruit_DHT.read_retry(Adafruit_DHT.DHT11, DHT11_3)
 
-    if dht11_3_h is not None and dht11_3_t is not None:
-        query = "INSERT INTO dht11_3 (t, h) VALUES(" + str(dht11_3_t) + ", " + str(dht11_3_h) + ")"
-        DB.execute(query)
-        DB.commit()
+    # if dht11_3_h is not None and dht11_3_t is not None:
+    #     query = "INSERT INTO dht11_3 (t, h) VALUES(" + str(dht11_3_t) + ", " + str(dht11_3_h) + ")"
+    #     DB.execute(query)
+    #     DB.commit()
                 
-    time.sleep(pause)
+    # time.sleep(pause)
 
-    ### DHT11_4
-    dht11_4_h, dht11_4_t = Adafruit_DHT.read_retry(Adafruit_DHT.DHT11, DHT11_4)
+    # ### DHT11_4
+    # dht11_4_h, dht11_4_t = Adafruit_DHT.read_retry(Adafruit_DHT.DHT11, DHT11_4)
 
-    if dht11_4_h is not None and dht11_4_t is not None:
-        query = "INSERT INTO dht11_4 (t, h) VALUES(" + str(dht11_4_t) + ", " + str(dht11_4_h) + ")"
-        DB.execute(query)
-        DB.commit()
+    # if dht11_4_h is not None and dht11_4_t is not None:
+    #     query = "INSERT INTO dht11_4 (t, h) VALUES(" + str(dht11_4_t) + ", " + str(dht11_4_h) + ")"
+    #     DB.execute(query)
+    #     DB.commit()
                 
-    time.sleep(pause)
+    # time.sleep(pause)
 
-    ### DHT11_5
-    dht11_5_h, dht11_5_t = Adafruit_DHT.read_retry(Adafruit_DHT.DHT11, DHT11_5)
+    # ### DHT11_5
+    # dht11_5_h, dht11_5_t = Adafruit_DHT.read_retry(Adafruit_DHT.DHT11, DHT11_5)
 
-    if dht11_5_h is not None and dht11_5_t is not None:
-        query = "INSERT INTO dht11_5 (t, h) VALUES(" + str(dht11_5_t) + ", " + str(dht11_5_h) + ")"
-        DB.execute(query)
-        DB.commit()
+    # if dht11_5_h is not None and dht11_5_t is not None:
+    #     query = "INSERT INTO dht11_5 (t, h) VALUES(" + str(dht11_5_t) + ", " + str(dht11_5_h) + ")"
+    #     DB.execute(query)
+    #     DB.commit()
                 
-    time.sleep(pause)
+    # time.sleep(pause)
 
-    #########################################################################
-    ####################### DS18B20 ###########################################
-    #########################################################################
-    f = open(ds18b20_file, 'r')
-    lines = f.readlines()
-    f.close()
+    # #########################################################################
+    # ####################### DS18B20 ###########################################
+    # #########################################################################
+    # f = open(ds18b20_file, 'r')
+    # lines = f.readlines()
+    # f.close()
     
-    ds18b20_temp = float(lines[1][lines[1].find('t=')+2:]) / 1000.0
+    # ds18b20_temp = float(lines[1][lines[1].find('t=')+2:]) / 1000.0
     
-    if ds18b20_temp is not None:
-        query = "INSERT INTO ds18b20 (t) VALUES(" + str(ds18b20_temp) + ")"
-        DB.execute(query)
-        DB.commit()
+    # if ds18b20_temp is not None:
+    #     query = "INSERT INTO ds18b20 (t) VALUES(" + str(ds18b20_temp) + ")"
+    #     DB.execute(query)
+    #     DB.commit()
                 
-    time.sleep(pause)
+    # time.sleep(pause)
 
 DB.close()

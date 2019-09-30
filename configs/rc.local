@@ -21,7 +21,6 @@ echo ds3231 0x68 > /sys/class/i2c-adapter/i2c-1/new_device
 
 sudo hwclock -s
 
-/home/pi/piBoxBot/bash/bot_run.sh &
 /home/pi/piBoxBot/bash/cameraLoop.sh &
 
 exit 0
