@@ -4,7 +4,7 @@
 # Download Raspbian release
 # Download balenaEtcher app and flash microSD with Raspbian image
 # Write an empty text file named "ssh" (no file extension) to the root of the directory of the card. When it sees the "ssh" on its first boot-up, Raspbian will automatically enable SSH
-# Wi-Fi: create a text file called wpa_supplicant.conf near "ssh", Find piBoxBot/configs/wpa_supplicant.conf for example.
+# Wi-Fi: create a text file called wpa_supplicant.conf near "ssh", Find piBoxBot/configs/wpa_supplicant.conf for example.ss
 
 ###########################################
 # SSH
@@ -68,11 +68,11 @@ $ sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade && su
 ###########################################
 $ sudo nano /etc/default/locale
 # add any that missed
-LANG=en_US.UTF-8
-LC_ALL=en_US.UTF-8
-LC_CTYPE="en_US.UTF-8"
-LC_ALL="en_US.UTF-8"
-LANG="en_US.UTF-8"
+LANG=en_GB.UTF-8
+LC_ALL=en_GB.UTF-8
+LC_CTYPE="en_GB.UTF-8"
+LC_ALL="en_GB.UTF-8"
+LANG="en_GB.UTF-8"
 
 ###########################################
 # Get Pi info
@@ -115,6 +115,8 @@ $ crontab -e
 # Add a cron rule
 $ @reboot tvservice -o
 $ sudo reboot
+# or add 'tvservice --off' before 'exit 0' here:
+$ sudo nano /etc/rc.local
 
 # WLAN and BT
 # Get list if network interfaces
