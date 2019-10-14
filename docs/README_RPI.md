@@ -39,7 +39,7 @@ $ <GOTO: BEGIN>
 # GIT configs
 ###########################################
 $ git config --global user.email "yaremiyroman@gmail.com"
-$ git config --global user.name "andrdrx@piData"
+$ git config --global user.name "andrdrx@piMedia"
 
 ###########################################
 # Add an alias
