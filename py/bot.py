@@ -15,18 +15,18 @@ rest = 1
 delay = 3
 pause = 10
 
-PIRAHNIA_1 = 5
-PIRAHNIA_2 = 6
+# PIRAHNIA_1 = 5
+# PIRAHNIA_2 = 6
 #########################################################################
 ####################### INIT ###############################################
 ############################################################################
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 
-GPIO.setup(PIRAHNIA_1, GPIO.OUT)
-GPIO.output(PIRAHNIA_1, GPIO.LOW)
-GPIO.setup(PIRAHNIA_2, GPIO.OUT)
-GPIO.output(PIRAHNIA_2, GPIO.LOW)
+# GPIO.setup(PIRAHNIA_1, GPIO.OUT)
+# GPIO.output(PIRAHNIA_1, GPIO.LOW)
+# GPIO.setup(PIRAHNIA_2, GPIO.OUT)
+# GPIO.output(PIRAHNIA_2, GPIO.LOW)
 
 bot = telebot.TeleBot(config.token)
 adminID = config.adminID

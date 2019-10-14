@@ -12,15 +12,15 @@ from config import config
 #########################################################################
 pause = 10
 
-DS18b20 = 17
+# DS18b20 = 17
 
-DHT22_1 = 24
+DHT22_1 = 14
 
-DHT11_1 = 14
-DHT11_2 = 15
-DHT11_3 = 18
-DHT11_4 = 23
-DHT11_5 = 22
+# DHT11_1 = 14
+# DHT11_2 = 15
+# DHT11_3 = 18
+# DHT11_4 = 23
+# DHT11_5 = 22
 
 ### 1-wire interfacing for ds18b20
 # ds18b20_file = glob.glob('/sys/bus/w1/devices/28*')[0] + '/w1_slave'
@@ -31,15 +31,15 @@ DHT11_5 = 22
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 
-GPIO.setup(DS18b20, GPIO.IN)
+# GPIO.setup(DS18b20, GPIO.IN)
 
 GPIO.setup(DHT22_1, GPIO.IN)
 
-GPIO.setup(DHT11_1, GPIO.IN)
-GPIO.setup(DHT11_2, GPIO.IN)
-GPIO.setup(DHT11_3, GPIO.IN)
-GPIO.setup(DHT11_4, GPIO.IN)
-GPIO.setup(DHT11_5, GPIO.IN)
+# GPIO.setup(DHT11_1, GPIO.IN)
+# GPIO.setup(DHT11_2, GPIO.IN)
+# GPIO.setup(DHT11_3, GPIO.IN)
+# GPIO.setup(DHT11_4, GPIO.IN)
+# GPIO.setup(DHT11_5, GPIO.IN)
 
 # os.system('modprobe w1-gpio')
 # os.system('modprobe w1-therm')
