@@ -113,7 +113,7 @@ if ! shopt -oq posix; then
 fi
 
 alias pi='ssh pi@pi.local'
-alias pi_photos='scp -r pi@pi.local:/home/pi/Pictures/cam/ /Users/rom/Documents/'
+alias pi_photos='scp -r pi@pi.local:/home/pi/cam/ /Users/rom/Documents/'
 
 alias offf='sudo shutdown -h now'
 alias bot='python3 piBoxBot/py/bot.py'
@@ -127,7 +127,7 @@ alias dev='git pull origin dev'
 alias d='git pull origin dev'
 
 alias pi='ssh pi@piMedia.local'
-alias pi_rsync_photos='rsync -avz --remove-source-files pi@piMedia.local:/home/pi/Pictures/cam/ /Users/rom/Pictures/cam_synced/'
+alias pi_rsync_photos='rsync -avz --remove-source-files pi@piMedia.local:/home/pi/cam/ /Users/rom/Pictures/cam_synced/'
 
 
 

@@ -150,7 +150,7 @@ def photo(message):
     bot.send_message(senderID, 'Recent photo --> ')
     
     try:
-        recent_photo = open('/home/pi/Pictures/cam_telebot.jpg', 'rb')
+        recent_photo = open('/home/pi/cam_telebot.jpg', 'rb')
         time.sleep(3)
     except Exception:
         bot.send_message(senderID, 'Try later :( ')
