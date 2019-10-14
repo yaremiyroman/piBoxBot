@@ -4,10 +4,8 @@ sleep 30
 
 while true; do
   mkdir -p /home/pi/cam/$(date +"%d_%m_%y")
-  sleep 5
   file_path=/home/pi/cam/$(date +"%d_%m_%y")/box_$(date +"%H_%M_%S").jpg
-  raspistill -q 80 -w 1440 -h 1080 -o $file_path
-  sleep 5
+  raspistill   -q 80   -w 2560   -h 1080   --ISO 400   --ev +2  --exposure night  --awb horizon     -o $file_path    -n
   cp $file_path /home/pi/cam_telebot.jpg
-  sleep 600
+  sleep 60
 done
