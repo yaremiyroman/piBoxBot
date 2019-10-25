@@ -1,65 +1,65 @@
 #include <stdio.h>
+#include <math.h>
 #include <OneWire.h>
+#include <DHT.h>
 
-// DIGITAL PINS
-#define DS18B20 13
+struct sensor {
+  int pin;
+  String label;
+};
 
-// #define DHT11_1 4
-// #define DHT11_2 5
-// #define DHT11_3 6
-// #define DHT11_4 7
-// #define DHT22_1 8
+////////////////////////////////////////////////////////////////////////
+// DIGITAL
+////////////////////////////////////////////////////////////////////////
 
-// ANALOGUE PINS
-#define MOUSTURE_1 0
-// #define MOUSTURE_2 1
-// #define MOUSTURE_3 2
-// #define MOUSTURE_4 3
-// #define STEAM 6
-// #define LIGHT 7
+struct sensor DS18B20 = { 2, "DS18b20" };
+OneWire ds(DS18B20.pin);
+// struct sensor DHT22_1 = { 3, "DHT22_1" };
 
-// INIT
-OneWire ds(DS18B20);
-// DHT dht11_1(DHT11_1, DHT11);
-// DHT dht11_2(DHT11_2, DHT11);
-// DHT dht11_3(DHT11_3, DHT11);
-// DHT dht11_4(DHT11_4, DHT11);
-// DHT dht22_1(DHT22_1, DHT22);
+struct sensor DHT11_1 = { 4, "DHT11_1" };
+DHT dht11_1(DHT11_1.pin, DHT11);
+struct sensor DHT11_2 = { 5, "DHT11_2" };
+DHT dht11_2(DHT11_2.pin, DHT11);
+struct sensor DHT11_3 = { 6, "DHT11_3" };
+DHT dht11_3(DHT11_3.pin, DHT11);
+struct sensor DHT11_4 = { 7, "DHT11_4" };
+DHT dht11_4(DHT11_4.pin, DHT11);
 
-// VARS
-int pause = 1000;
-int interval = 2000;
-int rest = 10000;
+struct sensor FIRE = {8, "FIRE" };
+struct sensor LIGHT_1 = { 9, "LIGHT_1" };
+struct sensor RAIN = { 10, "RAIN" };
 
-/////////////////////////////////////
-/////////////////////////////////////
-/////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+// ANALOGUE
+////////////////////////////////////////////////////////////////////////
 
-void setup() {
-  pinMode(DS18B20, OUTPUT);
+struct sensor LIGHT_2 = { 0, "light_2" };
+struct sensor LIQUID = { 1,  "liquid_lvl" };
+struct sensor STEAM = { 2,  "steam_1 " };
 
-  // pinMode(DHT11_1, OUTPUT);
-  // pinMode(DHT11_2, OUTPUT);
-  // pinMode(DHT11_3, OUTPUT);
-  // pinMode(DHT11_4, OUTPUT);
+struct sensor MOUSTURE_1 = { 3, "mousture_1" };
+struct sensor MOUSTURE_2 = { 4, "mousture_2" };
+struct sensor MOUSTURE_3 = { 5, "mousture_3" };
 
-  // pinMode(DHT22_1, OUTPUT);
+struct sensor HALL = { 6,  "hall" };
 
-  // dht11_1.begin();
+////////////////////////////////////////////////////////////////////////
+// SETTINGS
+////////////////////////////////////////////////////////////////////////
 
-  // dht11_2.begin();
-  // dht11_3.begin();
-  // dht11_4.begin();
-  // dht22_1.begin();
+const int PAUSE = 1000;
+const int INTERVAL = 2000;
+const int REST = 10000;
 
-  Serial.begin(9600);
-}
+////////////////////////////////////////////////////////////////////////
+// FUNCS
+////////////////////////////////////////////////////////////////////////
 
-float getTemp() {
+float getDS18B20Temp() {
   byte data[12];
   byte addr[8];
 
-  if ( !ds.search(addr)) {
+  if (!ds.search(addr)) {
     ds.reset_search();
     return -1000;
   }
@@ -82,7 +82,6 @@ float getTemp() {
   ds.select(addr);
   ds.write(0xBE); // Read Scratchpad
 
-
   for (int i = 0; i < 9; i++) { // we need 9 bytes
     data[i] = ds.read();
   }
@@ -98,167 +97,111 @@ float getTemp() {
   return TemperatureSum;
 }
 
-void loop() {
-  delay(interval);
+void printSensor(String label, float val, float val2 = NAN) {
+  if (isfinitef(val)) {
+    Serial.print(label);
+    Serial.print("=");
+    Serial.print(val);
 
-  ////////////////////////////////////
-  // DS18B20
-  ////////////////////////////////////
+    if (isfinitef(val2)) {
+      Serial.print("=");
+      Serial.print(val2);
+    }
 
-  float DS18B20_temp = getTemp();
-
-  if (!isnan(DS18B20_temp) && (DS18B20_temp > 0)) {
-    Serial.print("ds18b20=");
-    Serial.print(DS18B20_temp);
     Serial.print(">>>");
+    delay(PAUSE);
   }
+}
 
-  delay(pause);
+void setup() {
+  pinMode(DS18B20.pin, OUTPUT);
 
-  ////////////////////////////////////
-  // DHT11
-  ////////////////////////////////////
+  // pinMode(DHT22_1.pin, OUTPUT);
+  // dht22_1.begin();
 
-  // float dht11_1_h = dht11_1.readHumidity();
-  // float dht11_1_temp = dht11_1.readTemperature();
+  pinMode(DHT11_1.pin, OUTPUT);
+  dht11_1.begin();
 
-  // if (!isnan(dht11_1_h) && !isnan(dht11_1_temp)) {
-  //   Serial.print("dht11_1=");
-  //   Serial.print(dht11_1_temp);
-  //   Serial.print("=");
-  //   Serial.print(dht11_1_h);
-  //   Serial.print(">>>");
-  // }
+  pinMode(DHT11_2.pin, OUTPUT);
+  dht11_2.begin();
 
-  // delay(pause);
+  pinMode(DHT11_3.pin, OUTPUT);
+  dht11_3.begin();
 
-  // ////////////////////////////////////
+  pinMode(DHT11_4.pin, OUTPUT);
+  dht11_4.begin();
 
-  // float dht11_2_h = dht11_2.readHumidity();
-  // float dht11_2_temp = dht11_2.readTemperature();
+  pinMode(FIRE.pin, OUTPUT);
+  pinMode(LIGHT_1.pin, OUTPUT);
+  pinMode(RAIN.pin, OUTPUT);
 
-  // if (!isnan(dht11_2_h) && !isnan(dht11_2_temp)) {
-  //   Serial.print("dht11_2=");
-  //   Serial.print(dht11_2_temp);
-  //   Serial.print("=");
-  //   Serial.print(dht11_2_h);
-  //   Serial.print(">>>");
-  // }
+  Serial.begin(9600);
+}
 
-  // delay(pause);
+////////////////////////////////////////////////////////////////////////
+// RUN
+////////////////////////////////////////////////////////////////////////
 
-  // ////////////////////////////////////
+void loop() {
+  // START LOOP
+  delay(INTERVAL);
 
-  // float dht11_3_h = dht11_3.readHumidity();
-  // float dht11_3_temp = dht11_3.readTemperature();
+  // DS18B20
+  float ds18b20 = getDS18B20Temp();
+  printSensor(DS18B20.label, ds18b20);
 
-  // if (!isnan(dht11_3_h) && !isnan(dht11_3_temp)) {
-  //   Serial.print("dht11_3=");
-  //   Serial.print(dht11_3_temp);
-  //   Serial.print("=");
-  //   Serial.print(dht11_3_h);
-  //   Serial.print(">>>");
-  // }
+  // DHT22_1
+  // printSensor(DHT22_1.label, dht22_1.readTemperature(), dht22_1.readHumidity());
 
-  // delay(pause);
+  // DHT11_1
+  printSensor(DHT11_1.label, dht11_1.readTemperature(), dht11_1.readHumidity());
 
-  // ////////////////////////////////////
+  // DHT11_2
+  printSensor(DHT11_2.label, dht11_2.readTemperature(), dht11_2.readHumidity());
 
-  // float dht11_4_h = dht11_4.readHumidity();
-  // float dht11_4_temp = dht11_4.readTemperature();
+  // DHT11_3
+  printSensor(DHT11_3.label, dht11_3.readTemperature(), dht11_3.readHumidity());
 
-  // if (!isnan(dht11_4_h) && !isnan(dht11_4_temp)) {
-  //   Serial.print("dht11_4=");
-  //   Serial.print(dht11_4_temp);
-  //   Serial.print("=");
-  //   Serial.print(dht11_4_h);
-  //   Serial.print(">>>");
-  // }
+  // DHT11_4
+  printSensor(DHT11_4.label, dht11_4.readTemperature(), dht11_4.readHumidity());
 
-  // delay(pause);
+  // FIRE
+  printSensor(FIRE.label, digitalRead(FIRE.pin));
 
-  // ////////////////////////////////////
+  // LIGHT_1
+  printSensor(LIGHT_1.label, digitalRead(LIGHT_1.pin));
 
-  // ////////////////////////////////////
-  // // DHT 22
-  // ////////////////////////////////////
+  // RAIN
+  printSensor(RAIN.label, digitalRead(RAIN.pin));
 
-  // float dht22_1_h = dht22_1.readHumidity();
-  // float dht22_1_temp = dht22_1.readTemperature();
 
-  // if (!isnan(dht22_1_h) && !isnan(dht22_1_temp)) {
-  //   Serial.print("dht22_1=");
-  //   Serial.print(dht22_1_temp);
-  //   Serial.print("=");
-  //   Serial.print(dht22_1_h);
-  //   Serial.print(">>>");
-  // }
 
-  // delay(pause);
 
-  ////////////////////////////////////
-  // MOUSTURE
-  ////////////////////////////////////
+  // MOUSTURE_1
+  float mousture_1 = analogRead(MOUSTURE_1.pin);
+  printSensor(MOUSTURE_1.label, mousture_1);
 
-  int mousture_1 = analogRead(MOUSTURE_1);
+  // MOUSTURE_2
+  float mousture_2 = analogRead(MOUSTURE_2.pin);
+  printSensor(MOUSTURE_2.label, mousture_2);
 
-  Serial.print("mousture_1=");
-  Serial.print(mousture_1);
-  Serial.print(">>>");
+  // MOUSTURE_3
+  float mousture_3 = analogRead(MOUSTURE_3.pin);
+  printSensor(MOUSTURE_3.label, mousture_3);
 
-  delay(pause);
+  // STEAM
+  float steam = analogRead(STEAM.pin);
+  printSensor(STEAM.label, steam);
 
-  // int mousture_2 = analogRead(MOUSTURE_2);
+  // LIQUID LEVEL
+  float liquid = analogRead(LIQUID.pin);
+  printSensor(LIQUID.label, liquid);
 
-  // Serial.print("mousture_2=");
-  // Serial.print(mousture_2);
-  // Serial.print(">>>");
+  // ANALOG AMBIENT LIGHT
+  float light_2 = analogRead(LIGHT_2.pin);
+  printSensor(LIGHT_2.label, light_2);
 
-  // delay(pause);
-
-  // int mousture_3 = analogRead(MOUSTURE_3);
-
-  // Serial.print("mousture_3=");
-  // Serial.print(mousture_3);
-  // Serial.print(">>>");
-
-  // delay(pause);
-
-  // int mousture_4 = analogRead(MOUSTURE_4);
-
-  // Serial.print("mousture_4=");
-  // Serial.print(mousture_4);
-  // Serial.print(">>>");
-
-  // delay(pause);
-
-  // ////////////////////////////////////
-  // // STEAM SENSOR
-  // ////////////////////////////////////
-
-  // int steam_1 = analogRead(STEAM);
-
-  // Serial.print("steam_1=");
-  // Serial.print(steam_1);
-  // Serial.print(">>>");
-
-  // delay(pause);
-
-  // ////////////////////////////////////
-  // // ANALOG AMBIENT LIGHT SENSOR
-  // ////////////////////////////////////
-
-  // int light_1 = analogRead(LIGHT);
-
-  // Serial.print("light_1=");
-  // Serial.print(light_1);
-
-  // delay(pause);
-
-  ////////////////////////////////////
-  ////////////////////////////////////
-  ////////////////////////////////////
-
+  // END LOOP
   Serial.println();
-  delay(rest);
+  delay(REST);
 }
