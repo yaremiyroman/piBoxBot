@@ -1,10 +1,10 @@
 # ARDUINO_DIR  = /Applications/Arduino.app/Contents/Java/hardware/arduino
 # ARDMK_DIR  = /Applications/Arduino.app/Contents/Java/hardware/arduino
-# USER_LIB_PATH = /Users/rx/Documents/Arduino
+USER_LIB_PATH = /home/pi/piBoxBot/sketches/libraries
 # ARDUINO_LIB_PATH = /Users/rx/Documents/Arduino
 BOARD_TAG    = uno
-ARDUINO_PORT = /dev/tty.usbmodem14101
+ARDUINO_PORT = /dev/ttyACM0
 
-include /Users/rx/Documents/Arduino/Arduino.mk
+include /usr/share/arduino/Arduino.mk
 
 
