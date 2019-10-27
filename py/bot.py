@@ -73,7 +73,7 @@ def show_system_state(message):
 @bot.message_handler(commands=['climate'])
 def climate(message):
     senderID = message.chat.id
-    conn = sqlite3.connect(config.unoClimateDB)
+    conn = sqlite3.connect(config.climate)
     cur = conn.cursor()
     time.sleep(delay)
     

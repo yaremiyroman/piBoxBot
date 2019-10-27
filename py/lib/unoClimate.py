@@ -6,7 +6,7 @@ from config import config
 
 unoClimateSerial = serial.Serial(config.unoClimate, 9600)
 
-conn = sqlite3.connect(config.unoClimateDB)
+conn = sqlite3.connect(config.climate)
 
 while True:
     if(unoClimateSerial.in_waiting > 0):
