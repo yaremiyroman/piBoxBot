@@ -16,7 +16,7 @@ GPIO.setmode(GPIO.BCM)
 
 GPIO.setup(DHT22_1, GPIO.IN)
 
-DB = sqlite3.connect(config.unoClimateDB)
+DB = sqlite3.connect(config.climate)
 
 #########################################################################
 
