@@ -20,19 +20,14 @@ while True:
             if (len(sensorParsed) > 1):
                 sensorName = sensorParsed[0]
                 
-                if (sensorName == 'dht11_1' or sensorName == 'dht11_2' or sensorName == 'dht11_3' or sensorName == 'dht11_4'):    
+                if (sensorName == 'dht11_1' or sensorName == 'dht11_2' or sensorName == 'dht11_3'):    
                     query = "INSERT INTO " + sensorName + " (t, h) VALUES(" + sensorParsed[1] + ", " + sensorParsed[2] + ")"
                     conn.execute(query)
                     conn.commit()
                 
-                # if (sensorName == 'moisture_1' or sensorName == 'moisture_2' or sensorName == 'moisture_3' or sensorName == 'steam'):
-                #     query = "INSERT INTO " + sensorName + " (h) VALUES(" + sensorParsed[1] + ")"
-                #     conn.execute(query)
-                #     conn.commit()
-                
-                # if (sensorName == 'light_1'):    
-                #     query = "INSERT INTO " + sensorName + " (l) VALUES(" + sensorParsed[1] + ")"
-                #     conn.execute(query)
-                #     conn.commit()
+                if (sensorName == 'moisture_1'):
+                    query = "INSERT INTO " + sensorName + " (h) VALUES(" + sensorParsed[1] + ")"
+                    conn.execute(query)
+                    conn.commit()
                 
 conn.close()

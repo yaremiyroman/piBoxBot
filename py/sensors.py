@@ -24,7 +24,7 @@ while True:
     dht22_1_h, dht22_1_t = Adafruit_DHT.read_retry(Adafruit_DHT.DHT22, DHT22_1)
 
     if dht22_1_h is not None and dht22_1_t is not None:
-        query = "INSERT INTO dht22_1 (t, h) VALUES(" + str(dht22_1_t) + ", " + str(dht22_1_h) + ")"
+        query = "INSERT INTO dht22_1 (t, h) VALUES(" + str(round(dht22_1_t, 1)) + ", " + str(int(round(dht22_1_h))) + ")"
         DB.execute(query)
         DB.commit()
     
