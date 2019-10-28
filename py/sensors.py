@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import os
-import glob
 import time 
 import sqlite3
 import Adafruit_DHT
