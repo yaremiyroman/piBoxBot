@@ -117,3 +117,12 @@ venv.bak/
 build-uno
 build-uno/
 build-uno/*
+
+build-leonardo
+build-leonardo/
+build-leonardo/*
+*/build-leonardo/*
+*/build-leonardo/**
+**/build-leonardo/**
+
+

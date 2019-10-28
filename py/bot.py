@@ -96,25 +96,25 @@ def climate(message):
     bot.send_message(senderID, '🎛 > dht11_4 ⏱ > ' + dht11_4_time + ' 🌡 > ' + dht11_4_temp + '℃' + ' 💧 > ' + dht11_4_humid + '%')
     
     ### moisture_1
-    cur.execute("SELECT date_time, h FROM moisture_1 WHERE id IN (SELECT MAX(id) FROM moisture_1)")
-    moisture_1_data = cur.fetchone()
-    moisture_1_time = str(moisture_1_data[0])
-    moisture_1_humid = str(moisture_1_data[1])
-    bot.send_message(senderID, '🎛 > moisture_1 ⏱ > ' + moisture_1_time + ' 💧 > ' + moisture_1_humid + '%')
+    # cur.execute("SELECT date_time, h FROM moisture_1 WHERE id IN (SELECT MAX(id) FROM moisture_1)")
+    # moisture_1_data = cur.fetchone()
+    # moisture_1_time = str(moisture_1_data[0])
+    # moisture_1_humid = str(moisture_1_data[1])
+    # bot.send_message(senderID, '🎛 > moisture_1 ⏱ > ' + moisture_1_time + ' 💧 > ' + moisture_1_humid + '%')
     
-    ### moisture_2
-    cur.execute("SELECT date_time, h FROM moisture_2 WHERE id IN (SELECT MAX(id) FROM moisture_2)")
-    moisture_2_data = cur.fetchone()
-    moisture_2_time = str(moisture_2_data[0])
-    moisture_2_humid = str(moisture_2_data[1])
-    bot.send_message(senderID, '🎛 > moisture_2 ⏱ > ' + moisture_2_time + ' 💧 > ' + moisture_2_humid + '%')
+    # ### moisture_2
+    # cur.execute("SELECT date_time, h FROM moisture_2 WHERE id IN (SELECT MAX(id) FROM moisture_2)")
+    # moisture_2_data = cur.fetchone()
+    # moisture_2_time = str(moisture_2_data[0])
+    # moisture_2_humid = str(moisture_2_data[1])
+    # bot.send_message(senderID, '🎛 > moisture_2 ⏱ > ' + moisture_2_time + ' 💧 > ' + moisture_2_humid + '%')
     
-    ### moisture_3
-    cur.execute("SELECT date_time, h FROM moisture_3 WHERE id IN (SELECT MAX(id) FROM moisture_3)")
-    moisture_3_data = cur.fetchone()
-    moisture_3_time = str(moisture_3_data[0])
-    moisture_3_humid = str(moisture_3_data[1])
-    bot.send_message(senderID, '🎛 > moisture_3 ⏱ > ' + moisture_3_time + ' 💧 > ' + moisture_3_humid + '%')
+    # ### moisture_3
+    # cur.execute("SELECT date_time, h FROM moisture_3 WHERE id IN (SELECT MAX(id) FROM moisture_3)")
+    # moisture_3_data = cur.fetchone()
+    # moisture_3_time = str(moisture_3_data[0])
+    # moisture_3_humid = str(moisture_3_data[1])
+    # bot.send_message(senderID, '🎛 > moisture_3 ⏱ > ' + moisture_3_time + ' 💧 > ' + moisture_3_humid + '%')
 
     conn.close()
     time.sleep(3)
