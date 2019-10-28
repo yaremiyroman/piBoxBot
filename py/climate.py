@@ -25,10 +25,10 @@ while True:
                     conn.execute(query)
                     conn.commit()
                 
-                # if (sensorName == 'moisture_1' or sensorName == 'moisture_2' or sensorName == 'moisture_3' or sensorName == 'steam'):
-                #     query = "INSERT INTO " + sensorName + " (h) VALUES(" + sensorParsed[1] + ")"
-                #     conn.execute(query)
-                #     conn.commit()
+                if (sensorName == 'moisture_1' or sensorName == 'moisture_2' or sensorName == 'moisture_3'):
+                    query = "INSERT INTO " + sensorName + " (h) VALUES(" + sensorParsed[1] + ")"
+                    conn.execute(query)
+                    conn.commit()
                 
                 # if (sensorName == 'light_1'):    
                 #     query = "INSERT INTO " + sensorName + " (l) VALUES(" + sensorParsed[1] + ")"
