@@ -15,6 +15,10 @@ struct sensor DHT11_2 = { 5, "dht11_2" };
 struct sensor DHT11_3 = { 6, "dht11_3" };
 struct sensor DHT11_4 = { 7, "dht11_4" };
 
+struct sensor MOI_1 = { 0, "moisture_1" };
+struct sensor MOI_2 = { 1, "moisture_2" };
+struct sensor MOI_3 = { 2, "moisture_3" };
+
 DHT dht11_1(DHT11_1.pin, DHT11);
 DHT dht11_2(DHT11_2.pin, DHT11);
 DHT dht11_3(DHT11_3.pin, DHT11);
@@ -54,6 +58,10 @@ void loop() {
   printSensor(DHT11_2.label, dht11_2.readTemperature(), dht11_2.readHumidity());
   printSensor(DHT11_3.label, dht11_3.readTemperature(), dht11_3.readHumidity());
   printSensor(DHT11_4.label, dht11_4.readTemperature(), dht11_4.readHumidity());
+
+  printSensor(MOI_1.label, analogRead(MOI_1.pin));
+  printSensor(MOI_2.label, analogRead(MOI_2.pin));
+  printSensor(MOI_3.label, analogRead(MOI_3.pin));
 
   Serial.println();
   delay(REST);
