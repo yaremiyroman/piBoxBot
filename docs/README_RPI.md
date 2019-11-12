@@ -239,3 +239,13 @@ $ lsmod | grep -i w1_
 # add the following line to /boot/config.txt
 dtoverlay=w1-gpio,gpiopin=x
 # ls /sys/bus/w1/devices/
+
+###########################################
+# SENSORS
+###########################################
+# RED OFF
+$ echo 0 | sudo tee /sys/class/leds/led1/brightness
+# RED ON
+$ echo 1 | sudo tee /sys/class/leds/led1/brightness
+
+
