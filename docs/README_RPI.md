@@ -28,7 +28,7 @@ $ ssh-add -K ~/.ssh/id_rsa
 $ cat ~/.ssh/id_rsa.pub
 # Copy Host's public key to Pi over SSH: authorize the key on Pi
 $ cat ~/.ssh/id_rsa.pub | ssh <USERNAME>@<IP-ADDRESS> 'mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys'
-$ cat /Users/rx/.ssh/id_rsa.pub | ssh pi@piMedia.local 'cat >> /home/pi/.ssh/authorized_keys'
+$ cat /Users/rx/.ssh/id_rsa.pub | ssh pi@pi.local 'cat >> /home/pi/.ssh/authorized_keys'
 # Connect:
 $ ssh <USER>@<IP-ADDRESS>
 # If SSH fails:
@@ -39,7 +39,7 @@ $ <GOTO: BEGIN>
 # GIT configs
 ###########################################
 $ git config --global user.email "yaremiyroman@gmail.com"
-$ git config --global user.name "andrdrx@piMedia"
+$ git config --global user.name "andrdrx@pi"
 
 ###########################################
 # Add an alias
