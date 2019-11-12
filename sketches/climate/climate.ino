@@ -32,6 +32,7 @@ DHT dht11_4(DHT_4.pin, DHT11);
 OneWire oneWire(DS18B20.pin);
 DallasTemperature sensors(&oneWire);
 
+
 void setup() {
   Serial.begin(9600);
 
@@ -39,10 +40,21 @@ void setup() {
   dht11_2.begin();
   dht11_3.begin();
   dht11_4.begin();
-
   sensors.begin();
+  
+  pinMode(LED_BUILTIN, OUTPUT);
+  digitalWrite(LED_BUILTIN, LOW);
 
   Serial.println();
+}
+
+void blink_pirahnia(int pin = 2, int count = 10, int interval = 100) {
+  for (int i = 0; i <= count; i++) {
+    digitalWrite(pin, HIGH);
+    delay(interval);
+    digitalWrite(pin, LOW);
+    delay(interval);
+  }
 }
 
 void dht_out(String label, float temp, float humidity) {
