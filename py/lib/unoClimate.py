@@ -4,7 +4,7 @@ import serial
 
 from config import config 
 
-unoClimateSerial = serial.Serial(config.unoClimate, 9600)
+unoClimateSerial = serial.Serial(config.unoClimatePort, 9600)
 
 conn = sqlite3.connect(config.climate)
 
