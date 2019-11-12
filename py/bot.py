@@ -56,71 +56,26 @@ def climate(message):
     cur = conn.cursor()
     time.sleep(delay)
     
-    ### DHT22_1
-    cur.execute("SELECT date_time, t, h FROM dht22_1 WHERE id IN (SELECT MAX(id) FROM dht22_1)")
-    dht22_1_data = cur.fetchone()
-    print(dht22_1_data[0])
-    dht22_1_time = str(dht22_1_data[0])
-    print(dht22_1_time)
-    # dht22_1_time_2 = str(dht22_1_data[0])
-    # print(dht22_1_time_2)
-    dht22_1_temp = str(dht22_1_data[1])
-    dht22_1_humid = str(dht22_1_data[2])
-    bot.send_message(senderID, '🎛 DHT22 ⏱ ' + dht22_1_time + ' 🌡 > ' + dht22_1_temp + '°' + ' 💧 > ' + dht22_1_humid + '%')
+    ### DHT11
+    cur.execute("SELECT date_time, t, h FROM dht11 WHERE id IN (SELECT MAX(id) FROM dht11)")
+    dht11_data = cur.fetchone()
+    dht11_time = str(dht11_data[0])
+    dht11_temp = str(dht11_data[1])
+    dht11_humid = str(dht11_data[2])
+    bot.send_message(senderID, '🎛 DHT22 ⏱ ' + dht11_time + ' 🌡 > ' + dht11_temp + '°' + ' 💧 > ' + dht11_humid + '%')
     
-    ### DHT11_1
-    cur.execute("SELECT date_time, t, h FROM dht11_1 WHERE id IN (SELECT MAX(id) FROM dht11_1)")
-    dht11_1_data = cur.fetchone()
-    dht11_1_time = str(dht11_1_data[0])
-    dht11_1_temp = str(dht11_1_data[1])
-    dht11_1_humid = str(dht11_1_data[2])
-    bot.send_message(senderID, '🎛 DHT_1 ⏱ ' + dht11_1_time + ' 🌡 > ' + dht11_1_temp + '°' + ' 💧 > ' + dht11_1_humid + '%')
-    
-    ### DHT11_2
-    cur.execute("SELECT date_time, t, h FROM dht11_2 WHERE id IN (SELECT MAX(id) FROM dht11_2)")
-    dht11_2_data = cur.fetchone()
-    dht11_2_time = str(dht11_2_data[0])
-    dht11_2_temp = str(dht11_2_data[1])
-    dht11_2_humid = str(dht11_2_data[2])
-    bot.send_message(senderID, '🎛 DHT_2 ⏱ ' + dht11_2_time + ' 🌡 > ' + dht11_2_temp + '°' + ' 💧 > ' + dht11_2_humid + '%')
-    
-    ### DHT11_3
-    cur.execute("SELECT date_time, t, h FROM dht11_3 WHERE id IN (SELECT MAX(id) FROM dht11_3)")
-    dht11_3_data = cur.fetchone()
-    dht11_3_time = str(dht11_3_data[0])
-    dht11_3_temp = str(dht11_3_data[1])
-    dht11_3_humid = str(dht11_3_data[2])
-    bot.send_message(senderID, '🎛 DHT_3 ⏱ ' + dht11_3_time + ' 🌡 > ' + dht11_3_temp + '°' + ' 💧 > ' + dht11_3_humid + '%')
-    
-    ### moisture_1
-    cur.execute("SELECT date_time, h FROM moisture_1 WHERE id IN (SELECT MAX(id) FROM moisture_1)")
-    moisture_1_data = cur.fetchone()
-    moisture_1_time = str(moisture_1_data[0])
-    moisture_1_humid = str(moisture_1_data[1])
-    bot.send_message(senderID, '🎛 MOI_1 ⏱ ' + moisture_1_time + '💧 > ' + moisture_1_humid)
-
     conn.close()
     time.sleep(3)
 
 ######################### PHOTO ##############################################
 @bot.message_handler(commands=['photo'])
 def photo(message):
-    senderID = message.chat.id
-
-    bot.send_message(senderID, 'Recent photo --> ')
-    
-    try:
-        recent_photo = open('/home/pi/cam_telebot.jpg', 'rb')
-        time.sleep(3)
-    except Exception:
-        bot.send_message(senderID, 'Try later :( ')
-    else:
-        bot.send_photo(senderID, recent_photo)
+    bot.send_message(message.chat.id, '*** Photo will be available on piMedia ***')
 
 ####################### LIGHTS ##############################################
 @bot.message_handler(commands=['lights'])
 def switch_lights(message):
-    bot.send_message(message.chat.id, 'Lights switching.')
+    bot.send_message(message.chat.id, '*** Lights will be available late r***')
     
 ####################### REBOOT #############################################
 @bot.message_handler(commands=['reboot'])
