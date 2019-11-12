@@ -7,12 +7,12 @@ from config import config
 
 pause = 10
 
-DHT22_1 = 17
+DHT11 = 24
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 
-GPIO.setup(DHT22_1, GPIO.IN)
+GPIO.setup(DHT11, GPIO.IN)
 
 DB = sqlite3.connect(config.climate)
 
@@ -20,11 +20,11 @@ DB = sqlite3.connect(config.climate)
 
 while True:
 
-    ### DHT22_1
-    dht22_1_h, dht22_1_t = Adafruit_DHT.read_retry(Adafruit_DHT.DHT22, DHT22_1)
+    ### DHT11
+    dht11_h, dht11_t = Adafruit_DHT.read_retry(Adafruit_DHT.DHT11, DHT11)
 
-    if dht22_1_h is not None and dht22_1_t is not None:
-        query = "INSERT INTO dht22_1 (t, h) VALUES(" + str(round(dht22_1_t, 1)) + ", " + str(int(round(dht22_1_h))) + ")"
+    if dht11_h is not None and dht11_t is not None:
+        query = "INSERT INTO dht11 (t, h) VALUES(" + str(round(dht11_t, 1)) + ", " + str(int(round(dht11_h))) + ")"
         DB.execute(query)
         DB.commit()
     
