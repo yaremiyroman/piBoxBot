@@ -5,13 +5,6 @@ import math
 import telebot
 import sqlite3
 
-from luma.led_matrix.device import max7219
-from luma.core.virtual import sevensegment
-from monotonic import monotonic
-from luma.core.interface.serial import spi, noop
-from luma.core.legacy import show_message
-from luma.core.legacy.font import proportional, CP437_FONT
-
 from config import config 
 
 #########################################################################
@@ -199,21 +192,12 @@ def shutdown(message):
     os.system('sudo shutdown -h now')
     time.sleep(delay)
 
-####################### MATRIX #############################################
-def matrix():
-    # serial = spi(port=0, device=0, gpio=noop())
-    # device = max7219(serial, cascaded=1, block_orientation=0, rotate=0, blocks_arranged_in_reverse_order=False)
-    # device.contrast(0x80)
-    # show_message(device, "Hello Kitty^^", fill="white", font=proportional(CP437_FONT))
-    time.sleep(delay)
-
 ############################################################################
 ###################### POLLING ########################################
 ############################################################################
 
 def telegram_polling():
     try:
-        matrix()
         bot.polling(none_stop = True, timeout = 600)
     except:
         bot.stop_polling()
