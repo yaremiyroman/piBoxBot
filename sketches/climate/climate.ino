@@ -1,8 +1,8 @@
 #include <stdio.h>
-#include <Adafruit_Sensor.h>
 #include <DHT.h>
-#include <DallasTemperature.h>
 #include <OneWire.h>
+#include <Adafruit_Sensor.h>
+#include <DallasTemperature.h>
 
 struct sensor {
   int pin;
@@ -32,7 +32,6 @@ DHT dht11_4(DHT_4.pin, DHT11);
 OneWire oneWire(DS18B20.pin);
 DallasTemperature sensors(&oneWire);
 
-
 void setup() {
   Serial.begin(9600);
 
@@ -42,9 +41,6 @@ void setup() {
   dht11_4.begin();
   sensors.begin();
   
-  pinMode(LED_BUILTIN, OUTPUT);
-  digitalWrite(LED_BUILTIN, LOW);
-
   Serial.println();
 }
 

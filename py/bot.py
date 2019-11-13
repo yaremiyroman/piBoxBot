@@ -70,8 +70,8 @@ def climate(message):
     ds18b20_data = cur.fetchone()
     ds18b20_datetime = str(ds18b20_data[0]).split(' ')
     ds18b20_time = ds18b20_datetime[1]
-    ds18b20_temp = str(ds18b20_data[1])
-    bot.send_message(senderID, '🎛⏱ ds18 ' + ds18b20_time + '  🌡 > ' + ds18b20_temp + '°')
+    ds18b20 = str(ds18b20_data[1])
+    bot.send_message(senderID, '🎛⏱ ds18 ' + ds18b20_time + '  🌡 > ' + ds18b20 + '°')
     
     ### DHT11_1
     cur.execute("SELECT date_time, t, h FROM dht11_1 WHERE id IN (SELECT MAX(id) FROM dht11_1)")
@@ -114,48 +114,48 @@ def climate(message):
     moi_1_data = cur.fetchone()
     moi_1_datetime = str(moi_1_data[0]).split(' ')
     moi_1_time = moi_1_datetime[1]
-    moi_1_temp = str(moi_1_data[1])
-    bot.send_message(senderID, '🎛⏱ moisture ' + moi_1_time + '  💧 > ' + moi_1_temp + '°')
+    moi_1 = str(moi_1_data[1])
+    bot.send_message(senderID, '🎛⏱ moisture ' + moi_1_time + '  💦 > ' + moi_1)
     
     ### moi_2
     cur.execute("SELECT date_time, h FROM moi_2 WHERE id IN (SELECT MAX(id) FROM moi_2)")
     moi_2_data = cur.fetchone()
     moi_2_datetime = str(moi_2_data[0]).split(' ')
     moi_2_time = moi_2_datetime[1]
-    moi_2_temp = str(moi_2_data[1])
-    bot.send_message(senderID, '🎛⏱ moisture ' + moi_2_time + '  💧 > ' + moi_2_temp + '°')
+    moi_2 = str(moi_2_data[1])
+    bot.send_message(senderID, '🎛⏱ moisture ' + moi_2_time + '  💦 > ' + moi_2)
     
     ### liquid
     cur.execute("SELECT date_time, lvl FROM liquid WHERE id IN (SELECT MAX(id) FROM liquid)")
     liquid_data = cur.fetchone()
     liquid_datetime = str(liquid_data[0]).split(' ')
     liquid_time = liquid_datetime[1]
-    liquid_temp = str(liquid_data[1])
-    bot.send_message(senderID, '🎛⏱ liquid ' + liquid_time + '  💧 > ' + liquid_temp)
+    liquid = str(liquid_data[1])
+    bot.send_message(senderID, '🎛⏱ liquid ' + liquid_time + '  🌊 > ' + liquid)
     
     ### steam
     cur.execute("SELECT date_time, stm FROM steam WHERE id IN (SELECT MAX(id) FROM steam)")
     steam_data = cur.fetchone()
     steam_datetime = str(steam_data[0]).split(' ')
     steam_time = steam_datetime[1]
-    steam_temp = str(steam_data[1])
-    bot.send_message(senderID, '🎛⏱ steam ' + steam_time + '  💧 > ' + steam_temp)
+    steam = str(steam_data[1])
+    bot.send_message(senderID, '🎛⏱ steam ' + steam_time + '  🌀 > ' + steam)
     
     ### rain
     cur.execute("SELECT date_time, rain FROM rain WHERE id IN (SELECT MAX(id) FROM rain)")
     rain_data = cur.fetchone()
     rain_datetime = str(rain_data[0]).split(' ')
     rain_time = rain_datetime[1]
-    rain_temp = str(rain_data[1])
-    bot.send_message(senderID, '🎛⏱ rain ' + rain_time + '  💧 > ' + rain_temp)
+    rain = str(rain_data[1])
+    bot.send_message(senderID, '🎛⏱ rain ' + rain_time + '  🌧 > ' + rain)
     
     ### light
     cur.execute("SELECT date_time, light FROM light WHERE id IN (SELECT MAX(id) FROM light)")
     light_data = cur.fetchone()
     light_datetime = str(light_data[0]).split(' ')
     light_time = light_datetime[1]
-    light_temp = str(light_data[1])
-    bot.send_message(senderID, '🎛⏱ light ' + light_time + '  💧 > ' + light_temp)
+    light = str(light_data[1])
+    bot.send_message(senderID, '🎛⏱ light ' + light_time + '  🔆 > ' + light)
     
     conn.close()
     time.sleep(3)
