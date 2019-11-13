@@ -5,6 +5,13 @@ import math
 import telebot
 import sqlite3
 
+from luma.led_matrix.device import max7219
+from luma.core.virtual import sevensegment
+from monotonic import monotonic
+from luma.core.interface.serial import spi, noop
+from luma.core.legacy import show_message
+from luma.core.legacy.font import proportional, CP437_FONT
+
 from config import config 
 
 #########################################################################
@@ -57,7 +64,7 @@ def climate(message):
     time.sleep(delay)
     
     ### DHT11
-    cur.execute("SELECT date_time, t, h FROM dht11 WHERE id IN (SELECT MAX(id) FROM dht11)")
+    cur.execute("SELECT DATETIME(date_time, 'localtime'), t, h FROM dht11 WHERE id IN (SELECT MAX(id) FROM dht11)")
     dht11_data = cur.fetchone()
     dht11_datetime = str(dht11_data[0]).split(' ')
     dht11_time = dht11_datetime[1]
@@ -66,7 +73,7 @@ def climate(message):
     bot.send_message(senderID, '🎛⏱ dht ' + dht11_time + '  🌡 > ' + dht11_temp + '°' + ' 💧 > ' + dht11_humid + '%')
     
     ### ds18b20
-    cur.execute("SELECT date_time, t FROM ds18b20 WHERE id IN (SELECT MAX(id) FROM ds18b20)")
+    cur.execute("SELECT DATETIME(date_time, 'localtime'), t FROM ds18b20 WHERE id IN (SELECT MAX(id) FROM ds18b20)")
     ds18b20_data = cur.fetchone()
     ds18b20_datetime = str(ds18b20_data[0]).split(' ')
     ds18b20_time = ds18b20_datetime[1]
@@ -74,7 +81,7 @@ def climate(message):
     bot.send_message(senderID, '🎛⏱ ds18 ' + ds18b20_time + '  🌡 > ' + ds18b20 + '°')
     
     ### DHT11_1
-    cur.execute("SELECT date_time, t, h FROM dht11_1 WHERE id IN (SELECT MAX(id) FROM dht11_1)")
+    cur.execute("SELECT DATETIME(date_time, 'localtime'), t, h FROM dht11_1 WHERE id IN (SELECT MAX(id) FROM dht11_1)")
     dht11_1_data = cur.fetchone()
     dht11_1_datetime = str(dht11_1_data[0]).split(' ')
     dht11_1_time = dht11_1_datetime[1]
@@ -83,7 +90,7 @@ def climate(message):
     bot.send_message(senderID, '🎛⏱ dht ' + dht11_1_time + '  🌡 > ' + dht11_1_temp + '°' + ' 💧 > ' + dht11_1_humid + '%')
     
     ### DHT11_2
-    cur.execute("SELECT date_time, t, h FROM dht11_2 WHERE id IN (SELECT MAX(id) FROM dht11_2)")
+    cur.execute("SELECT DATETIME(date_time, 'localtime'), t, h FROM dht11_2 WHERE id IN (SELECT MAX(id) FROM dht11_2)")
     dht11_2_data = cur.fetchone()
     dht11_2_datetime = str(dht11_2_data[0]).split(' ')
     dht11_2_time = dht11_2_datetime[1]
@@ -92,7 +99,7 @@ def climate(message):
     bot.send_message(senderID, '🎛⏱ dht ' + dht11_2_time + '  🌡 > ' + dht11_2_temp + '°' + ' 💧 > ' + dht11_2_humid + '%')
     
     ### DHT11_3
-    cur.execute("SELECT date_time, t, h FROM dht11_3 WHERE id IN (SELECT MAX(id) FROM dht11_3)")
+    cur.execute("SELECT DATETIME(date_time, 'localtime'), t, h FROM dht11_3 WHERE id IN (SELECT MAX(id) FROM dht11_3)")
     dht11_3_data = cur.fetchone()
     dht11_3_datetime = str(dht11_3_data[0]).split(' ')
     dht11_3_time = dht11_3_datetime[1]
@@ -101,7 +108,7 @@ def climate(message):
     bot.send_message(senderID, '🎛⏱ dht ' + dht11_3_time + '  🌡 > ' + dht11_3_temp + '°' + ' 💧 > ' + dht11_3_humid + '%')
     
     ### DHT11_4
-    cur.execute("SELECT date_time, t, h FROM dht11_4 WHERE id IN (SELECT MAX(id) FROM dht11_4)")
+    cur.execute("SELECT DATETIME(date_time, 'localtime'), t, h FROM dht11_4 WHERE id IN (SELECT MAX(id) FROM dht11_4)")
     dht11_4_data = cur.fetchone()
     dht11_4_datetime = str(dht11_4_data[0]).split(' ')
     dht11_4_time = dht11_4_datetime[1]
@@ -110,7 +117,7 @@ def climate(message):
     bot.send_message(senderID, '🎛⏱ dht ' + dht11_4_time + '  🌡 > ' + dht11_4_temp + '°' + ' 💧 > ' + dht11_4_humid + '%')
     
     ### moi_1
-    cur.execute("SELECT date_time, h FROM moi_1 WHERE id IN (SELECT MAX(id) FROM moi_1)")
+    cur.execute("SELECT DATETIME(date_time, 'localtime'), h FROM moi_1 WHERE id IN (SELECT MAX(id) FROM moi_1)")
     moi_1_data = cur.fetchone()
     moi_1_datetime = str(moi_1_data[0]).split(' ')
     moi_1_time = moi_1_datetime[1]
@@ -118,7 +125,7 @@ def climate(message):
     bot.send_message(senderID, '🎛⏱ moisture ' + moi_1_time + '  💦 > ' + moi_1)
     
     ### moi_2
-    cur.execute("SELECT date_time, h FROM moi_2 WHERE id IN (SELECT MAX(id) FROM moi_2)")
+    cur.execute("SELECT DATETIME(date_time, 'localtime'), h FROM moi_2 WHERE id IN (SELECT MAX(id) FROM moi_2)")
     moi_2_data = cur.fetchone()
     moi_2_datetime = str(moi_2_data[0]).split(' ')
     moi_2_time = moi_2_datetime[1]
@@ -126,7 +133,7 @@ def climate(message):
     bot.send_message(senderID, '🎛⏱ moisture ' + moi_2_time + '  💦 > ' + moi_2)
     
     ### liquid
-    cur.execute("SELECT date_time, lvl FROM liquid WHERE id IN (SELECT MAX(id) FROM liquid)")
+    cur.execute("SELECT DATETIME(date_time, 'localtime'), lvl FROM liquid WHERE id IN (SELECT MAX(id) FROM liquid)")
     liquid_data = cur.fetchone()
     liquid_datetime = str(liquid_data[0]).split(' ')
     liquid_time = liquid_datetime[1]
@@ -134,7 +141,7 @@ def climate(message):
     bot.send_message(senderID, '🎛⏱ liquid ' + liquid_time + '  🌊 > ' + liquid)
     
     ### steam
-    cur.execute("SELECT date_time, stm FROM steam WHERE id IN (SELECT MAX(id) FROM steam)")
+    cur.execute("SELECT DATETIME(date_time, 'localtime'), stm FROM steam WHERE id IN (SELECT MAX(id) FROM steam)")
     steam_data = cur.fetchone()
     steam_datetime = str(steam_data[0]).split(' ')
     steam_time = steam_datetime[1]
@@ -142,7 +149,7 @@ def climate(message):
     bot.send_message(senderID, '🎛⏱ steam ' + steam_time + '  🌀 > ' + steam)
     
     ### rain
-    cur.execute("SELECT date_time, rain FROM rain WHERE id IN (SELECT MAX(id) FROM rain)")
+    cur.execute("SELECT DATETIME(date_time, 'localtime'), rain FROM rain WHERE id IN (SELECT MAX(id) FROM rain)")
     rain_data = cur.fetchone()
     rain_datetime = str(rain_data[0]).split(' ')
     rain_time = rain_datetime[1]
@@ -150,7 +157,7 @@ def climate(message):
     bot.send_message(senderID, '🎛⏱ rain ' + rain_time + '  🌧 > ' + rain)
     
     ### light
-    cur.execute("SELECT date_time, light FROM light WHERE id IN (SELECT MAX(id) FROM light)")
+    cur.execute("SELECT DATETIME(date_time, 'localtime'), light FROM light WHERE id IN (SELECT MAX(id) FROM light)")
     light_data = cur.fetchone()
     light_datetime = str(light_data[0]).split(' ')
     light_time = light_datetime[1]
@@ -192,12 +199,21 @@ def shutdown(message):
     os.system('sudo shutdown -h now')
     time.sleep(delay)
 
+####################### MATRIX #############################################
+def matrix():
+    # serial = spi(port=0, device=0, gpio=noop())
+    # device = max7219(serial, cascaded=1, block_orientation=0, rotate=0, blocks_arranged_in_reverse_order=False)
+    # device.contrast(0x80)
+    # show_message(device, "Hello Kitty^^", fill="white", font=proportional(CP437_FONT))
+    time.sleep(delay)
+
 ############################################################################
 ###################### POLLING ########################################
 ############################################################################
 
 def telegram_polling():
     try:
+        matrix()
         bot.polling(none_stop = True, timeout = 600)
     except:
         bot.stop_polling()
