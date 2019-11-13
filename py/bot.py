@@ -181,7 +181,7 @@ def switch_lights(message):
 @bot.message_handler(commands=['reboot'])
 def reboot(message):
     senderID = message.chat.id
-    if senderID <> adminID:
+    if senderID != adminID:
         bot.send_message(senderID, 'Go f*ck yourself')
         return
     bot.send_message(senderID, 'Rebooting --> ')
@@ -192,7 +192,7 @@ def reboot(message):
 @bot.message_handler(commands=['shutdown'])
 def shutdown(message):
     senderID = message.chat.id
-    if senderID <> adminID:
+    if senderID != adminID:
         bot.send_message(senderID, 'Go f*ck yourself')
         return
     bot.send_message(senderID, 'Going offline...')
