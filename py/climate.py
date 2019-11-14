@@ -35,18 +35,8 @@ while True:
                     conn.execute(query)
                     conn.commit()
                 
-                if (sensorName == 'liquid'):
-                    query = "INSERT INTO " + sensorName + " (lvl) VALUES(" + sensorParsed[1] + ")"
-                    conn.execute(query)
-                    conn.commit()
-                
                 if (sensorName == 'steam'):
                     query = "INSERT INTO " + sensorName + " (stm) VALUES(" + sensorParsed[1] + ")"
-                    conn.execute(query)
-                    conn.commit()
-                
-                if (sensorName == 'rain'):
-                    query = "INSERT INTO " + sensorName + " (rain) VALUES(" + sensorParsed[1] + ")"
                     conn.execute(query)
                     conn.commit()
                 

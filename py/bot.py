@@ -63,7 +63,6 @@ def climate(message):
     dht11_time = dht11_datetime[1]
     dht11_temp = str(dht11_data[1])
     dht11_humid = str(dht11_data[2])
-    bot.send_message(senderID, '🎛⏱ dht ' + dht11_time + '  🌡 > ' + dht11_temp + '°' + ' 💧 > ' + dht11_humid + '%')
     
     ### ds18b20
     cur.execute("SELECT DATETIME(date_time, 'localtime'), t FROM ds18b20 WHERE id IN (SELECT MAX(id) FROM ds18b20)")
@@ -71,7 +70,6 @@ def climate(message):
     ds18b20_datetime = str(ds18b20_data[0]).split(' ')
     ds18b20_time = ds18b20_datetime[1]
     ds18b20 = str(ds18b20_data[1])
-    bot.send_message(senderID, '🎛⏱ ds18 ' + ds18b20_time + '  🌡 > ' + ds18b20 + '°')
     
     ### DHT11_1
     cur.execute("SELECT DATETIME(date_time, 'localtime'), t, h FROM dht11_1 WHERE id IN (SELECT MAX(id) FROM dht11_1)")
@@ -80,7 +78,6 @@ def climate(message):
     dht11_1_time = dht11_1_datetime[1]
     dht11_1_temp = str(dht11_1_data[1])
     dht11_1_humid = str(dht11_1_data[2])
-    bot.send_message(senderID, '🎛⏱ dht ' + dht11_1_time + '  🌡 > ' + dht11_1_temp + '°' + ' 💧 > ' + dht11_1_humid + '%')
     
     ### DHT11_2
     cur.execute("SELECT DATETIME(date_time, 'localtime'), t, h FROM dht11_2 WHERE id IN (SELECT MAX(id) FROM dht11_2)")
@@ -89,7 +86,6 @@ def climate(message):
     dht11_2_time = dht11_2_datetime[1]
     dht11_2_temp = str(dht11_2_data[1])
     dht11_2_humid = str(dht11_2_data[2])
-    bot.send_message(senderID, '🎛⏱ dht ' + dht11_2_time + '  🌡 > ' + dht11_2_temp + '°' + ' 💧 > ' + dht11_2_humid + '%')
     
     ### DHT11_3
     cur.execute("SELECT DATETIME(date_time, 'localtime'), t, h FROM dht11_3 WHERE id IN (SELECT MAX(id) FROM dht11_3)")
@@ -98,7 +94,6 @@ def climate(message):
     dht11_3_time = dht11_3_datetime[1]
     dht11_3_temp = str(dht11_3_data[1])
     dht11_3_humid = str(dht11_3_data[2])
-    bot.send_message(senderID, '🎛⏱ dht ' + dht11_3_time + '  🌡 > ' + dht11_3_temp + '°' + ' 💧 > ' + dht11_3_humid + '%')
     
     ### DHT11_4
     cur.execute("SELECT DATETIME(date_time, 'localtime'), t, h FROM dht11_4 WHERE id IN (SELECT MAX(id) FROM dht11_4)")
@@ -107,7 +102,6 @@ def climate(message):
     dht11_4_time = dht11_4_datetime[1]
     dht11_4_temp = str(dht11_4_data[1])
     dht11_4_humid = str(dht11_4_data[2])
-    bot.send_message(senderID, '🎛⏱ dht ' + dht11_4_time + '  🌡 > ' + dht11_4_temp + '°' + ' 💧 > ' + dht11_4_humid + '%')
     
     ### moi_1
     cur.execute("SELECT DATETIME(date_time, 'localtime'), h FROM moi_1 WHERE id IN (SELECT MAX(id) FROM moi_1)")
@@ -115,7 +109,6 @@ def climate(message):
     moi_1_datetime = str(moi_1_data[0]).split(' ')
     moi_1_time = moi_1_datetime[1]
     moi_1 = str(moi_1_data[1])
-    bot.send_message(senderID, '🎛⏱ moisture ' + moi_1_time + '  💦 > ' + moi_1)
     
     ### moi_2
     cur.execute("SELECT DATETIME(date_time, 'localtime'), h FROM moi_2 WHERE id IN (SELECT MAX(id) FROM moi_2)")
@@ -123,15 +116,6 @@ def climate(message):
     moi_2_datetime = str(moi_2_data[0]).split(' ')
     moi_2_time = moi_2_datetime[1]
     moi_2 = str(moi_2_data[1])
-    bot.send_message(senderID, '🎛⏱ moisture ' + moi_2_time + '  💦 > ' + moi_2)
-    
-    ### liquid
-    cur.execute("SELECT DATETIME(date_time, 'localtime'), lvl FROM liquid WHERE id IN (SELECT MAX(id) FROM liquid)")
-    liquid_data = cur.fetchone()
-    liquid_datetime = str(liquid_data[0]).split(' ')
-    liquid_time = liquid_datetime[1]
-    liquid = str(liquid_data[1])
-    bot.send_message(senderID, '🎛⏱ liquid ' + liquid_time + '  🌊 > ' + liquid)
     
     ### steam
     cur.execute("SELECT DATETIME(date_time, 'localtime'), stm FROM steam WHERE id IN (SELECT MAX(id) FROM steam)")
@@ -139,15 +123,6 @@ def climate(message):
     steam_datetime = str(steam_data[0]).split(' ')
     steam_time = steam_datetime[1]
     steam = str(steam_data[1])
-    bot.send_message(senderID, '🎛⏱ steam ' + steam_time + '  🌀 > ' + steam)
-    
-    ### rain
-    cur.execute("SELECT DATETIME(date_time, 'localtime'), rain FROM rain WHERE id IN (SELECT MAX(id) FROM rain)")
-    rain_data = cur.fetchone()
-    rain_datetime = str(rain_data[0]).split(' ')
-    rain_time = rain_datetime[1]
-    rain = str(rain_data[1])
-    bot.send_message(senderID, '🎛⏱ rain ' + rain_time + '  🌧 > ' + rain)
     
     ### light
     cur.execute("SELECT DATETIME(date_time, 'localtime'), light FROM light WHERE id IN (SELECT MAX(id) FROM light)")
@@ -155,9 +130,20 @@ def climate(message):
     light_datetime = str(light_data[0]).split(' ')
     light_time = light_datetime[1]
     light = str(light_data[1])
-    bot.send_message(senderID, '🎛⏱ light ' + light_time + '  🔆 > ' + light)
     
     conn.close()
+    
+    bot.send_message(senderID, '🎛⏱ dht ' + dht11_time + '  🌡 > ' + dht11_temp + '°' + ' 💧 > ' + dht11_humid + '%')
+    bot.send_message(senderID, '🎛⏱ ds18 ' + ds18b20_time + '  🌡 > ' + ds18b20 + '°')
+    bot.send_message(senderID, '🎛⏱ dht ' + dht11_1_time + '  🌡 > ' + dht11_1_temp + '°' + ' 💧 > ' + dht11_1_humid + '%')
+    bot.send_message(senderID, '🎛⏱ dht ' + dht11_2_time + '  🌡 > ' + dht11_2_temp + '°' + ' 💧 > ' + dht11_2_humid + '%')
+    bot.send_message(senderID, '🎛⏱ dht ' + dht11_3_time + '  🌡 > ' + dht11_3_temp + '°' + ' 💧 > ' + dht11_3_humid + '%')
+    bot.send_message(senderID, '🎛⏱ dht ' + dht11_4_time + '  🌡 > ' + dht11_4_temp + '°' + ' 💧 > ' + dht11_4_humid + '%')
+    bot.send_message(senderID, '🎛⏱ moisture ' + moi_1_time + '  💦 > ' + moi_1)
+    bot.send_message(senderID, '🎛⏱ moisture ' + moi_2_time + '  💦 > ' + moi_2)
+    bot.send_message(senderID, '🎛⏱ steam ' + steam_time + '  🌀 > ' + steam)
+    bot.send_message(senderID, '🎛⏱ light ' + light_time + '  🔆 > ' + light)
+    
     time.sleep(3)
 
 ######################### PHOTO ##############################################
