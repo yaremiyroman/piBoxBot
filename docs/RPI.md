@@ -10,7 +10,7 @@
 # SSH
 # https://help.github.com/en/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
 ###########################################
-$ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+$ ssh-keygen -t rsa -b 4096 -C "yaremiyroman@gmail.com"
 # Adding your SSH key to the ssh-agent
 $ eval "$(ssh-agent -s)"
 ### -----------------------------------------
@@ -22,13 +22,14 @@ Host *
   UseKeychain yes
   IdentityFile ~/.ssh/id_rsa
 # -------
-$ ssh-add -K ~/.ssh/id_rsa
+$ ssh-add ~/.ssh/id_rsa
 ### -----------------------------------------
 # Copy fresh Pi key to GitHub -> Preferences -> SSH keys
 $ cat ~/.ssh/id_rsa.pub
 # Copy Host's public key to Pi over SSH: authorize the key on Pi
 $ cat ~/.ssh/id_rsa.pub | ssh <USERNAME>@<IP-ADDRESS> 'mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys'
-$ cat /Users/rx/.ssh/id_rsa.pub | ssh pi@pi.local 'cat >> /home/pi/.ssh/authorized_keys'
+$ cat /Users/rx/.ssh/id_rsa.pub | ssh pi@piMedia.local 'cat >> /home/pi/.ssh/authorized_keys'
+$ cat /Users/rx/.ssh/id_rsa.pub | ssh pi@piData.local 'cat >> /home/pi/.ssh/authorized_keys'
 # Connect:
 $ ssh <USER>@<IP-ADDRESS>
 # If SSH fails:
@@ -60,8 +61,8 @@ $ sudo apt-get update
 $ sudo apt-get upgrade
 $ sudo apt-get dist-upgrade
 $ sudo apt autoremove
-# bundle
-$ sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade && sudo apt-get autoremove
+
+$ sudo apt-get install git mc lm-sensors bc sqlite3 libsqlite3-dev rpi.gpio python-dev python-pip wiringpi arduino arduino-mk
 
 ###########################################
 # Set locale if terminal shows warnings about
@@ -72,7 +73,6 @@ LANG=en_GB.UTF-8
 LC_ALL=en_GB.UTF-8
 LC_CTYPE="en_GB.UTF-8"
 LC_ALL="en_GB.UTF-8"
-LANG="en_GB.UTF-8"
 
 ###########################################
 # Get Pi info
@@ -248,9 +248,14 @@ dtoverlay=w1-gpio,gpiopin=x
 # ls /sys/bus/w1/devices/
 
 ###########################################
-# SENSORS
+# LEDS
 ###########################################
 # RED OFF
 $ echo 0 | sudo tee /sys/class/leds/led1/brightness
 # RED ON
 $ echo 1 | sudo tee /sys/class/leds/led1/brightness
+
+###########################################
+# GPIO CLI
+###########################################
+$ sudo apt-get install wiringpi
