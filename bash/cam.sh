@@ -1,6 +1,6 @@
 #!/bin/sh
 
-sleep 30
+sleep 10
 
 while true; do
   mkdir -p /home/pi/cam/$(date +"%d_%m_%y")
@@ -10,5 +10,5 @@ while true; do
 
   cp $file_path /home/pi/cam_telebot.jpg
   
-  sleep 60
+  sleep 900
 done
