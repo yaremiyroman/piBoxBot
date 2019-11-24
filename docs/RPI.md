@@ -1,243 +1,59 @@
-######################################################################################
-# Pi setup
-######################################################################################
-# Download Raspbian release
+# pi setup ###########################################################################
 # Download balenaEtcher app and flash microSD with Raspbian image
 # Write an empty text file named "ssh" (no file extension) to the root of the directory of the card. When it sees the "ssh" on its first boot-up, Raspbian will automatically enable SSH
 # Wi-Fi: create a text file called wpa_supplicant.conf near "ssh", Find piBoxBot/configs/wpa_supplicant.conf for example.ss
+$ sudo raspi-conf
+$ sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade && sudo apt-get autoremove && sudo apt-get autoclean
+$ sudo apt-get install build-essential git git-core mc rpi.gpio wiringpi bc lm-sensors arduino arduino-mk python python-dev python-pip python3 python3-dev python3-pip sqlite3 libsqlite3-dev luvcview
+
+###########################################
+# configs
+###########################################
+$ sudo nano /etc/default/locale
+$ sudo nano ~/.bashrc
+$ sudo nano /etc/rc.local
+$ sudo nano /boot/config.txt
 
 ###########################################
 # SSH
-# https://help.github.com/en/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
 ###########################################
 $ ssh-keygen -t rsa -b 4096 -C "yaremiyroman@gmail.com"
-# Adding your SSH key to the ssh-agent
 $ eval "$(ssh-agent -s)"
-### -----------------------------------------
-# If you're using macOS Sierra 10.12.2 or later, you will need to modify 
-# your ~/.ssh/config file to automatically load keys into the ssh-agent 
-# and store passphrases in your keychain.
-Host *
-  AddKeysToAgent yes
-  UseKeychain yes
-  IdentityFile ~/.ssh/id_rsa
-# -------
 $ ssh-add ~/.ssh/id_rsa
-### -----------------------------------------
-# Copy fresh Pi key to GitHub -> Preferences -> SSH keys
 $ cat ~/.ssh/id_rsa.pub
-# Copy Host's public key to Pi over SSH: authorize the key on Pi
-$ cat ~/.ssh/id_rsa.pub | ssh <USERNAME>@<IP-ADDRESS> 'mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys'
-$ cat /Users/rx/.ssh/id_rsa.pub | ssh pi@piMedia.local 'cat >> /home/pi/.ssh/authorized_keys'
-$ cat /Users/rx/.ssh/id_rsa.pub | ssh pi@piData.local 'cat >> /home/pi/.ssh/authorized_keys'
 $ cat /Users/rx/.ssh/id_rsa.pub | ssh pi@piTest.local 'cat >> /home/pi/.ssh/authorized_keys'
-# Connect:
-$ ssh <USER>@<IP-ADDRESS>
-# If SSH fails:
-$ rm ~/.ssh/id*
-$ <GOTO: BEGIN>
 
 ###########################################
-# Update OS and packages
+# git
 ###########################################
-$ sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade  && sudo apt autoremove
-$ sudo apt-get install git mc lm-sensors bc sqlite3 libsqlite3-dev rpi.gpio python-dev python-pip wiringpi lm-sensors
-$ sudo apt-get install arduino arduino-mk
+$ git config --global user.email "yaremiyroman@gmail.com" && git config --global user.name "andrdrx@piTest"
+$ git@github.com:yaremiyroman/piBoxBot.git
 
 ###########################################
-# GIT configs
+# info
 ###########################################
-$ git config --global user.email "yaremiyroman@gmail.com"
-$ git config --global user.name "andrdrx@piData"
-$ git config --global user.name "andrdrx@piMedia"
-
-###########################################
-# Add an alias
-###########################################
-$ sudo nano ~/.bashrc
-
-###########################################
-# Set locale if terminal shows warnings about
-###########################################
-$ sudo nano /etc/default/locale
-# add any that missed
-LANG=en_GB.UTF-8
-LC_ALL=en_GB.UTF-8
-LC_CTYPE="en_GB.UTF-8"
-LC_ALL="en_GB.UTF-8"
-
-###########################################
-# Get Pi info
-###########################################
-$ cat /opt/vc/bin/vcgencmd measure_temp
-$ cat /sys/class/thermal/thermal_zone0/temp
-$ watch /opt/vc/bin/vcgencmd measure_temp
 $ vcgencmd commands
-$ vcgencmd get_config int
-$ vcgencmd measure_temp
-$ vcgencmd measure_clock arm
-$ vcgencmd measure_volts core
-# sh .get_temperature.sh
-# temp = 49.8°C (121.64°F)
-$ vcgencmd get_mem arm && vcgencmd get_mem gpu
-$ cat /proc/version
-$ cat /proc/meminfo
-$ cat /proc/partitions
-$ cat /proc/cpuinfo
-$ vcgencmd get_mem arm && vcgencmd get_mem gpu
 $ stress --cpu 4
-
-###########################################
-# Reduce the amount of current consumed by Pi
-###########################################
-
-# HDMI ####################################
-# Check HDMI
-$ tvservice -s
-# Disable HDMI 
-$ tvservice -o
-# Enable HDMI
-$ tvservice -p
-# Disable HDMI on cron
-$ crontab -e
-# Add a cron rule
-$ @reboot tvservice -o
-$ sudo reboot
-# or add 'tvservice --off' before 'exit 0' here:
-$ sudo nano /etc/rc.local
-
-# WLAN and BT
-# Get list if network interfaces
-$ iwconfig
-# Add rules
-$ sudo nano /boot/config.txt
-dtoverlay=pi3-disable-wifi
-dtoverlay=pi3-disable-bt
-$ sudo reboot
-# Check interfaces
-$ hciconfig
-
-# Audio
-$ sudo nano /boot/config.txt
-# $ dtparam=audio=off
-
-###########################################
-# CAMERA: piBoxBot/py/readme/RaspiCam.pdf
-###########################################
-
-###########################################
-# RTC(DS3231) setup
-###########################################
-
-# enable i2c
-$ sudo nano /boot/config.txt
-# add
-dtoverlay=i2c-rtc,ds3231
-# in hwclock config
-$ sudo nano /lib/udev/hwclock-set
-# comment 
-if [ -e /run/systemd/system ] ; then
-   exit 0
-fi
-# then
-$ sudo reboot
-# register RTC and sync system time on startup 
-$ sudo nano /etc/rc.local
-# add before "exit 0"
-echo ds3231 0x68 > /sys/class/i2c-adapter/i2c-1/new_device
-hwclock -s
-$ sudo reboot
-
-# hwclock: read, write
-$ hwclock -r, -w
-
-# Read RTC temperature
-$ sudo apt-get install bc
-$ sudo echo "$(cat /sys/class/i2c-adapter/i2c-1/1-0068/hwmon/hwmon1/temp1_input)/1000" | bc -l
-
-###########################################
-# config.py
-###########################################
-token='589756614:AAF04K1bF2kwyxT21KN1oqMNan3ahOKG0l0'
-adminID=285956437
-climate='/home/pi/piBoxBot/climate.db'
 
 ###########################################
 # telebot
 ###########################################
-# repeat same for python2 - pip
-# repeat same for superuser
-$ pip install telegram-send
-# AttributeError: 'TeleBot' object has no attribute
-$ pip uninstall telebot PyTelegramBotAPI
-# install specific version without issues
-$ pip install PyTelegramBotAPI==2.2.3
+$ pip install PyTelegramBotAPI==2.2.3 pysqlite Adafruit_DHT
 
 ###########################################
-# Bot API commands list
+# RTC
 ###########################################
-start - Say Hi
-state - System overview
-climate - Get climate measurements
-photo - Drop recent photo
-lights - Switch lights on/off
-reboot - Reboot Pi
-shutdown - Turn off Pi
+# /boot/config.txt
+dtoverlay=i2c-rtc,ds3231
+# /lib/udev/hwclock-set comment
+if [ -e /run/systemd/system ] ; then
+   exit 0
+fi
+$ hwclock -r, -w
+$ sudo echo "$(cat /sys/class/i2c-adapter/i2c-1/1-0068/hwmon/hwmon1/temp1_input)/1000" | bc -l
 
-###########################################
-# sqlite3
-###########################################
-# install
-$ sudo apt-get install sqlite3 libsqlite3-dev
-$ pip install pysqlite
-
-###########################################
-# GPIO LIB
-###########################################
-$ sudo apt-get install rpi.gpio
-### USAGE
-import RPi.GPIO as GPIO 
-# to use Raspberry Pi board pin numbers
-# set up the GPIO channels - one input and one output
-GPIO.setmode(GPIO.BOARD)
-GPIO.setup(11, GPIO.IN)
-GPIO.setup(12, GPIO.OUT)
-# input from pin 11
-input_value = GPIO.input(11)
-# output to pin 12
-GPIO.output(12, GPIO.HIGH)
-# the same script as above but using BCM GPIO 00..nn numbers
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(17, GPIO.IN)
-GPIO.setup(18, GPIO.OUT)
-input_value = GPIO.input(17)
-GPIO.output(18, GPIO.HIGH)
-
-###########################################
-# SENSORS
-###########################################
-# DHT
-$ sudo apt-get install python-dev python-pip
-$ sudo pip install Adafruit_DHT
-
-# DS18B20
-# Verify that the 1-Wire kernel modules have loaded on the next boot.
-$ lsmod | grep -i w1_
-# Find usage example in lib/ds18b20.py
-# If you would like to use a custom pin (default is BCM4) than 
-# add the following line to /boot/config.txt
-dtoverlay=w1-gpio,gpiopin=x
-# ls /sys/bus/w1/devices/
-
-###########################################
-# LEDS
-###########################################
-# RED OFF
-$ echo 0 | sudo tee /sys/class/leds/led1/brightness
-# RED ON
-$ echo 1 | sudo tee /sys/class/leds/led1/brightness
-
-###########################################
-# GPIO CLI
-###########################################
-$ sudo apt-get install wiringpi
+##############################################################################
+# luvcview: camera preview
+##############################################################################
+$ sudo apt-get install luvcview
+$ luvcview
