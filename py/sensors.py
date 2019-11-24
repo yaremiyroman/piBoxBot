@@ -7,7 +7,7 @@ from config import config
 
 pause = 10
 
-DHT11 = 24
+DHT11 = 17
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
