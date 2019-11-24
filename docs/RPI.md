@@ -30,6 +30,7 @@ $ cat ~/.ssh/id_rsa.pub
 $ cat ~/.ssh/id_rsa.pub | ssh <USERNAME>@<IP-ADDRESS> 'mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys'
 $ cat /Users/rx/.ssh/id_rsa.pub | ssh pi@piMedia.local 'cat >> /home/pi/.ssh/authorized_keys'
 $ cat /Users/rx/.ssh/id_rsa.pub | ssh pi@piData.local 'cat >> /home/pi/.ssh/authorized_keys'
+$ cat /Users/rx/.ssh/id_rsa.pub | ssh pi@piTest.local 'cat >> /home/pi/.ssh/authorized_keys'
 # Connect:
 $ ssh <USER>@<IP-ADDRESS>
 # If SSH fails:
@@ -37,32 +38,23 @@ $ rm ~/.ssh/id*
 $ <GOTO: BEGIN>
 
 ###########################################
+# Update OS and packages
+###########################################
+$ sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade  && sudo apt autoremove
+$ sudo apt-get install git mc lm-sensors bc sqlite3 libsqlite3-dev rpi.gpio python-dev python-pip wiringpi lm-sensors
+$ sudo apt-get install arduino arduino-mk
+
+###########################################
 # GIT configs
 ###########################################
 $ git config --global user.email "yaremiyroman@gmail.com"
-$ git config --global user.name "andrdrx@pi"
+$ git config --global user.name "andrdrx@piData"
+$ git config --global user.name "andrdrx@piMedia"
 
 ###########################################
 # Add an alias
 ###########################################
 $ sudo nano ~/.bashrc
-# Alias format: alias <ALIAS_NAME>='<INSTRUCTIONS>'
-# Find piBoxBot/configs/bashrc for example
-
-###########################################
-# SCP
-###########################################
-$ scp  /home/<USER>/<SOME_FOLDER>/<IMAGE_SAMPLE>.jpg   <USER>@<IP-ADDRESS>:/home/pi/<SOME_FOLDER>/
-
-###########################################
-# Update OS and packages
-###########################################
-$ sudo apt-get update
-$ sudo apt-get upgrade
-$ sudo apt-get dist-upgrade
-$ sudo apt autoremove
-
-$ sudo apt-get install git mc lm-sensors bc sqlite3 libsqlite3-dev rpi.gpio python-dev python-pip wiringpi arduino arduino-mk
 
 ###########################################
 # Set locale if terminal shows warnings about
@@ -93,10 +85,6 @@ $ cat /proc/meminfo
 $ cat /proc/partitions
 $ cat /proc/cpuinfo
 $ vcgencmd get_mem arm && vcgencmd get_mem gpu
-
-###########################################
-# Stress the CPU
-###########################################
 $ stress --cpu 4
 
 ###########################################
@@ -163,15 +151,9 @@ $ sudo reboot
 # hwclock: read, write
 $ hwclock -r, -w
 
-
-# Read sensors and various RTC data
-$ sudo apt-get install lm-sensors
-$ sensors
-
 # Read RTC temperature
 $ sudo apt-get install bc
 $ sudo echo "$(cat /sys/class/i2c-adapter/i2c-1/1-0068/hwmon/hwmon1/temp1_input)/1000" | bc -l
-
 
 ###########################################
 # config.py
