@@ -58,6 +58,15 @@ def climate(message):
     dht11_temp = str(dht11_data[1])
     dht11_humid = str(dht11_data[2])
     
+    ### DHT22
+    time.sleep(config.delay)
+    cur.execute("SELECT DATETIME(date_time, 'localtime'), t, h FROM dht22 WHERE id IN (SELECT MAX(id) FROM dht22)")
+    dht22_data = cur.fetchone()
+    dht22_datetime = str(dht22_data[0]).split(' ')
+    dht22_time = dht22_datetime[1]
+    dht22_temp = str(dht22_data[1])
+    dht22_humid = str(dht22_data[2])
+    
     time.sleep(config.delay)
     sensorsDB.close()
     
@@ -140,7 +149,8 @@ def climate(message):
     # time.sleep(config.delay)
     # DB.close()
     
-    bot.send_message(senderID, '🎛[DHT] ⏱ ' + dht11_time + '  🌡 > ' + dht11_temp + '°' + ' 💧 > ' + dht11_humid + '%')
+    bot.send_message(senderID, '🎛[DHT11] ⏱ ' + dht11_time + '  🌡 > ' + dht11_temp + '°' + ' 💧 > ' + dht11_humid + '%')
+    bot.send_message(senderID, '🎛[DHT22] ⏱ ' + dht22_time + '  🌡 > ' + dht22_temp + '°' + ' 💧 > ' + dht22_humid + '%')
     # bot.send_message(senderID, '🎛⏱ ds18 ' + ds18b20_time + '  🌡 > ' + ds18b20 + '°')
     # bot.send_message(senderID, '🎛⏱ dht ' + dht11_1_time + '  🌡 > ' + dht11_1_temp + '°' + ' 💧 > ' + dht11_1_humid + '%')
     # bot.send_message(senderID, '🎛⏱ dht ' + dht11_2_time + '  🌡 > ' + dht11_2_temp + '°' + ' 💧 > ' + dht11_2_humid + '%')

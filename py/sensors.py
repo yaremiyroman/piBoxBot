@@ -22,6 +22,15 @@ while True:
         sensorsDB.execute(query)
         sensorsDB.commit()
     
+    ### DHT22
+    time.sleep(config.sensors_timeout)
+    dht22_h, dht22_t = Adafruit_DHT.read_retry(Adafruit_DHT.DHT22, config.dht_22)
+
+    if dht22_h is not None and dht22_t is not None:
+        query = "INSERT INTO dht22 (t, h) VALUES(" + str(round(dht22_t, 1)) + ", " + str(int(round(dht22_h))) + ")"
+        sensorsDB.execute(query)
+        sensorsDB.commit()
+    
     time.sleep(config.delay)
     sensorsDB.close()
     time.sleep(config.delay)
