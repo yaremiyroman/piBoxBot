@@ -1,43 +1,60 @@
 #include <stdio.h>
-//#include <DHT.h>
-//#include <OneWire.h>
-//#include <Adafruit_Sensor.h>
-//#include <DallasTemperature.h>
+#include <DHT.h>
+#include <OneWire.h>
+#include <Adafruit_Sensor.h>
+#include <DallasTemperature.h>
 
 struct sensor {
   int pin;
   String label;
 };
 
-const int PAUSE = 250;
+const int PAUSE = 1000;                   
+const int REST = 250;
 
-//struct sensor DS18B20 = { 2, "ds18b20" };
-//struct sensor DHT_1 = { 4, "dht11_1" };
-//struct sensor DHT_2 = { 5, "dht11_2" };
-//struct sensor DHT_3 = { 6, "dht11_3" };
-//struct sensor DHT_4 = { 7, "dht11_4" };
+struct sensor PIRAHNIA = { 2, "green_led" };
+struct sensor DS18B20 = { 3, "ds18b20" };
+struct sensor DHT_1 = { 4, "dht_1" };
+struct sensor DHT_2 = { 5, "dht_2" };
+struct sensor DHT_3 = { 6, "dht_3" };
+struct sensor DHT_4 = { 7, "dht_4" };
+struct sensor DHT_5 = { 8, "dht_5" };
+struct sensor DHT_6 = { 9, "dht_6" };
+struct sensor DHT_7 = { 10, "dht_7" };
+struct sensor DHT_8 = { 11, "dht_8" };
+//struct sensor PIRAHNIA = { 12, "green_led" };
+struct sensor FIRE = { 13, "fire" };
 
-struct sensor STEAM = { 0, "steam" };
+struct sensor MOI = { 0, "moi" };
 struct sensor LIGHT = { 1, "light" };
-//struct sensor MOI_1 = { 4, "moi_1" };
-//struct sensor MOI_2 = { 5, "moi_2" };
+struct sensor STEAM = { 2, "steam" };
+struct sensor LM35 = { 3, "lm35" };
 
-//DHT dht11_1(DHT_1.pin, DHT11);
-//DHT dht11_2(DHT_2.pin, DHT11);
-//DHT dht11_3(DHT_3.pin, DHT11);
-//DHT dht11_4(DHT_4.pin, DHT11);
-//OneWire oneWire(DS18B20.pin);
-//DallasTemperature sensors(&oneWire);
+DHT dht_1(DHT_1.pin, DHT11);
+DHT dht_2(DHT_2.pin, DHT11);
+DHT dht_3(DHT_3.pin, DHT11);
+DHT dht_4(DHT_4.pin, DHT11);
+DHT dht_5(DHT_5.pin, DHT11);
+DHT dht_6(DHT_6.pin, DHT11);
+DHT dht_7(DHT_7.pin, DHT11);
+DHT dht_8(DHT_8.pin, DHT11);
+OneWire oneWire(DS18B20.pin);
+DallasTemperature sensors(&oneWire);
 
 void setup() {
-  //  dht11_1.begin();
-  //  dht11_2.begin();
-  //  dht11_3.begin();
-  //  dht11_4.begin();
-  //  sensors.begin();
+  dht_1.begin();
+  dht_2.begin();
+  dht_3.begin();
+  dht_4.begin();
+  dht_5.begin();
+  dht_6.begin();
+  dht_7.begin();
+  dht_8.begin();
+  sensors.begin();
+
+  pinMode(PIRAHNIA.pin, OUTPUT);
 
   Serial.begin(9600);
-
   Serial.println();
 }
 
@@ -73,30 +90,35 @@ void a_out(String label, int val) {
   }
 }
 
-void loop_start() {
+void loop() {
   delay(PAUSE);
-  //  sensors.requestTemperatures();
+  sensors.requestTemperatures();
   Serial.print("||");
-}
 
-void loop_end() {
+  d_out(DS18B20.label, sensors.getTempCByIndex(0));
+  dht_out(DHT_1.label, dht_1.readTemperature(), dht_1.readHumidity());
+  dht_out(DHT_2.label, dht_2.readTemperature(), dht_2.readHumidity());
+  dht_out(DHT_3.label, dht_3.readTemperature(), dht_3.readHumidity());
+  dht_out(DHT_4.label, dht_4.readTemperature(), dht_4.readHumidity());
+  dht_out(DHT_5.label, dht_5.readTemperature(), dht_5.readHumidity());
+  dht_out(DHT_6.label, dht_6.readTemperature(), dht_6.readHumidity());
+  dht_out(DHT_7.label, dht_7.readTemperature(), dht_7.readHumidity());
+  dht_out(DHT_8.label, dht_8.readTemperature(), dht_8.readHumidity());   
+  d_out(FIRE.label, digitalRead(FIRE.pin));
+
+  delay(REST);
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(REST);
+
+  a_out(MOI.label, analogRead(MOI.pin));
+  a_out(LIGHT.label, analogRead(LIGHT.pin));
+  a_out(STEAM.label, analogRead(STEAM.pin));
+  a_out(LM35.label, (analogRead(LM35.pin) / 1023) * 500);
+
+  delay(REST);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(REST);
+
   Serial.println();
   delay(PAUSE);
-}
-
-void loop() {
-  loop_start();
-
-  //  d_out(DS18B20.label, sensors.getTempCByIndex(0));
-  //  dht_out(DHT_1.label, dht11_1.readTemperature(), dht11_1.readHumidity());
-  //  dht_out(DHT_2.label, dht11_2.readTemperature(), dht11_2.readHumidity());
-  //  dht_out(DHT_3.label, dht11_3.readTemperature(), dht11_3.readHumidity());
-  //  dht_out(DHT_4.label, dht11_4.readTemperature(), dht11_4.readHumidity());
-
-  a_out(STEAM.label, analogRead(STEAM.pin));
-  a_out(LIGHT.label, analogRead(LIGHT.pin));
-  //  a_out(MOI_1.label, analogRead(MOI_1.pin));
-  //  a_out(MOI_2.label, analogRead(MOI_2.pin));
-
-  loop_end();
 }
