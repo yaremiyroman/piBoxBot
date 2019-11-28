@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 #include <DHT.h>
 #include <Adafruit_Sensor.h>
 #include <OneWire.h>
@@ -18,10 +19,7 @@ struct sensor DHT_2 = { 5, "dht_2" };
 struct sensor DHT_3 = { 6, "dht_3" };
 struct sensor DHT_4 = { 7, "dht_4" };
 
-// struct sensor LM35 = { 0, "lm35" };
-// struct sensor MOI = { 1, "moi" };
-// struct sensor LIGHT = { 2, "light" };
-// struct sensor STEAM = { 3, "steam" };
+struct sensor LM35 = { 0, "lm35" };
 
 DHT dht_1(DHT_1.pin, DHT11);
 DHT dht_2(DHT_2.pin, DHT11);
@@ -84,10 +82,7 @@ void loop() {
   dht_out(DHT_3.label, dht_3.readTemperature(), dht_3.readHumidity());
   dht_out(DHT_4.label, dht_4.readTemperature(), dht_4.readHumidity());
 
-  // a_out(LM35.label, (analogRead(LM35.pin) / 1023) * 500);
-  // a_out(MOI.label, analogRead(MOI.pin));
-  // a_out(LIGHT.label, analogRead(LIGHT.pin));
-  // a_out(STEAM.label, analogRead(STEAM.pin));
+  a_out(LM35.label, analogRead((LM35.pin / 1023) * 500));
 
   Serial.println();
   delay(PAUSE);

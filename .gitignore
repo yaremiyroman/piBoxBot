@@ -118,6 +118,19 @@ build-uno
 build-uno/
 build-uno/*
 
+build-*
+build-**
+build-*/
+build-**/
+build-*/*
+build-**/*
+*/build-*/*
+*/build-**/*
+*/build-*/**
+*/build-**/**
+**/build-*/**
+**/build-**/**
+
 build-leonardo
 build-leonardo/
 build-leonardo/*
