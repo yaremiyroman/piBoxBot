@@ -3,7 +3,7 @@ import sqlite3
 import serial
 from config import config 
 
-unoClimateSerial = serial.Serial(config.climateDBPort, 9600)
+unoClimateSerial = serial.Serial(config.climatePort, 9600)
 
 while True:
     if(unoClimateSerial.in_waiting > 0):
