@@ -12,7 +12,7 @@ struct sensor {
 const int PAUSE = 1000;                   
 const int REST = 250;
 
-struct sensor DS18B20 = { 3, "ds18b20" };
+struct sensor DS18B20 = { 2, "ds18b20" };
 struct sensor DHT_1 = { 4, "dht_1" };
 struct sensor DHT_2 = { 5, "dht_2" };
 struct sensor DHT_3 = { 6, "dht_3" };
