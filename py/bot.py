@@ -50,12 +50,12 @@ def climate(message):
     ### RPi sensors ############################################################
     ############################################################################
     sensorsDB = sqlite3.connect(config.sensorsDB)
-    sensors = sensorsDB.cursor()
+    sensorsCur = sensorsDB.cursor()
     
     ### DHT11
     time.sleep(config.delay)
-    sensors.execute("SELECT DATETIME(date_time, 'localtime'), t, h FROM dht11 WHERE id IN (SELECT MAX(id) FROM dht11)")
-    dht11_data = sensors.fetchone()
+    sensorsCur.execute("SELECT DATETIME(date_time, 'localtime'), t, h FROM dht11 WHERE id IN (SELECT MAX(id) FROM dht11)")
+    dht11_data = sensorsCur.fetchone()
     dht11_datetime = str(dht11_data[0]).split(' ')
     dht11_time = dht11_datetime[1]
     dht11_temp = str(dht11_data[1])
@@ -63,8 +63,8 @@ def climate(message):
     
     ### DHT22
     time.sleep(config.delay)
-    sensors.execute("SELECT DATETIME(date_time, 'localtime'), t, h FROM dht22 WHERE id IN (SELECT MAX(id) FROM dht22)")
-    dht22_data = sensors.fetchone()
+    sensorsCur.execute("SELECT DATETIME(date_time, 'localtime'), t, h FROM dht22 WHERE id IN (SELECT MAX(id) FROM dht22)")
+    dht22_data = sensorsCur.fetchone()
     dht22_datetime = str(dht22_data[0]).split(' ')
     dht22_time = dht22_datetime[1]
     dht22_temp = str(dht22_data[1])
@@ -72,99 +72,76 @@ def climate(message):
     
     time.sleep(config.delay)
     sensorsDB.close()
+    time.sleep(config.delay)
+    
+    bot.send_message(senderID, '🎛⏱ dht11 ' + dht11_time + '  🌡 > ' + dht11_temp + '°' + ' 💧 > ' + dht11_humid + '%')
+    bot.send_message(senderID, '🎛⏱ dht22 ' + dht22_time + '  🌡 > ' + dht22_temp + '°' + ' 💧 > ' + dht22_humid + '%')
     
     ### UNO sensors ############################################################
     ############################################################################
     
-    # climateDB = sqlite3.connect(config.climateDB)
-    # climate = climateDB.cursor()
+    climateDB = sqlite3.connect(config.climateDB)
+    climateCur = climateDB.cursor()
     
-    # ### ds18b20
-    # time.sleep(config.delay)
-    # climate.execute("SELECT DATETIME(date_time, 'localtime'), t FROM ds18b20 WHERE id IN (SELECT MAX(id) FROM ds18b20)")
-    # ds18b20_data = climate.fetchone()
-    # ds18b20_datetime = str(ds18b20_data[0]).split(' ')
-    # ds18b20_time = ds18b20_datetime[1]
-    # ds18b20 = str(ds18b20_data[1])
+    ### ds18b20
+    time.sleep(config.delay)
+    climateCur.execute("SELECT DATETIME(date_time, 'localtime'), t FROM ds18b20 WHERE id IN (SELECT MAX(id) FROM ds18b20)")
+    ds18b20_data = climateCur.fetchone()
+    ds18b20_datetime = str(ds18b20_data[0]).split(' ')
+    ds18b20_time = ds18b20_datetime[1]
+    ds18b20 = str(ds18b20_data[1])
 
-    # ### DHT_1
-    # time.sleep(config.delay)
-    # climate.execute("SELECT DATETIME(date_time, 'localtime'), t, h FROM dht_1 WHERE id IN (SELECT MAX(id) FROM dht_1)")
-    # dht_1_data = climate.fetchone()
-    # dht_1_datetime = str(dht_1_data[0]).split(' ')
-    # dht_1_time = dht_1_datetime[1]
-    # dht_1_temp = str(dht_1_data[1])
-    # dht_1_humid = str(dht_1_data[2])
+    ### DHT1
+    time.sleep(config.delay)
+    climateCur.execute("SELECT DATETIME(date_time, 'localtime'), t, h FROM dht1 WHERE id IN (SELECT MAX(id) FROM dht1)")
+    dht1_data = climateCur.fetchone()
+    dht1_datetime = str(dht1_data[0]).split(' ')
+    dht1_time = dht1_datetime[1]
+    dht1_temp = str(dht1_data[1])
+    dht1_humid = str(dht1_data[2])
 
-    # ### DHT_2
-    # time.sleep(config.delay)
-    # climate.execute("SELECT DATETIME(date_time, 'localtime'), t, h FROM dht_2 WHERE id IN (SELECT MAX(id) FROM dht_2)")
-    # dht_2_data = climate.fetchone()
-    # dht_2_datetime = str(dht_2_data[0]).split(' ')
-    # dht_2_time = dht_2_datetime[1]
-    # dht_2_temp = str(dht_2_data[1])
-    # dht_2_humid = str(dht_2_data[2])
+    ### DHT2
+    time.sleep(config.delay)
+    climateCur.execute("SELECT DATETIME(date_time, 'localtime'), t, h FROM dht2 WHERE id IN (SELECT MAX(id) FROM dht2)")
+    dht2_data = climateCur.fetchone()
+    dht2_datetime = str(dht2_data[0]).split(' ')
+    dht2_time = dht2_datetime[1]
+    dht2_temp = str(dht2_data[1])
+    dht2_humid = str(dht2_data[2])
 
-    # ### DHT_3
-    # time.sleep(config.delay)
-    # climate.execute("SELECT DATETIME(date_time, 'localtime'), t, h FROM dht_3 WHERE id IN (SELECT MAX(id) FROM dht_3)")
-    # dht_3_data = climate.fetchone()
-    # dht_3_datetime = str(dht_3_data[0]).split(' ')
-    # dht_3_time = dht_3_datetime[1]
-    # dht_3_temp = str(dht_3_data[1])
-    # dht_3_humid = str(dht_3_data[2])
+    ### DHT3
+    time.sleep(config.delay)
+    climateCur.execute("SELECT DATETIME(date_time, 'localtime'), t, h FROM dht3 WHERE id IN (SELECT MAX(id) FROM dht3)")
+    dht3_data = climateCur.fetchone()
+    dht3_datetime = str(dht3_data[0]).split(' ')
+    dht3_time = dht3_datetime[1]
+    dht3_temp = str(dht3_data[1])
+    dht3_humid = str(dht3_data[2])
 
-    # ### DHT_4
-    # time.sleep(config.delay)
-    # climate.execute("SELECT DATETIME(date_time, 'localtime'), t, h FROM dht_4 WHERE id IN (SELECT MAX(id) FROM dht_4)")
-    # dht_4_data = climate.fetchone()
-    # dht_4_datetime = str(dht_4_data[0]).split(' ')
-    # dht_4_time = dht_4_datetime[1]
-    # dht_4_temp = str(dht_4_data[1])
-    # dht_4_humid = str(dht_4_data[2])
-
-    # ### steam
-    # time.sleep(config.delay)
-    # climate.execute("SELECT DATETIME(date_time, 'localtime'), stm FROM steam WHERE id IN (SELECT MAX(id) FROM steam)")
-    # steam_data = climate.fetchone()
-    # steam_datetime = str(steam_data[0]).split(' ')
-    # steam_time = steam_datetime[1]
-    # steam = str(steam_data[1])
-
-    # ### moi
-    # time.sleep(config.delay)
-    # climate.execute("SELECT DATETIME(date_time, 'localtime'), h FROM moi WHERE id IN (SELECT MAX(id) FROM moi)")
-    # moi_data = climate.fetchone()
-    # moi_datetime = str(moi_data[0]).split(' ')
-    # moi_time = moi_datetime[1]
-    # moi = str(moi_data[1])
+    ### DHT4
+    time.sleep(config.delay)
+    climateCur.execute("SELECT DATETIME(date_time, 'localtime'), t, h FROM dht4 WHERE id IN (SELECT MAX(id) FROM dht4)")
+    dht4_data = climateCur.fetchone()
+    dht4_datetime = str(dht4_data[0]).split(' ')
+    dht4_time = dht4_datetime[1]
+    dht4_temp = str(dht4_data[1])
+    dht4_humid = str(dht4_data[2])
 
     # ### light
     # time.sleep(config.delay)
-    # climate.execute("SELECT DATETIME(date_time, 'localtime'), light FROM light WHERE id IN (SELECT MAX(id) FROM light)")
-    # light_data = climate.fetchone()
+    # climateCur.execute("SELECT DATETIME(date_time, 'localtime'), light FROM light WHERE id IN (SELECT MAX(id) FROM light)")
+    # light_data = climateCur.fetchone()
     # light_datetime = str(light_data[0]).split(' ')
     # light_time = light_datetime[1]
     # light = str(light_data[1])
-
-    # ### steam
-    # time.sleep(config.delay)
-    # climate.execute("SELECT DATETIME(date_time, 'localtime'), stm FROM steam WHERE id IN (SELECT MAX(id) FROM steam)")
-    # steam_data = climate.fetchone()
-    # steam_datetime = str(steam_data[0]).split(' ')
-    # steam_time = steam_datetime[1]
-    # steam = str(steam_data[1])
-
-    # time.sleep(config.delay)
-    # climateDB.close()
     
-    bot.send_message(senderID, '🎛⏱ dht11 ' + dht11_time + '  🌡 > ' + dht11_temp + '°' + ' 💧 > ' + dht11_humid + '%')
-    bot.send_message(senderID, '🎛⏱ dht22 ' + dht22_time + '  🌡 > ' + dht22_temp + '°' + ' 💧 > ' + dht22_humid + '%')
-    # bot.send_message(senderID, '🎛⏱ ds18 ' + ds18b20_time + '  🌡 > ' + ds18b20 + '°')
-    # bot.send_message(senderID, '🎛⏱ dht ' + dht_1_time + '  🌡 > ' + dht_1_temp + '°' + ' 💧 > ' + dht_1_humid + '%')
-    # bot.send_message(senderID, '🎛⏱ dht ' + dht_2_time + '  🌡 > ' + dht_2_temp + '°' + ' 💧 > ' + dht_2_humid + '%')
-    # bot.send_message(senderID, '🎛⏱ dht ' + dht_3_time + '  🌡 > ' + dht_3_temp + '°' + ' 💧 > ' + dht_3_humid + '%')
-    # bot.send_message(senderID, '🎛⏱ dht ' + dht_4_time + '  🌡 > ' + dht_4_temp + '°' + ' 💧 > ' + dht_4_humid + '%')
+    climateDB.close()
+    
+    bot.send_message(senderID, '🎛⏱ ds18b20 ' + ds18b20_time + '  🌡 > ' + ds18b20 + '°')
+    bot.send_message(senderID, '🎛⏱ dht1 ' + dht1_time + '  🌡 > ' + dht1_temp + '°' + ' 💧 > ' + dht1_humid + '%')
+    bot.send_message(senderID, '🎛⏱ dht2 ' + dht2_time + '  🌡 > ' + dht2_temp + '°' + ' 💧 > ' + dht2_humid + '%')
+    bot.send_message(senderID, '🎛⏱ dht3 ' + dht3_time + '  🌡 > ' + dht3_temp + '°' + ' 💧 > ' + dht3_humid + '%')
+    bot.send_message(senderID, '🎛⏱ dht4 ' + dht4_time + '  🌡 > ' + dht4_temp + '°' + ' 💧 > ' + dht4_humid + '%')
     # bot.send_message(senderID, '🎛⏱ lm35 ' + lm35_time + '  🌡 > ' + lm35 + '°')
     # bot.send_message(senderID, '🎛⏱ moisture ' + moi_time + '  💦 > ' + moi)
     # bot.send_message(senderID, '🎛⏱ steam ' + steam_time + '  🌀 > ' + steam)
