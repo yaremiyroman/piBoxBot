@@ -21,7 +21,7 @@ while True:
                     climateDB.execute(query)
                     climateDB.commit()
                 
-                if (sensorName == 'dht_1' or sensorName == 'dht_2' or sensorName == 'dht_3' or sensorName == 'dht_4'):    
+                if (sensorName == 'dht1' or sensorName == 'dht2' or sensorName == 'dht3' or sensorName == 'dht4'):    
                     query = "INSERT INTO " + sensorName + " (t, h) VALUES(" + sensorParsed[1] + ", " + sensorParsed[2] + ")"
                     climateDB.execute(query)
                     climateDB.commit()
