@@ -23,16 +23,15 @@ $ cat ~/.ssh/id_rsa.pub
 $ cat /Users/rx/.ssh/id_rsa.pub | ssh pi@piTest.local 'cat >> /home/pi/.ssh/authorized_keys'
 
 # ########################################################### #
-# install: arduino arduino-mk git
-# ########################################################### #
-$ sudo apt-get install mc rpi.gpio wiringpi bc lm-sensors  python python-dev python-pip python3 python3-dev python3-pip sqlite3 libsqlite3-dev luvcview
-$ sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade && sudo apt-get autoremove && sudo apt autoclean
-
-# ########################################################### #
 # git
 # ########################################################### #
-$ git config --global user.email "yaremiyroman@gmail.com" && git config --global user.name "andrdrx@piTest"
-$ git clone git@github.com:yaremiyroman/piBoxBot.git
+$ git config --global user.email "yaremiyroman@gmail.com" && git config --global user.name "andrdrx@piMedia" &&  git clone git@github.com:yaremiyroman/piBoxBot.git && cd piBoxBot && git checkout dev
+
+# ########################################################### #
+# install: arduino arduino-mk
+# ########################################################### #
+$ sudo apt-get install git mc rpi.gpio wiringpi bc lm-sensors  python python-dev python-pip python3 python3-dev python3-pip sqlite3 libsqlite3-dev luvcview
+$ sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade && sudo apt-get autoremove && sudo apt autoclean
 
 # ########################################################### #
 # info
