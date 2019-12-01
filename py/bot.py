@@ -152,7 +152,15 @@ def climate(message):
 ######################### PHOTO ##############################################
 @bot.message_handler(commands=['photo'])
 def photo(message):
-    bot.send_message(message.chat.id, '*** Photo will be available on piMedia ***')
+    senderID = message.chat.id
+    bot.send_message(senderID, 'Recent photo --> ')
+    try:
+        recent_photo = open('/home/pi/cam.jpg', 'rb')
+        time.sleep(3)
+    except Exception:
+        bot.send_message(senderID, 'Try later :( ')
+    else:
+        bot.send_photo(senderID, recent_photo)
 
 ####################### LIGHTS ##############################################
 @bot.message_handler(commands=['lights'])
