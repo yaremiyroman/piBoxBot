@@ -11,6 +11,7 @@ $ sudo nano /etc/default/locale
 $ sudo nano ~/.bashrc
 $ sudo nano /etc/rc.local
 $ sudo nano /boot/config.txt
+$ sudo nano /lib/udev/hwclock-set
 $ crontab -e
 
 # ########################################################### #
@@ -20,7 +21,7 @@ $ ssh-keygen -t rsa -b 4096 -C "yaremiyroman@gmail.com"
 $ eval "$(ssh-agent -s)"
 $ ssh-add ~/.ssh/id_rsa
 $ cat ~/.ssh/id_rsa.pub
-$ cat /Users/rx/.ssh/id_rsa.pub | ssh pi@piTest.local 'cat >> /home/pi/.ssh/authorized_keys'
+$ cat /home/pi/.ssh/id_rsa.pub | ssh pi@192.168.31.187 'cat >> /home/pi/.ssh/authorized_keys'
 
 # ########################################################### #
 # git
@@ -28,36 +29,20 @@ $ cat /Users/rx/.ssh/id_rsa.pub | ssh pi@piTest.local 'cat >> /home/pi/.ssh/auth
 $ git config --global user.email "yaremiyroman@gmail.com" && git config --global user.name "andrdrx@piMedia" &&  git clone git@github.com:yaremiyroman/piBoxBot.git && cd piBoxBot && git checkout dev
 
 # ########################################################### #
-# install: arduino arduino-mk
+# install
 # ########################################################### #
-$ sudo apt-get install git mc rpi.gpio wiringpi bc lm-sensors  python python-dev python-pip python3 python3-dev python3-pip sqlite3 libsqlite3-dev luvcview
-$ sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade && sudo apt-get autoremove && sudo apt autoclean
+$ sudo apt-get install git mc
+$ sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade && sudo apt-get autoremove
+$ sudo apt-get install rpi.gpio wiringpi
+$ sudo apt-get install bc lm-sensors
+$ sudo apt-get install python python-dev python-pip python3 python3-dev python3-pip sqlite3 libsqlite3-dev
+$ pip install PyTelegramBotAPI==2.2.3 pysqlite Adafruit_DHT
+$ sudo apt-get install arduino-core arduino-mk
 
 # ########################################################### #
 # info
 # ########################################################### #
 $ vcgencmd commands
 $ stress --cpu 4
-
-# ########################################################### #
-# telebot
-# ########################################################### #
-$ pip install PyTelegramBotAPI==2.2.3 pysqlite Adafruit_DHT
-
-# ########################################################### #
-# RTC
-# ########################################################### #
-# /boot/config.txt
-dtoverlay=i2c-rtc,ds3231
-# /lib/udev/hwclock-set comment
-if [ -e /run/systemd/system ] ; then
-   exit 0
-fi
-$ hwclock -r, -w
 $ sudo echo "$(cat /sys/class/i2c-adapter/i2c-1/1-0068/hwmon/hwmon1/temp1_input)/1000" | bc -l
-
-# ########################################################### #
-# camera preview
-# ########################################################### #
-$ sudo apt-get install luvcview
-$ luvcview
+$ sensors
