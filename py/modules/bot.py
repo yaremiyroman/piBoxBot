@@ -65,14 +65,6 @@ def climate(message):
     dht11_humid = str(dht11_data[2])
     bot.send_message(senderID, '🎛⏱ dht ' + dht11_time + '  🌡 > ' + dht11_temp + '°' + ' 💧 > ' + dht11_humid + '%')
     
-    ### ds18b20
-    cur.execute("SELECT date_time, t FROM ds18b20 WHERE id IN (SELECT MAX(id) FROM ds18b20)")
-    ds18b20_data = cur.fetchone()
-    ds18b20_datetime = str(ds18b20_data[0]).split(' ')
-    ds18b20_time = ds18b20_datetime[1]
-    ds18b20_temp = str(ds18b20_data[1])
-    bot.send_message(senderID, '🎛⏱ ds18 ' + ds18b20_time + '  🌡 > ' + ds18b20_temp + '°')
-    
     ### DHT11_1
     cur.execute("SELECT date_time, t, h FROM dht11_1 WHERE id IN (SELECT MAX(id) FROM dht11_1)")
     dht11_1_data = cur.fetchone()

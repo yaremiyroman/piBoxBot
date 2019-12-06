@@ -18,12 +18,11 @@ def say_hi(message):
 def show_system_state(message):
     senderID = message.chat.id
     
-    bot.send_message(senderID, 'System state > ' + time.strftime('%a %d-%m-%y @ %H:%M'))
+    bot.send_message(senderID, ' ✩✩✩ System state ✩✩✩ ' + time.strftime('%a %d-%m-%y @ %H:%M'))
     
     sysname, hostname, release, date, core = os.uname()
     bot.send_message(senderID, 'OS > ' + sysname + ' ' + release + ' on ' + hostname + ' ')
     
-    # //  move bash scripts to constants 
     uptime = os.popen("awk '{print $1}' /proc/uptime").readline()
     uptime_time = int(float(uptime))
     uptime_hrs = math.floor(uptime_time / 3600)
@@ -48,7 +47,6 @@ def climate(message):
     senderID = message.chat.id
     
     ### RPi sensors ############################################################
-    ############################################################################
     sensorsDB = sqlite3.connect(config.sensorsDB)
     sensorsCur = sensorsDB.cursor()
     
@@ -60,6 +58,7 @@ def climate(message):
     dht11_time = dht11_datetime[1]
     dht11_temp = str(dht11_data[1])
     dht11_humid = str(dht11_data[2])
+    bot.send_message(senderID, '🎛 DHT₁₁ ⏱ ' + dht11_time + '  🌡 > ' + dht11_temp + '°' + ' 💧 > ' + dht11_humid + '%')
     
     ### DHT22
     time.sleep(config.delay)
@@ -69,28 +68,16 @@ def climate(message):
     dht22_time = dht22_datetime[1]
     dht22_temp = str(dht22_data[1])
     dht22_humid = str(dht22_data[2])
+    bot.send_message(senderID, '🎛 DHT₂₂ ⏱ ' + dht22_time + '  🌡 > ' + dht22_temp + '°' + ' 💧 > ' + dht22_humid + '%')
     
-    time.sleep(config.delay)
     sensorsDB.close()
-    time.sleep(config.delay)
     
-    bot.send_message(senderID, '🎛⏱ dht11 ' + dht11_time + '  🌡 > ' + dht11_temp + '°' + ' 💧 > ' + dht11_humid + '%')
-    bot.send_message(senderID, '🎛⏱ dht22 ' + dht22_time + '  🌡 > ' + dht22_temp + '°' + ' 💧 > ' + dht22_humid + '%')
+    time.sleep(config.delay)
     
     ### UNO sensors ############################################################
-    ############################################################################
-    
     climateDB = sqlite3.connect(config.climateDB)
     climateCur = climateDB.cursor()
     
-    ### ds18b20
-    time.sleep(config.delay)
-    climateCur.execute("SELECT DATETIME(date_time, 'localtime'), t FROM ds18b20 WHERE id IN (SELECT MAX(id) FROM ds18b20)")
-    ds18b20_data = climateCur.fetchone()
-    ds18b20_datetime = str(ds18b20_data[0]).split(' ')
-    ds18b20_time = ds18b20_datetime[1]
-    ds18b20 = str(ds18b20_data[1])
-
     ### DHT1
     time.sleep(config.delay)
     climateCur.execute("SELECT DATETIME(date_time, 'localtime'), t, h FROM dht1 WHERE id IN (SELECT MAX(id) FROM dht1)")
@@ -127,33 +114,19 @@ def climate(message):
     dht4_temp = str(dht4_data[1])
     dht4_humid = str(dht4_data[2])
 
-    # ### light
-    # time.sleep(config.delay)
-    # climateCur.execute("SELECT DATETIME(date_time, 'localtime'), light FROM light WHERE id IN (SELECT MAX(id) FROM light)")
-    # light_data = climateCur.fetchone()
-    # light_datetime = str(light_data[0]).split(' ')
-    # light_time = light_datetime[1]
-    # light = str(light_data[1])
-    
     climateDB.close()
     
-    bot.send_message(senderID, '🎛⏱ ds18b20 ' + ds18b20_time + '  🌡 > ' + ds18b20 + '°')
-    bot.send_message(senderID, '🎛⏱ dht1 ' + dht1_time + '  🌡 > ' + dht1_temp + '°' + ' 💧 > ' + dht1_humid + '%')
-    bot.send_message(senderID, '🎛⏱ dht2 ' + dht2_time + '  🌡 > ' + dht2_temp + '°' + ' 💧 > ' + dht2_humid + '%')
-    bot.send_message(senderID, '🎛⏱ dht3 ' + dht3_time + '  🌡 > ' + dht3_temp + '°' + ' 💧 > ' + dht3_humid + '%')
-    bot.send_message(senderID, '🎛⏱ dht4 ' + dht4_time + '  🌡 > ' + dht4_temp + '°' + ' 💧 > ' + dht4_humid + '%')
-    # bot.send_message(senderID, '🎛⏱ lm35 ' + lm35_time + '  🌡 > ' + lm35 + '°')
-    # bot.send_message(senderID, '🎛⏱ moisture ' + moi_time + '  💦 > ' + moi)
-    # bot.send_message(senderID, '🎛⏱ steam ' + steam_time + '  🌀 > ' + steam)
-    # bot.send_message(senderID, '🎛⏱ light ' + light_time + '  🔆 > ' + light)
-    
+    bot.send_message(senderID, '🎛 DHT¹ ⏱ ' + dht1_time + '  🌡 > ' + dht1_temp + '°' + ' 💧 > ' + dht1_humid + '%')
+    bot.send_message(senderID, '🎛 DHT² ⏱ ' + dht2_time + '  🌡 > ' + dht2_temp + '°' + ' 💧 > ' + dht2_humid + '%')
+    bot.send_message(senderID, '🎛 DHT³ ⏱ ' + dht3_time + '  🌡 > ' + dht3_temp + '°' + ' 💧 > ' + dht3_humid + '%')
+    bot.send_message(senderID, '🎛 DHT⁴ ⏱ ' + dht4_time + '  🌡 > ' + dht4_temp + '°' + ' 💧 > ' + dht4_humid + '%')
     time.sleep(config.delay)
     
 ######################### PHOTO ##############################################
 @bot.message_handler(commands=['photo'])
 def photo(message):
     senderID = message.chat.id
-    bot.send_message(senderID, 'Recent photo --> ')
+    bot.send_message(senderID, '📸')
     try:
         recent_photo = open('/home/pi/cam.jpg', 'rb')
         time.sleep(3)
@@ -161,11 +134,6 @@ def photo(message):
         bot.send_message(senderID, 'Try later :( ')
     else:
         bot.send_photo(senderID, recent_photo)
-
-####################### LIGHTS ##############################################
-@bot.message_handler(commands=['lights'])
-def switch_lights(message):
-    bot.send_message(message.chat.id, '*** Lights will be available later ***')
     
 ####################### REBOOT #############################################
 @bot.message_handler(commands=['reboot'])

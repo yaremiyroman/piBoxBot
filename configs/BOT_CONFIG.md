@@ -6,7 +6,6 @@ start - Say Hi
 state - System overview
 climate - Get climate measurements
 photo - Drop recent photo
-lights - Switch lights on/off
 reboot - Reboot Pi
 shutdown - Turn off Pi
 

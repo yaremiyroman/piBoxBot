@@ -16,35 +16,9 @@ while True:
             if (len(sensorParsed) > 1):
                 sensorName = sensorParsed[0]
                 
-                if (sensorName == 'ds18b20'):
-                    query = "INSERT INTO " + sensorName + " (t) VALUES(" + sensorParsed[1] + ")"
-                    climateDB.execute(query)
-                    climateDB.commit()
-                
                 if (sensorName == 'dht1' or sensorName == 'dht2' or sensorName == 'dht3' or sensorName == 'dht4'):    
                     query = "INSERT INTO " + sensorName + " (t, h) VALUES(" + sensorParsed[1] + ", " + sensorParsed[2] + ")"
                     climateDB.execute(query)
                     climateDB.commit()
                 
-                # if (sensorName == 'lm35'):
-                #     query = "INSERT INTO " + sensorName + " (h) VALUES(" + sensorParsed[1] + ")"
-                #     climateDB.execute(query)
-                #     climateDB.commit()
-                
-                
-                # if (sensorName == 'moi'):
-                #     query = "INSERT INTO " + sensorName + " (h) VALUES(" + sensorParsed[1] + ")"
-                #     climateDB.execute(query)
-                #     climateDB.commit()
-                
-                # if (sensorName == 'steam'):
-                #     query = "INSERT INTO " + sensorName + " (stm) VALUES(" + sensorParsed[1] + ")"
-                #     climateDB.execute(query)
-                #     climateDB.commit()
-                
-                # if (sensorName == 'light'):
-                #     query = "INSERT INTO " + sensorName + " (light) VALUES(" + sensorParsed[1] + ")"
-                #     climateDB.execute(query)
-                #     climateDB.commit()
-                    
         climateDB.close()
