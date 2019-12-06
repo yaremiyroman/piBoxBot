@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <DHT.h>
-#include <Adafruit_Sensor.h>
 
 struct sensor {
   int pin;
