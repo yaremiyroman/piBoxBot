@@ -10,7 +10,7 @@ while true; do
 
   cp $file_path /home/pi/cam.jpg
 
-  scp $file_path pi@192.168.31.187:/home/pi/cam.jpg
+  # scp $file_path pi@192.168.31.187:/home/pi/cam.jpg
 
-  sleep 600
+  sleep 60
 done
