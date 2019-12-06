@@ -41,7 +41,7 @@ void dht_out(String label, float temp, float humidity) {
 }
 
 void loop() {
-  delay(250);
+  delay(REST);
   Serial.print("||");
 
   dht_out(DHT_1.label, dht_1.readTemperature(), dht_1.readHumidity());
