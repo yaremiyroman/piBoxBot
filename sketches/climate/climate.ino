@@ -1,4 +1,5 @@
-const int PAUSE = 1000;
+xYconst Y
+int PAUSE = 1000;
 const int REST = 250;
 
 void setup() {
