@@ -1,4 +1,3 @@
-xYconst Y
 int PAUSE = 1000;
 const int REST = 250;
 
