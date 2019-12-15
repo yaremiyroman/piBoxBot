@@ -3,11 +3,11 @@ import sqlite3
 import serial
 from config import config 
 
-unoClimateSerial = serial.Serial(config.climatePort, 9600)
+climateSerial = serial.Serial(config.climatePort, 9600)
 
 while True:
-    if(unoClimateSerial.in_waiting > 0):
-        sensors = unoClimateSerial.readline().decode().split(config.splitter)
+    if(climateSerial.in_waiting > 0):
+        sensors = climateSerial.readline().decode().split(config.splitter)
         climateDB = sqlite3.connect(config.climateDB)
         
         for sensorData in sensors:

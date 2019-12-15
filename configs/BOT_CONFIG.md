@@ -15,9 +15,18 @@ shutdown - Turn off Pi
 # --- configs for py config module ---
 # ####################################
 
-# 589756614 : AAF04K1bF2kwyxT21KN1oqMNan3ahOKG0l0
-token='string_with_token'
+# `589756614:AAF04K1bF2kwyxT21KN1oqMNan3ahOKG0l0`
+token = `string_with_token`
 # 285956437
-adminID=id_number
+adminID = id_number
 # db local path
-climate='/home/pi/piBoxBot/climate.db'
+sensorsDB = '/home/pi/piBoxBot/db/sensors.db'
+climateDB = '/home/pi/piBoxBot/db/climate.db'
+# ###
+climatePort = /dev/ttyACM0
+# ###
+timeout = 600
+# ###
+delay = 3
+# ###
+splitter = '||'
