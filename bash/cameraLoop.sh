@@ -12,5 +12,5 @@ while true; do
 
   #scp $file_path pi@192.168.31.187:/home/pi/cam.jpg
 
-  sleep 60
+  sleep 180
 done
