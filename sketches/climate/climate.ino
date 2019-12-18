@@ -5,8 +5,8 @@ struct sensor {
   String label;
 };
 
-const int PAUSE = 1000;
-const int REST = 250;
+const int PAUSE = 250;
+const int REST = 1000;
 
 struct sensor DHT_1 = { 2, "dht1" };
 struct sensor DHT_2 = { 3, "dht2" };
@@ -41,12 +41,12 @@ void dht_out(String label, float temp, float humidity) {
     Serial.print("=");
     Serial.print(humidity);
     Serial.print("||");
-    delay(PAUSE);
+    delay(REST);
   }
 }
 
 void loop() {
-  delay(REST);
+  delay(PAUSE);
   Serial.print("||");
 
   dht_out(DHT_1.label, dht_1.readTemperature(), dht_1.readHumidity());
@@ -55,5 +55,5 @@ void loop() {
   dht_out(DHT_4.label, dht_4.readTemperature(), dht_4.readHumidity());
 
   Serial.println();
-  delay(PAUSE);
+  delay(REST);
 }
