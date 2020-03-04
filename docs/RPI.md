@@ -21,7 +21,7 @@ $ ssh-keygen -t rsa -b 4096 -C "yaremiyroman@gmail.com"
 $ eval "$(ssh-agent -s)"
 $ ssh-add ~/.ssh/id_rsa
 $ cat ~/.ssh/id_rsa.pub
-$ cat /Users/rx/.ssh/id_rsa.pub | ssh pi@piTest.local 'cat >> /home/pi/.ssh/authorized_keys'
+$ cat /Users/rx/.ssh/id_rsa.pub | ssh pi@piData.local 'cat >> /home/pi/.ssh/authorized_keys'
 
 ###########################################
 # git
