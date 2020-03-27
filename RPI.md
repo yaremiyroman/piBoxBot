@@ -9,10 +9,10 @@ $ sudo apt-get install build-essential git git-core mc rpi.gpio wiringpi bc lm-s
 ###########################################
 # configs
 ###########################################
-$ sudo nano /etc/default/locale
 $ sudo nano ~/.bashrc
 $ sudo nano /etc/rc.local
 $ sudo nano /boot/config.txt
+$ crontab -e
 
 ###########################################
 # SSH
