@@ -1,1 +1,2 @@
-@reboot  /home/pi/piBoxBot/bash/startup.sh &
+@reboot /home/pi/piBoxBot/bash/startup.sh &
+@reboot /home/pi/piBoxBot/bash/cameraLoop.sh &
