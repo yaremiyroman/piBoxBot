@@ -16,7 +16,8 @@ alias srv_s='sudo systemctl status bot.service climate.service sensors.service l
 
 alias piData='ssh pi@piData.local'
 alias piMedia='ssh pi@piMedia.local'
-alias piPhotos='scp -r pi@piMedia.local:/home/pi/cam/ /Users/rx/Pictures/'
+alias piDataPhotos='scp -r pi@192.168.31.187:/home/pi/cam/ /home/pi/Pictures/piData'
+
 
 alias g='git'
 alias s='git status'
