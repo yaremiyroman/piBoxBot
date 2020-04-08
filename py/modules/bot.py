@@ -29,7 +29,8 @@ def show_system_state(message):
     sysname, hostname, release, date, core = os.uname()
     bot.send_message(senderID, 'OS > ' + sysname + ' ' + release + ' on ' + hostname + ' ')
     
-    # //  move bash scripts to constants 
+    # move bash scripts to constants 
+    # use 'uptime' command
     uptime = os.popen("awk '{print $1}' /proc/uptime").readline()
     uptime_time = int(float(uptime))
     uptime_hrs = math.floor(uptime_time / 3600)
