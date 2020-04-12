@@ -42,3 +42,28 @@ alias m='git pull origin master'
 alias master='git push origin master'
 alias d='git pull origin dev'
 alias dev='git push origin dev'
+
+### RPi ###
+alias piTerminal='ssh pi@192.168.31.56'
+alias piData='ssh pi@raspberrypi.local'
+alias piMedia='ssh pi@192.168.31.158'
+alias piPhotos='scp -r pi@piMedia.local:/home/pi/cam/ /Users/rx/Pictures/'
+
+alias flashHelp='print "FS [Free Space|HFS+|FAT|FAT32|ExFAT]" && diskutil list'
+alias flash='diskutil eraseDisk "$1" "$2" /dev/"$3"'
+
+alias g='git'
+alias s='git status'
+alias d='git diff'
+alias br='git branch'
+alias ci='git commit -m"$1"'
+alias co='git checkout'
+alias fetch='git fetch --all'
+alias m='git pull origin master'
+alias d='git pull origin dev'
+alias dev='git push origin dev'
+alias push='git push origin $1'
+
+alias storybook='cd ~/Applications/app && fetch && m && br && s && yarn && yarn storybook'
+alias app='cd && cd deemAPP && br && s && fetch && m && yarn && yarn start'
+alias gql='cd && cd deemGQL && br && s && fetch && m && yarn && yarn start'

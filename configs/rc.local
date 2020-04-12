@@ -28,3 +28,12 @@ sudo hwclock -s
 tvservice --off
 
 exit 0
+
+
+
+# Evening Dim Display
+# 00 22 * * * echo 50 > /sys/class/backlight/rpi_backlight/brightness
+# 30 22 * * * echo 16 > /sys/class/backlight/rpi_backlight/brightness
+
+# Normal weekday
+# 40 05 * * 1-5 echo 250 > /sys/class/backlight/rpi_backlight/brightness
