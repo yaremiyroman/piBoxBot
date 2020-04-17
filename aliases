@@ -1,4 +1,5 @@
 ### SYSTEM ##################################################
+alias addal='mcedit ~/piBoxBot/aliases'
 alias cc='clear'
 alias offf='sudo shutdown -h now'
 alias rbt='sudo reboot'
@@ -13,6 +14,8 @@ alias flashHelp='print "FS [Free Space|HFS+|FAT|FAT32|ExFAT]" && diskutil list'
 alias flash='diskutil eraseDisk "$1" "$2" /dev/"$3"'
 alias auth='cat ~/.ssh/id_rsa.pub | ssh $1@$2 "cat >> ~/.ssh/authorized_keys"'
 alias scan='nmap -sn 192.168.31.0/24'
+alias wifi='sudo ifconfig wlan0 up'
+alias wifioff='sudo ifconfig wlan0 down'
 
 ### GIT ##################################################
 alias g='git'
