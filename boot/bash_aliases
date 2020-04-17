@@ -1,67 +1,46 @@
-### SYSTEM ###
-
+### SYSTEM ##################################################
 alias cc='clear'
 alias offf='sudo shutdown -h now'
 alias rbt='sudo reboot'
-alias srv_s='sudo systemctl status bot.service climate.service sensors.service lights.service'
-
+alias font='sudo dpkg-reconfigure console-setup'
 alias rconf='sudo raspi-config'
+alias wlan='python ~/piBoxBot/py/wlan.py'
 alias remHost='ssh-keygen -f "/home/pi/.ssh/known_hosts" -R "$1"'
 alias 1='cd ~/piBoxBot/ && cc && s'
 alias nn='sudo nano'
-
-### HOSTS ###
-
-#alias piMedia='ssh pi@piMedia.local'
-#alias piMedia='ssh pi@192.168.31.158'
-#alias piMediaPhotos='scp -r pi@piMedia.local:/home/pi/cam/ /home/pi/Pictures/'
-
-#alias piTerminal='ssh pi@piTerminal.local'
-#alias piTerminal='ssh pi@192.168.31.56'
-
-### RPi ###
-alias piTerminal='ssh pi@192.168.31.56'
-alias piData='ssh pi@192.168.31.187'
-alias piMedia='ssh pi@192.168.31.158'
-alias piPhotos='scp -r pi@piMedia.local:/home/pi/cam/ /Users/rx/Pictures/'
-
 alias flashHelp='print "FS [Free Space|HFS+|FAT|FAT32|ExFAT]" && diskutil list'
 alias flash='diskutil eraseDisk "$1" "$2" /dev/"$3"'
 
-
-### GIT ###
-
-# alias g='git'
-# alias s='git status'
-# alias d='git diff'
-# alias br='git branch'
-# alias ci='git commit -m"$1"'
-# alias co='git checkout'
-# alias fetch='git fetch --all'
-# alias m='git pull origin master'
-# alias d='git pull origin dev'
-# alias dev='git push origin dev'
-# alias push='git push origin $1'
-
+### GIT ##################################################
 alias g='git'
 alias s='git status'
 alias ddd='git diff'
+alias gadd='git add .'
 alias br='git branch'
 alias fetch='git fetch --all'
 alias co='git checkout'
-alias cl='git clone '
-
+alias cl='git clone'
 alias ci='git commit -m"$1"'
 alias push='git push origin $1'
 alias pull='git pull origin $1'
-
 alias m='git pull origin master'
 alias master='git push origin master'
 alias d='git pull origin dev'
 alias dev='git push origin dev'
 
-alias storybook='cd ~/Applications/app && fetch && m && br && s && yarn && yarn storybook'
-alias sb='cd && cd app && br && s && fetch && m && yarn && yarn storybook'
-alias app='cd && cd app && br && s && fetch && m && yarn && yarn start'
-alias app='cd && cd app && br && s && co . && co master && fetch && m && co -b FIJI-$1 && br && d && yarn && yarn start'
-alias gql='cd && cd gql && br && s &&  yarn && yarn start'
+### HOSTS ##################################################
+#alias piTerminal='ssh pi@piTerminal.local'
+alias piTerminal='ssh pi@192.168.31.56'
+#alias piMedia='ssh pi@piData.local'
+alias piData='ssh pi@192.168.31.187'
+#alias piMedia='ssh pi@piMedia.local'
+alias piMedia='ssh pi@192.168.31.158'
+
+### RPi ##################################################
+alias srv_s='sudo systemctl status bot.service climate.service sensors.service lights.service'
+
+### NPM ##################################################
+alias    gql='cd ~/gql && br && s && fetch && m && yarn && yarn start'
+alias    app='cd ~/app && br && s && fetch && m && yarn && yarn start'
+alias     sb='cd ~/app && br && s && fetch && m && yarn && yarn storybook'
+alias newApp='cd ~/app && br && s && co . && co master && fetch && m && co -b FIJI-$1 && br && s && yarn && yarn start'
