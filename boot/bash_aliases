@@ -4,8 +4,10 @@ alias cc='clear'
 alias offf='sudo shutdown -h now'
 alias rbt='sudo reboot'
 alias srv_s='sudo systemctl status bot.service climate.service sensors.service lights.service'
+alias font='sudo dpkg-reconfigure console-setup'
 
 alias rconf='sudo raspi-config'
+alias wlan='python ~/piBoxBot/py/wlan.py'
 alias remHost='ssh-keygen -f "/home/pi/.ssh/known_hosts" -R "$1"'
 alias 1='cd ~/piBoxBot/ && cc && s'
 alias nn='sudo nano'
@@ -13,7 +15,7 @@ alias nn='sudo nano'
 ### HOSTS ###
 
 #alias piData='ssh pi@piData.local'
-#alias piData='ssh pi@192.168.31.187'
+alias piData='ssh pi@192.168.31.187'
 #alias piDataPhotos='scp -r pi@piData.local:/home/pi/cam/ /home/pi/Pictures/'
 #alias piDataPhotos='scp -r pi@192.168.31.187:/home/pi/cam/ /home/pi/Pictures/piData/'
 
@@ -44,9 +46,6 @@ alias d='git pull origin dev'
 alias dev='git push origin dev'
 
 ### RPi ###
-alias piTerminal='ssh pi@192.168.31.56'
-alias piData='ssh pi@raspberrypi.local'
-alias piMedia='ssh pi@192.168.31.158'
 alias piPhotos='scp -r pi@piMedia.local:/home/pi/cam/ /Users/rx/Pictures/'
 
 alias flashHelp='print "FS [Free Space|HFS+|FAT|FAT32|ExFAT]" && diskutil list'
