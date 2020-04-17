@@ -7,9 +7,12 @@ alias rconf='sudo raspi-config'
 alias wlan='python ~/piBoxBot/py/wlan.py'
 alias remHost='ssh-keygen -f "/home/pi/.ssh/known_hosts" -R "$1"'
 alias 1='cd ~/piBoxBot/ && cc && s'
+alias 2='cd ~/gql/ && cc && s'
 alias nn='sudo nano'
 alias flashHelp='print "FS [Free Space|HFS+|FAT|FAT32|ExFAT]" && diskutil list'
 alias flash='diskutil eraseDisk "$1" "$2" /dev/"$3"'
+alias auth='cat ~/.ssh/id_rsa.pub | ssh $1@$2 "cat >> ~/.ssh/authorized_keys"'
+alias scan='nmap -sn 192.168.31.0/24'
 
 ### GIT ##################################################
 alias g='git'
@@ -29,6 +32,7 @@ alias d='git pull origin dev'
 alias dev='git push origin dev'
 
 ### HOSTS ##################################################
+alias mbp='ssh rx@192.168.31.248'
 #alias piTerminal='ssh pi@piTerminal.local'
 alias piTerminal='ssh pi@192.168.31.56'
 #alias piMedia='ssh pi@piData.local'
