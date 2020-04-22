@@ -1,15 +1,12 @@
 #!/bin/sh
 
-$home='/home/pi'
+cd;
+mkdir ~/.ssh/;
 
-mkdir $home.ssh/;
-
-ssh-keygen -t rsa -b 4096 -P ""
-	-C "yaremiyroman@gmail.com";
-
+ssh-keygen -t rsa -b 4096 -P "" -C "andrdrx@$(hostname)";
 eval "$(ssh-agent -s)";
 
-cd && ssh-add .ssh/id_rsa;
-
+ssh-add .ssh/id_rsa;
 cat .ssh/id_rsa.pub;
-sleep 3
+
+sleep 5
