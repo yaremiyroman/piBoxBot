@@ -57,3 +57,20 @@ $ sudo echo "$(cat /sys/class/i2c-adapter/i2c-1/1-0068/hwmon/hwmon1/temp1_input)
 ##############################################################################
 $ sudo apt-get install luvcview
 $ luvcview
+
+##############################################################################
+# bot.service
+##############################################################################
+Description=Running Telebot
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python -u bot.py
+WorkingDirectory=/home/pi/piBoxBot/py
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=pi
+
+[Install]
+WantedBy=multi-user.target
