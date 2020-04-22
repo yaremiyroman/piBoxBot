@@ -14,8 +14,8 @@ def say_hi(message):
     bot.send_message(message.chat.id, 'Hi bitch!')
 
 ####################### STATE ##############################################
-@bot.message_handler(commands=['state'])
-def show_system_state(message):
+# @bot.message_handler(commands=['state'])
+# def show_system_state(message):
     senderID = message.chat.id
     
     bot.send_message(senderID, ' ✩✩✩ System state ✩✩✩ ' + time.strftime('%a %d-%m-%y @ %H:%M'))
@@ -43,8 +43,8 @@ def show_system_state(message):
     bot.send_message(senderID, 'Throttling > ' + throttling)
 
 ###################### CLIMATE ##############################################
-@bot.message_handler(commands=['climate'])
-def climate(message):
+# @bot.message_handler(commands=['climate'])
+# def climate(message):
     senderID = message.chat.id
     
     ### RPi sensors ############################################################
@@ -124,8 +124,8 @@ def climate(message):
     time.sleep(config.delay)
     
 ######################### PHOTO ##############################################
-@bot.message_handler(commands=['photo'])
-def photo(message):
+# @bot.message_handler(commands=['photo'])
+# def photo(message):
     senderID = message.chat.id
     bot.send_message(senderID, '📸')
     try:
@@ -137,8 +137,8 @@ def photo(message):
         bot.send_photo(senderID, recent_photo)
     
 ####################### REBOOT #############################################
-@bot.message_handler(commands=['reboot'])
-def reboot(message):
+# @bot.message_handler(commands=['reboot'])
+# def reboot(message):
     senderID = message.chat.id
     if senderID != config.adminID:
         bot.send_message(senderID, 'Go f*ck yourself')
@@ -148,8 +148,8 @@ def reboot(message):
     time.sleep(config.delay)
 
 ####################### TURN OFF #############################################
-@bot.message_handler(commands=['shutdown'])
-def shutdown(message):
+# @bot.message_handler(commands=['shutdown'])
+# def shutdown(message):
     senderID = message.chat.id
     if senderID != config.adminID:
         bot.send_message(senderID, 'Go f*ck yourself')

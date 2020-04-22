@@ -1,0 +1,47 @@
+# ########################################################### #
+# ------------------       SQLite DB      ------------------- #
+# ########################################################### #
+
+# create table
+$ CREATE TABLE ds18b20 (id INTEGER PRIMARY KEY AUTOINCREMENT, t NUMERIC, date_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL);
+$ CREATE TABLE dht11_1 (id INTEGER PRIMARY KEY AUTOINCREMENT, t NUMERIC, h NUMERIC, date_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL);
+$ CREATE TABLE dht22_1 (id INTEGER PRIMARY KEY AUTOINCREMENT, t NUMERIC, h NUMERIC, date_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL);
+$ CREATE TABLE moi_1 (id INTEGER PRIMARY KEY AUTOINCREMENT, h NUMERIC, date_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL);
+$ CREATE TABLE liquid (id INTEGER PRIMARY KEY AUTOINCREMENT, h NUMERIC, date_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL);
+$ CREATE TABLE steam (id INTEGER PRIMARY KEY AUTOINCREMENT, h NUMERIC, date_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL);
+$ CREATE TABLE rain (id INTEGER PRIMARY KEY AUTOINCREMENT, h NUMERIC, date_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL);
+$ CREATE TABLE light (id INTEGER PRIMARY KEY AUTOINCREMENT, l NUMERIC, date_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL);
+
+# drop table
+$ DROP TABLE database_name.table_name;
+
+# add data
+$ INSERT INTO DHT22_1 values(date('now'), time('now'), 27.50, 47.00);
+
+# get all with condition:  WHERE zone="garage"
+$ SELECT * FROM DHT22_1;
+
+#  selects only the 'temperature' field from each record
+$ SELECT t FROM temps WHERE zone="garage";
+
+# CORRECT TIME OUTPUT
+$ SELECT DATETIME(date_time, 'localtime') FROM steam_1;
+
+#  search for records from one day ago
+$ SELECT * FROM temps WHERE tdate=date('now','-1 day');
+
+# search for records where the zone is the kitchen and the date is one day ago
+$ SELECT * FROM temps WHERE zone="kitchen" AND tdate=date('now','-1 day');
+
+
+# ########################################################### #
+# ------------------       workflow       ------------------- #
+# ########################################################### #
+
+$ BEGIN;
+$ CREATE TABLE dht11_1 (id INTEGER PRIMARY KEY AUTOINCREMENT, t NUMERIC, h NUMERIC, date_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL);
+$ DROP TABLE dht11_1;
+$ INSERT INTO dht11_1 values(date('now'), time('now'), 27.50, 47.00);
+$ SELECT * FROM dht11_1;
+$ SELECT t FROM dht11_1 WHERE id="666";
+$ COMMIT;
