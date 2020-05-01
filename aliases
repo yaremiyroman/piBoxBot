@@ -16,8 +16,9 @@ alias auth='cat ~/.ssh/id_rsa.pub | ssh $1@$2 "cat >> ~/.ssh/authorized_keys"'
 alias scan='nmap -sn 192.168.31.0/24'
 alias wifi='sudo ifconfig wlan0 up'
 alias wifioff='sudo ifconfig wlan0 down'
-alias goo='lynx goo'
+alias goo='lynx google.com'
 alias upd='cd /boot/ && ./update'
+alias key='cat ~/.ssh/id_rsa.pub'
 
 ### GIT ##################################################
 alias g='git'
@@ -42,6 +43,8 @@ alias piTerminal='ssh pi@192.168.31.56'
 alias piTerminalEthernet='ssh pi@192.168.31.165'
 alias piData='ssh pi@192.168.31.187'
 alias piMedia='ssh pi@192.168.31.158'
+alias piMediaEthernet='ssh pi@192.168.31.101'
+alias rxServer='ssh rx@192.168.31.37'
 
 ### RPi ##################################################
 alias srv_s='sudo systemctl status bot.service climate.service sensors.service lights.service'
