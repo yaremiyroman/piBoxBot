@@ -43,6 +43,7 @@ alias piTerminalEthernet='ssh pi@192.168.31.165'
 alias piData='ssh pi@192.168.31.187'
 alias piMedia='ssh pi@192.168.31.158'
 alias piMediaEthernet='ssh pi@192.168.31.101'
+alias rxServer='ssh rx@192.168.31.37'
 
 ### RPi ##################################################
 alias srv_s='sudo systemctl status bot.service climate.service sensors.service lights.service'
