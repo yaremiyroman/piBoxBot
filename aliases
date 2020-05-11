@@ -19,6 +19,7 @@ alias wifioff='sudo ifconfig wlan0 down'
 alias goo='lynx google.com'
 alias upd='cd /boot/ && ./update'
 alias key='cat ~/.ssh/id_rsa.pub'
+alias vpn='sudo openconnect --user ryaremiy remote.deemworkfource.com'
 
 ### GIT ##################################################
 alias g='git'
