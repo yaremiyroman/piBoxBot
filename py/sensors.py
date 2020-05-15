@@ -10,7 +10,7 @@ GPIO.setmode(GPIO.BCM)
 # GPIO.setup(config.dht_11, GPIO.IN)
 # GPIO.setup(config.dht_22, GPIO.IN)
 
-sensorDHT11 = Adafruit_DHT.DHT11
+sensorDHT11 = Adafruit_DHT.DHT22
 sensorDHT22 = Adafruit_DHT.DHT22
 
 sensorsDB = sqlite3.connect(config.sensorsDB)

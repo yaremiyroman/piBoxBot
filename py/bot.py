@@ -80,7 +80,7 @@ def climate(message):
     bot.send_message(senderID, '- done -')
     time.sleep(1)
     bot.send_message(senderID, '### ')
-    bot.send_message(senderID, '### THE WEATHER IS GOOD 
+    bot.send_message(senderID, '### THE WEATHER IS GOOD ')
     ### Sensors Response
     bot.send_message(senderID, '🎛 DHT₂₂ ⏱ ' + dht22_time + '  🌡 > ' + dht22_temp + '°' + ' 💧 > ' + dht22_humid + '%')
     bot.send_message(senderID, '🎛 DHT₁₁ ⏱ ' + dht11_time + '  🌡 > ' + dht11_temp + '°' + ' 💧 > ' + dht11_humid + '%')
