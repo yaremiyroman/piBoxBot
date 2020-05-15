@@ -16,9 +16,9 @@ shutdown - Turn off Pi
 # ####################################
 
 # `589756614:AAF04K1bF2kwyxT21KN1oqMNan3ahOKG0l0`
-token = `string_with_token`
+token = `589756614:AAF04K1bF2kwyxT21KN1oqMNan3ahOKG0l0`
 # 285956437
-adminID = id_number
+adminID = 285956437
 # db local path
 sensorsDB = '/home/pi/piBoxBot/db/sensors.db'
 climateDB = '/home/pi/piBoxBot/db/climate.db'
