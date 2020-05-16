@@ -7,31 +7,58 @@ from config import config
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
-# GPIO.setup(config.dht_11, GPIO.IN)
-# GPIO.setup(config.dht_22, GPIO.IN)
+# GPIO.setup(config.dht_22_1, GPIO.IN)
 
-sensorDHT11 = Adafruit_DHT.DHT22
-sensorDHT22 = Adafruit_DHT.DHT22
+# sensor_DHT_11 = Adafruit_DHT.DHT11
+sensor = Adafruit_DHT.DHT22
 
 sensorsDB = sqlite3.connect(config.sensorsDB)
 
 while True:
-    ### DHT11
+    ### DHT22_1
     time.sleep(config.sensors_timeout)
-    dht11_h, dht11_t = Adafruit_DHT.read_retry(sensorDHT11, config.dht_11)
+    dht22_1_h, dht22_1_t = Adafruit_DHT.read_retry(sensor, config.dht_22_1)
 
-    if dht11_h is not None and dht11_t is not None:
-        query = "INSERT INTO dht11 (t, h) VALUES(" + str(round(dht11_t, 1)) + ", " + str(int(round(dht11_h))) + ")"
+    if dht22_1_h is not None and dht22_1_t is not None:
+        query = "INSERT INTO dht22_1 (t, h) VALUES(" + str(round(dht22_1_t, 1)) + ", " + str(int(round(dht22_1_h))) + ")"
         sensorsDB.execute(query)
         sensorsDB.commit()
     
-    ### DHT22
+    ### DHT22_2
     time.sleep(config.sensors_timeout)
-    dht22_h, dht22_t = Adafruit_DHT.read_retry(sensorDHT22, config.dht_22)
+    dht22_2_h, dht22_2_t = Adafruit_DHT.read_retry(sensor, config.dht_22_2)
 
-    if dht22_h is not None and dht22_t is not None:
-        query = "INSERT INTO dht22 (t, h) VALUES(" + str(round(dht22_t, 1)) + ", " + str(int(round(dht22_h))) + ")"
+    if dht22_2_h is not None and dht22_2_t is not None:
+        query = "INSERT INTO dht22_2 (t, h) VALUES(" + str(round(dht22_2_t, 1)) + ", " + str(int(round(dht22_2_h))) + ")"
         sensorsDB.execute(query)
         sensorsDB.commit()
     
+    ### DHT22_3
+    time.sleep(config.sensors_timeout)
+    dht22_3_h, dht22_3_t = Adafruit_DHT.read_retry(sensor, config.dht_22_2)
+
+    if dht22_3_h is not None and dht22_3_t is not None:
+        query = "INSERT INTO dht22_3 (t, h) VALUES(" + str(round(dht22_3_t, 1)) + ", " + str(int(round(dht22_3_h))) + ")"
+        sensorsDB.execute(query)
+        sensorsDB.commit()
+    
+    ### DHTam2302_1
+    time.sleep(config.sensors_timeout)
+    dht2302_1_h, dht2302_1_t = Adafruit_DHT.read_retry(sensor, config.dht_22_2)
+
+    if dht2302_1_h is not None and dht2302_1_t is not None:
+        query = "INSERT INTO dht2302_1 (t, h) VALUES(" + str(round(dht2302_1_t, 1)) + ", " + str(int(round(dht2302_1_h))) + ")"
+        sensorsDB.execute(query)
+        sensorsDB.commit()
+    
+    ### DHTam2302_2
+    time.sleep(config.sensors_timeout)
+    dht2302_2_h, dht2302_2_t = Adafruit_DHT.read_retry(sensor, config.dht_22_2)
+
+    if dht2302_2_h is not None and dht2302_2_t is not None:
+        query = "INSERT INTO dht2302_2 (t, h) VALUES(" + str(round(dht2302_2_t, 1)) + ", " + str(int(round(dht2302_2_h))) + ")"
+        sensorsDB.execute(query)
+        sensorsDB.commit()
+    
+    ###
     time.sleep(config.delay)
