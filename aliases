@@ -51,6 +51,7 @@ alias rxServerWLAN='ssh rx@192.168.31.158'
 
 ### RPi ##################################################
 alias srv_s='sudo systemctl status bot.service climate.service sensors.service lights.service'
+alias pins='gpio readall'
 
 ### NPM ##################################################
 alias    gql='cd ~/gql && br && s && fetch && m && yarn && yarn start'
