@@ -54,6 +54,6 @@ alias srv_s='sudo systemctl status bot.service climate.service sensors.service l
 alias pins='gpio readall'
 
 ### NPM ##################################################
-alias    gql='cd ~/Public/gql && br && s && fetch && m && yarn && yarn start'
-alias    app='cd ~/Public/app && br && s && fetch && m && yarn && yarn start'
+alias    gql='cd ~/gql && br && s && fetch && m && yarn && yarn start'
+alias    app='cd ~/app && br && s && fetch && m && yarn && yarn start'
 alias     sb='cd ~/app && br && s && fetch && m && yarn && yarn storybook'
