@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cd ~;
+cd /home/pi;
 echo '***********************************************************';
 pwd;
 echo '***********************************************************';
@@ -17,7 +17,8 @@ sudo apt-get -y install pi.gpio wiringpi lm-sensors;
 sudo apt-get -y install arduino-core arduino-mk;
 sudo apt-get -y install python python-is-python2 python-dev-is-python2 python-pip python-dev python3 python3-dev python3-pip sqlite3 libsqlite3-dev;
 sudo apt-get -y install nodejs npm;
-# curl -o- -L https://yarnpkg.com/install.sh | bash;
+cd /home/pi;
+curl -o- -L https://yarnpkg.com/install.sh | bash;
 
 echo '*** DONE **************************************************';
 node -v;
@@ -25,7 +26,7 @@ npm -v;
 yarn -v;
 
 echo '***********************************************************';
-cd;
+cd /home/pi;
 pwd;
 echo '***********************************************************';
 sleep 3;
