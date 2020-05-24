@@ -1,1 +1,20 @@
- while :; do vcgencmd measure_temp; sleep 1; done
+while :; do 
+    clear;
+
+    echo '*************************************************************************';
+    echo '';
+    echo '';
+    echo '';
+    echo '';
+    echo '';
+    vcgencmd measure_temp;
+    echo '';
+    echo '';
+    echo '';
+    echo '';
+    echo '';
+    echo '*************************************************************************';
+
+    time.sleep(delay)
+    
+sleep 1; done
