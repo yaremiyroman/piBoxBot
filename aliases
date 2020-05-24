@@ -51,6 +51,7 @@ alias pi0='ssh pi@192.168.31.174'
 alias piCam='ssh pi@192.168.31.98'
 alias piTest='ssh pi@192.168.31.37'
 alias piGame='ssh pi@192.168.31.98'
+alias pi='ssh pi@192.168.31.152'
 
 ### RPi ##################################################
 alias srv_s='sudo systemctl status bot.service climate.service sensors.service lights.service'
