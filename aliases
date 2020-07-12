@@ -40,7 +40,7 @@ alias d='git pull origin dev'
 alias dev='git push origin dev'
 
 ### HOSTS ##################################################
-alias rxServer='ssh rx@192.168.31.37'
+alias rxServer='ssh rx@192.168.31.38'
 alias rxServerWLAN='ssh rx@192.168.31.158'
 alias mbp='ssh rx@192.168.31.248'
 alias piTerminal='ssh pi@192.168.31.56'
