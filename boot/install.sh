@@ -1,32 +1,54 @@
 #!/bin/sh
 
-cd ~/;
-echo '***********************************************************';
+echo '*** INSTALL.SH *********************************************';
+cd;
 pwd;
-echo '***********************************************************';
+echo '';
 
-echo '*** UPDATING **********************************************';
-sudo apt-get -y update;
-sudo apt-get -y upgrade;
-sudo apt-get -y dist-upgrade;
-sudo apt-get -y autoremove;
+echo '*** UPDATING EVERYTHING ************************************';
+sudo apt -y update;
+echo '✔️ UPDATED';
+echo '';
+sudo apt -y upgrade;
+echo '✔️ UPGRADED';
+echo '';
+sudo apt -y dist-upgrade;
+echo '✔️ DISTRO UPGRADED';
+echo '';
+sudo apt -y autoremove;
+echo '✔️ DEPENDENCIES CLEANED';
+echo '';
+echo '✮✮✮ UPDATES: DONE ✮✮✮';
+echo '';
 
-echo '*** INSTALLING ********************************************';
-sudo apt-get -y install git mc zip unzip openconnect lynx sysbench;
-sudo apt-get -y install pi.gpio wiringpi lm-sensors;
-sudo apt-get -y install arduino-core arduino-mk;
-sudo apt-get -y install python python-is-python2 python-dev-is-python2 python-pip python-dev python3 python3-dev python3-pip sqlite3 libsqlite3-dev;
-sudo apt-get -y install nodejs npm;
-cd ~/;
+echo '*** SOFTWARE INSTALLATION **********************************';
+echo '*** INSTALLING ***';
+sudo apt -y install git mc zip unzip openconnect lynx sysbench;
+echo '*** INSTALLING ******';
+sudo apt -y install pi.gpio wiringpi lm-sensors;
+echo '*** INSTALLING *********';
+sudo apt -y install arduino-core arduino-mk;
+echo '*** INSTALLING ************';
+sudo apt -y install python python-is-python2 python-dev-is-python2 python-pip python-dev python3 python3-dev python3-pip sqlite3 libsqlite3-dev;
+echo '*** INSTALLING ***************';
+sudo apt -y install nodejs npm;
+echo '*** INSTALLING ******************';
 curl -o- -L https://yarnpkg.com/install.sh | bash;
-
-echo '*** DONE **************************************************';
+echo '✔️ INSTALLED: ;
+git --version;
+mc --version;
+zip --version;
+openconnect --version;
+lynx --version;
+sysbench --version;
+echo 'node:';
 node -v;
+echo 'npm:';
 npm -v;
+echo 'yarn:';
 yarn -v;
+echo '✮✮✮ SOFTWARE READY ✮✮✮';
 
-echo '***********************************************************';
-cd ~/;
-pwd;
 echo '***********************************************************';
 sleep 3;
+echo '***********************************************************';
