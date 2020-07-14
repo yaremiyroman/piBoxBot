@@ -1,73 +1,993 @@
-#include <Adafruit_Sensor.h>
-#include <DHT.h>
-
 struct sensor {
   int pin;
   String label;
 };
 
+const int LED_OFFSET = 100;
 const int PAUSE = 750;
-const int REST = 2000;
+const int REST = 1000;
 
-struct sensor DHT_22_1 = { 2, "dht_22_1" };
-
-DHT dht_22_1(DHT_22_1.pin, DHT22);
+struct sensor PIRAHNIA_2 = { 2, "|ed" };
+struct sensor PIRAHNIA_3 = { 3, "||ed" };
+struct sensor PIRAHNIA_4 = { 4, "|||ed" };
+struct sensor PIRAHNIA_5 = { 5, "||||ed" };
+struct sensor PIRAHNIA_6 = { 6, "|||||ed" };
 
 void setup() {
-  Serial.begin(9600);
-  
-  pinMode(DHT_22_1.pin, INPUT);
-  dht_22_1.begin();
-  
-  Serial.println();
-}
+  pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(PIRAHNIA_2.pin, OUTPUT);
+  pinMode(PIRAHNIA_3.pin, OUTPUT);
+  pinMode(PIRAHNIA_4.pin, OUTPUT);
+  pinMode(PIRAHNIA_5.pin, OUTPUT);
+  pinMode(PIRAHNIA_6.pin, OUTPUT);
 
-void dht_out(String label, float temp, float humidity) {
-  if (isfinitef(temp) && isfinitef(humidity)) {
-    Serial.print(label);
-    Serial.print("=");
-    Serial.print(temp);
-    Serial.print("=");
-    Serial.print(humidity);
-    delay(PAUSE);
-    Serial.print("||");
-  }
-}
-
-void d_out(String label, float val) {
-  if (isfinitef(val)) {
-    Serial.print(label);
-    Serial.print("=");
-    Serial.print(val);
-    delay(PAUSE);
-    Serial.print("||");
-  }
-}
-
-void a_out(String label, int val) {
-  if (isfinitef(val)) {
-    Serial.print(label);
-    Serial.print("=");
-    Serial.print(val);
-    delay(PAUSE);
-    Serial.print("||");
-  }
-}
-
-void loop_start() {
-  delay(PAUSE);
-  Serial.print("||");
-}
-
-void loop_end() {
-  Serial.println();
-  delay(REST);
+  digitalWrite(LED_BUILTIN, LOW);
 }
 
 void loop() {
-  loop_start();
+  delay(PAUSE);
 
-  dht_out(DHT_22_1.label, dht_22_1.readTemperature(), dht_22_1.readHumidity());
+  /* ======================================================== */
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, LOW);
+  delay(LED_OFFSET);
 
-  loop_end();
+  /* ======================================================== */
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, LOW);
+  delay(LED_OFFSET);
+
+  /* ======================================================== */
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, LOW);
+  delay(LED_OFFSET);
+
+  /* ======================================================== */
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, LOW);
+  delay(LED_OFFSET);
+
+  /* ======================================================== */
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, LOW);
+  delay(LED_OFFSET);
+
+  /* ======================================================== */
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, LOW);
+  delay(LED_OFFSET);
+
+  /* ======================================================== */
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, LOW);
+  delay(LED_OFFSET);
+
+  /* ======================================================== */
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, LOW);
+  delay(LED_OFFSET);
+
+  /* ======================================================== */
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, LOW);
+  delay(LED_OFFSET);
+
+  /* ======================================================== */
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, LOW);
+  delay(LED_OFFSET);
+
+  /* ======================================================== */
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, LOW);
+  delay(LED_OFFSET);
+
+  /* ======================================================== */
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, LOW);
+  delay(LED_OFFSET);
+
+  /* ======================================================== */
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, LOW);
+  delay(LED_OFFSET);
+
+  /* ======================================================== */
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, LOW);
+  delay(LED_OFFSET);
+
+  /* ======================================================== */
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, LOW);
+  delay(LED_OFFSET);
+
+  /* ======================================================== */
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, LOW);
+  delay(LED_OFFSET);
+
+  /* ======================================================== */
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, LOW);
+  delay(LED_OFFSET);
+
+  /* ======================================================== */
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, LOW);
+  delay(LED_OFFSET);
+
+  /* ======================================================== */
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, LOW);
+  delay(LED_OFFSET);
+
+  /* ======================================================== */
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, LOW);
+  delay(LED_OFFSET);
+
+  /* ======================================================== */
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, LOW);
+  delay(LED_OFFSET);
+
+  /* ======================================================== */
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, LOW);
+  delay(LED_OFFSET);
+
+  /* ======================================================== */
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, LOW);
+  delay(LED_OFFSET);
+
+  /* ======================================================== */
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, LOW);
+  delay(LED_OFFSET);
+
+  /* ======================================================== */
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, LOW);
+  delay(LED_OFFSET);
+
+  /* ======================================================== */
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, LOW);
+  delay(LED_OFFSET);
+
+  /* ======================================================== */
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, LOW);
+  delay(LED_OFFSET);
+
+  /* ======================================================== */
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, LOW);
+  delay(LED_OFFSET);
+
+  /* ======================================================== */
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, LOW);
+  delay(LED_OFFSET);
+
+  /* ======================================================== */
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, LOW);
+  delay(LED_OFFSET);
+
+  /* ======================================================== */
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, LOW);
+  delay(LED_OFFSET);
+
+  /* ======================================================== */
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, LOW);
+  delay(LED_OFFSET);
+
+  /* ======================================================== */
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, LOW);
+  delay(LED_OFFSET);
+
+  /* ======================================================== */
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, LOW);
+  delay(LED_OFFSET);
+
+  /* ======================================================== */
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, LOW);
+  delay(LED_OFFSET);
+
+  /* ======================================================== */
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, LOW);
+  delay(LED_OFFSET);
+
+  /* ======================================================== */
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_2.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_3.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_4.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_5.pin, LOW);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, HIGH);
+  delay(LED_OFFSET);
+  digitalWrite(PIRAHNIA_6.pin, LOW);
+  delay(LED_OFFSET);
+
+  delay(REST);
 }
