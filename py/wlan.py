@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import time
-from termcolor import colored
+#from termcolor import colored
 # {'blue': 34, 'grey': 30, 'yellow': 33, 'green': 32, 'cyan': 36, 'magenta': 35, 'white': 37, 'red': 31}
 
 delay = 1
@@ -20,7 +20,7 @@ while True:
     print ''
     print ''
     print ''
-    print colored('                          n143plus', 'green'), colored(' =>', 'blue'), colored(wlan0[3].replace('level=',' '), 'green'), colored('dBm', 'blue')
+    print wlan0;
     print ''
     print ''
     print ''
