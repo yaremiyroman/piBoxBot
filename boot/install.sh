@@ -5,25 +5,9 @@ cd;
 pwd;
 echo '';
 
-echo '*** UPDATING EVERYTHING ************************************';
-sudo apt -y update;
-echo '✔️ UPDATED';
-echo '';
-sudo apt -y upgrade;
-echo '✔️ UPGRADED';
-echo '';
-sudo apt -y dist-upgrade;
-echo '✔️ DISTRO UPGRADED';
-echo '';
-sudo apt -y autoremove;
-echo '✔️ DEPENDENCIES CLEANED';
-echo '';
-echo '✮✮✮ UPDATES: DONE ✮✮✮';
-echo '';
-
 echo '*** SOFTWARE INSTALLATION **********************************';
 echo '*** INSTALLING ***';
-sudo apt -y install git mc zip unzip openconnect lynx sysbench;
+sudo apt -y install git mc zip unzip openconnect lynx sysbench foremost;
 echo '*** INSTALLING ******';
 #sudo apt -y install pi.gpio wiringpi lm-sensors;
 echo '*** INSTALLING *********';

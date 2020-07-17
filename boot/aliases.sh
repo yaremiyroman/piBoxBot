@@ -1,5 +1,8 @@
 #!/bin/sh
 
-cp /boot/bash_aliases ~/.bash_aliases
+echo '*** UPDATING EVERYTHING ************************************';
 
-sleep 3
+cp bash_aliases ~/.bash_aliases;
+
+sleep 3;
+

@@ -8,8 +8,9 @@ echo 'yaremiyroman@gmail.com';
 echo '';
 
 git config --global user.name "$(whoami)@$(hostname)";
-echo '✔️ userName';
-echo '$(whoami)@$(hostname)';
+whoami;
+echo '@';
+hostname;
 echo '';
 
 cd && git clone git@github.com:yaremiyroman/piBoxBot.git;
