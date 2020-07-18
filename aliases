@@ -21,6 +21,7 @@ alias goo='lynx google.com'
 alias upd='cd /boot/ && ./update'
 alias key='cat ~/.ssh/id_rsa.pub'
 alias vpn='sudo openconnect --user ryaremiy remote.deemworkfource.com'
+alias get='sudo apt install -y $1'
 
 ### GIT ##################################################
 alias g='git'
