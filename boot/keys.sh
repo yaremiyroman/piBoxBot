@@ -1,12 +1,20 @@
 #!/bin/sh
 
-cd;
-mkdir ~/.ssh/;
+echo '*** SSH SETTING UP **********************************';
+echo '';
 
-ssh-keygen -t rsa -b 4096 -P "" -C "andrdrx@$(hostname)";
+cd && pwd && mkdir ~/.ssh/;
+echo '$(whoami)@$(hostname)';
+ssh-keygen -t rsa -b 4096 -P "" -C "$(whoami)@$(hostname)";
 eval "$(ssh-agent -s)";
 
 ssh-add .ssh/id_rsa;
-cat .ssh/id_rsa.pub;
+echo '✔️ SSH KEYS GENERATED';
+echo '';
 
-sleep 5
+echo '✮✮✮ id_rsa.pub ✮✮✮';
+cat .ssh/id_rsa.pub;
+echo '';
+echo '✮✮✮✮✮✮✮✮✮✮✮✮✮✮✮✮✮✮✮✮✮✮✮✮✮✮';
+echo '';
+sleep 3

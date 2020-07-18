@@ -1,9 +1,17 @@
 #!/bin/sh
 
-sudo apt-get -y update;
+echo '*** UPDATING EVERYTHING ************************************';
 
-sudo apt-get -y upgrade;
+sudo apt -y update;
+echo '✔️ UPDATED';
 
-sudo apt-get -y dist-upgrade;
+sudo apt -y upgrade;
+echo '✔️ UPGRADED';
 
-sudo apt-get -y autoremove;
+sudo apt -y dist-upgrade;
+echo '✔️ DISTRO UPGRADED';
+
+sudo apt -y autoremove;
+echo '✔️ DEPENDENCIES CLEANED';
+
+echo '✮✮✮ UPDATES: DONE ✮✮✮';
