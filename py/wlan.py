@@ -12,21 +12,21 @@ while True:
     wlan0 = os.popen("iwconfig wlan0 | grep 'Signal level'").readline().split()
     os.system('clear')
 
-    print ('*************************************************************************')
-    print ('')
-    print ('')
-    print ('')
-    print ('')
-    print ('')
-    print ('')
-    print ('')
+    print '*************************************************************************'
+    print ''
+    print ''
+    print ''
+    print ''
+    print ''
+    print ''
+    print ''
     print wlan0;
-    print ('')
-    print ('')
-    print ('')
-    print ('')
-    print ('')
-    print ('')
-    print ('*************************************************************************')
+    print ''
+    print ''
+    print ''
+    print ''
+    print ''
+    print ''
+    print '*************************************************************************'
 
     time.sleep(delay)
