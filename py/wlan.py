@@ -17,7 +17,7 @@ while True:
     print ''
     print ''
     print '*******************'
-    print wlan0[3]
+    print '     ' + wlan0[3]
     print '*******************'
     print ''
     print ''
