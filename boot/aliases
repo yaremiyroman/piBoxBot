@@ -40,18 +40,16 @@ alias d='git pull origin dev'
 alias dev='git push origin dev'
 
 ### HOSTS ##################################################
+alias mbp='ssh rx@192.168.31.248'
 alias rxServer='ssh rx@192.168.31.37'
 alias rxServerWLAN='ssh rx@192.168.31.158'
-alias mbp='ssh rx@192.168.31.248'
 alias piTerminal='ssh pi@192.168.31.56'
-alias piTerminalEthernet='ssh pi@192.168.31.165'
-alias piMedia='ssh pi@192.168.31.158'
-alias piMediaEthernet='ssh pi@192.168.31.101'
+alias piTerminalEth='ssh pi@192.168.31.165'
 alias pi0='ssh pi@192.168.31.174'
-alias piCam='ssh pi@192.168.31.98'
-alias piTest='ssh pi@192.168.31.37'
 alias piGame='ssh pi@192.168.31.98'
-alias pi='ssh pi@192.168.31.152'
+alias piBot='ssh pi@192.168.31.152'
+alias piMedia='ssh pi@192.168.31.158'
+alias piMediaE='ssh pi@192.168.31.101'
 
 ### RPi ##################################################
 alias srv_s='sudo systemctl status bot.service climate.service sensors.service lights.service'
