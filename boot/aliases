@@ -1,11 +1,5 @@
 ### UPDATES ##################################################
-alias g='git'
-alias s='git status'
-alias ddd='git diff'
-alias gadd='git add .'
-alias br='git branch'
-alias fetch='git fetch --all'
-alias co='git checkout'
+alias g='./updates.sh'
 
 ### SYSTEM ##################################################
 alias addal='mcedit ~/piBoxBot/aliases'
