@@ -1,17 +1,17 @@
 #!/bin/sh
 
-echo '*** UPDATING EVERYTHING ************************************';
+echo '*** UPDATES: start';
 
 sudo apt -y update;
-echo '✔️ UPDATED';
+echo '*** UPDATES: UPDATED';
 
 sudo apt -y upgrade;
-echo '✔️ UPGRADED';
+echo '*** UPDATES: UPGRADED';
 
 sudo apt -y dist-upgrade;
-echo '✔️ DISTRO UPGRADED';
+echo '*** UPDATES: DISTR UPGRADED';
 
 sudo apt -y autoremove;
-echo '✔️ DEPENDENCIES CLEANED';
+echo '*** UPDATES: DEPENDENCIES CLEANED';
 
-echo '✮✮✮ UPDATES: DONE ✮✮✮';
+echo '✮✮✮ UPDATES: done ✮✮✮';
