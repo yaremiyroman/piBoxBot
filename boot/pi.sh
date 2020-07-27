@@ -8,6 +8,6 @@ sudo raspi-config;
 ./aliases.sh;
 ./updates.sh;
 ./install.sh;
-# ./git.sh;
+./git.sh;
 
 echo '*** PI: setup done';
