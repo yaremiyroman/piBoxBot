@@ -46,5 +46,5 @@ alias rxServerWLAN='ssh rx@192.168.31.158'
 alias pi0='ssh pi@192.168.31.174'
 alias piGame='ssh pi@piGame.local'
 
-s### RPi ##################################################
+### RPi ##################################################
 alias pins='gpio readall'
