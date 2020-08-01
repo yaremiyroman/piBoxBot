@@ -3,7 +3,6 @@
 echo '*** PI: setup start';
 
 sudo raspi-config;
-
 ./keys.sh;
 ./aliases.sh;
 ./updates.sh;
