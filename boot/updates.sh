@@ -5,13 +5,13 @@ echo '*** UPDATES: start';
 sudo apt -y update;
 echo '*** UPDATES: UPDATED';
 
-sudo apt -y upgrade;
+sudo apt -y full-upgrade;
 echo '*** UPDATES: UPGRADED';
-
-sudo apt -y dist-upgrade;
-echo '*** UPDATES: DISTR UPGRADED';
 
 sudo apt -y autoremove;
 echo '*** UPDATES: DEPENDENCIES CLEANED';
+
+sudo apt -y clean;
+echo '*** UPDATES: /var/cache/apt/archives CLEANED';
 
 echo '✮✮✮ UPDATES: done ✮✮✮';

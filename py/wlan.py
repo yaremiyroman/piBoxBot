@@ -9,19 +9,23 @@ delay = 1
 #####################################################################
 
 while True:
-    wlan0 = os.popen("iwconfig wlan0 | grep 'Signal level'").readline().split()
+    # wlan0 = os.popen("iwconfig en0 | grep 'Signal level'").readline().split()
+    # OSX uses airport
+    en0 = os.popen(" /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | grep 'agrCtlRSSI:'").readline()
+    
     os.system('clear')
 
-    print '^^^^^^^^^^^^^^^^^^^'
+    print '^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^'
     print ''
     print ''
     print ''
-    print '*******************'
-    print '     ' + wlan0[3]
-    print '*******************'
+    print '**************************************************'
+    print ''
+    print '            ' + en0
+    print '**************************************************'
     print ''
     print ''
     print ''
-    print '==================='
+    print '=================================================='
 
     time.sleep(delay)
