@@ -45,5 +45,7 @@ alias rxServer='ssh rx@192.168.31.38'
 alias rxServerWLAN='ssh rx@192.168.31.158'
 alias pi0='ssh pi@192.168.31.174'
 
+alias piStar='ssh pi@192.168.31.98'
+
 ### RPi ##################################################
 alias pins='gpio readall'
