@@ -46,8 +46,8 @@ alias mbp='ssh rx@192.168.31.248'
 alias rxServer='ssh rx@192.168.31.38'
 alias tplink='ssh rx@192.168.31.158'
 alias pi0='ssh pi@192.168.31.174'
-
-alias piStar='ssh pi@192.168.31.98'
+alias pimedia='ssh pi@192.168.31.158'
+alias pistar='ssh pi@192.168.31.99'
 
 ### RPi ##################################################
 alias pins='gpio readall'
