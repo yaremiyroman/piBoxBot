@@ -13,9 +13,10 @@ while True:
 
     os.system('clear')
 
-    print('*****************************')
+    print('***********************')
     print('')
-    print wlan0[3]
-    print('*****************************')
+    print '     ' + wlan0[3]
+    print('')
+    print('***********************')
 
     time.sleep(delay)
