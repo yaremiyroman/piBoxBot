@@ -1,7 +1,5 @@
-
-
 ### SYSTEM ##################################################
-alias addal='mcedit ~/piBoxBot/aliases'
+alias addal='mcedit ~/piBoxBot/boot/aliases'
 alias cc='clear'
 alias offf='sudo shutdown -h now'
 alias rbt='sudo reboot'
@@ -49,6 +47,7 @@ alias rxServer='ssh rx@192.168.31.38'
 alias tplink='ssh rx@192.168.31.158'
 alias pi0='ssh pi@192.168.31.174'
 alias pimedia='ssh pi@192.168.31.158'
+alias pimediaLan='ssh pi@192.168.31.101'
 alias pistar='ssh pi@192.168.31.99'
 
 ### RPi ##################################################
