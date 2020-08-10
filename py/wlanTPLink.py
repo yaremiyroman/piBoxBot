@@ -9,17 +9,15 @@ delay = 1
 #####################################################################
 
 while True:
-    wlan0 = os.popen("iwconfig wlan0 | grep 'Signal level'").readline().split()
     wlan1 = os.popen("iwconfig wlan1 | grep 'Signal level'").readline().split()
 
     os.system('clear')
 
     print('***********************')
     print('')
-    print('   *****************   ')
-    print '      ' + wlan0[3]
-    print('   *****************   ')
+    print '      ' + wlan0[1]
     print('')
     print('***********************')
 
     time.sleep(delay)
+
