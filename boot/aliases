@@ -41,7 +41,7 @@ alias dev='git push origin dev'
 
 ### HOSTS ##################################################
 alias mbp='ssh rx@192.168.31.248'
-alias rxServer='ssh rx@192.168.31.39'
+alias rxserver='ssh rx@192.168.31.37'
 alias tplink='ssh rx@192.168.31.158'
 alias pi0='ssh pi@192.168.31.174'
 alias pimedia='ssh pi@192.168.31.158'
