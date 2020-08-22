@@ -9,32 +9,40 @@ struct sensor {
 const int PAUSE = 250;
 const int REST = 5000;
 
-struct sensor DHT_11_1 = { 4, "dht11.a" };
-struct sensor DHT_11_2 = { 5, "dht11.b" };
+struct sensor DHT11a = { 4, "dht11.a" };
+struct sensor DHT11b = { 5, "dht11.b" };
+struct sensor DHT11c = { 6, "dht11.c" };
+struct sensor DHT11d = { 7, "dht11.d" };
 
-struct sensor DHT_22_1 = { 2, "dht22.a" };
-struct sensor DHT_22_2 = { 3, "dht22.b" };
+struct sensor DHT22a = { 8, "dht22.a" };
+struct sensor DHT22b = { 9, "dht22.b" };
 
-DHT dht_11_1(DHT_11_1.pin, DHT11);
-DHT dht_11_2(DHT_11_2.pin, DHT11);
+DHT dht11a(DHT11a.pin, DHT11);
+DHT dht11b(DHT11b.pin, DHT11);
+DHT dht11c(DHT11c.pin, DHT11);
+DHT dht11d(DHT11d.pin, DHT11);
 
-DHT dht_22_1(DHT_22_1.pin, DHT22);
-DHT dht_22_2(DHT_22_2.pin, DHT22);
+DHT dht22a(DHT22a.pin, DHT22);
+DHT dht22b(DHT22b.pin, DHT22);
 
 void setup() {
   Serial.begin(9600);
 
-  pinMode(DHT_11_1.pin, INPUT);
-  pinMode(DHT_11_2.pin, INPUT);
+  pinMode(DHT11a.pin, INPUT);
+  pinMode(DHT11b.pin, INPUT);
+  pinMode(DHT11c.pin, INPUT);
+  pinMode(DHT11d.pin, INPUT);
 
-  pinMode(DHT_22_1.pin, INPUT);
-  pinMode(DHT_22_2.pin, INPUT);
+  pinMode(DHT22a.pin, INPUT);
+  pinMode(DHT22b.pin, INPUT);
 
-  dht_11_1.begin();
-  dht_11_2.begin();
+  dht11a.begin();
+  dht11b.begin();
+  dht11c.begin();
+  dht11d.begin();
 
-  dht_22_2.begin();
-  dht_22_1.begin();
+  dht22a.begin();
+  dht22b.begin();
 
   Serial.println();
 }
@@ -75,12 +83,14 @@ void loop() {
   Serial.println();
   Serial.println();
   
-  dht_out(DHT_11_1.label, dht_11_1.readTemperature(), dht_11_1.readHumidity());
-  dht_out(DHT_11_2.label, dht_11_2.readTemperature(), dht_11_2.readHumidity());
+  dht_out(DHT11a.label, dht11a.readTemperature(), dht11a.readHumidity());
+  dht_out(DHT11b.label, dht11b.readTemperature(), dht11b.readHumidity());
+  dht_out(DHT11c.label, dht11c.readTemperature(), dht11c.readHumidity());
+  dht_out(DHT11d.label, dht11d.readTemperature(), dht11d.readHumidity());
   Serial.println();
 
-  dht_out(DHT_22_1.label, dht_22_1.readTemperature(), dht_22_1.readHumidity());
-  dht_out(DHT_22_2.label, dht_22_2.readTemperature(), dht_22_2.readHumidity());
+  dht_out(DHT22a.label, dht22a.readTemperature(), dht22a.readHumidity());
+  dht_out(DHT22b.label, dht22b.readTemperature(), dht22b.readHumidity());
   Serial.println();
 
   Serial.println();
