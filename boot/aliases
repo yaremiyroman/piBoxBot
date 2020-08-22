@@ -1,5 +1,5 @@
 ### SYSTEM ##################################################
-alias addal='mcedit ~/piBoxBot/boot/aliases'
+alias addal='cd && mcedit piBoxBot/boot/aliases'
 alias cc='clear'
 alias offf='sudo shutdown -h now'
 alias rbt='sudo reboot'
