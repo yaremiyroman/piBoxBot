@@ -21,6 +21,10 @@ alias goo='lynx google.com'
 alias upd='cd ~/piBoxBot/boot && ./updates.sh'
 alias key='cat ~/.ssh/id_rsa.pub'
 alias get='sudo apt-get install $1'
+alias drives='sudo parted -ls && lsusb && sudo lsblk -fm'
+alias drive250='cd /media/hdd250'
+alias drive500='cd /media/hdd500'
+alias drive1000='cd /media/hdd1000'
 
 ### GIT ##################################################
 alias g='git'
