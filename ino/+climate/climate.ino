@@ -6,8 +6,8 @@ struct sensor {
   String label;
 };
 
-const int PAUSE = 250;
-const int REST = 5000;
+const int PAUSE = 100;
+const int REST = 1000;
 
 struct sensor DHT11_1 = { 4, "dht11.a" };
 struct sensor DHT11_2 = { 5, "dht11.b" };
