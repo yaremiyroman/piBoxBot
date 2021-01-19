@@ -1,8 +1,5 @@
 #!/bin/sh
 
-echo '*** INSTALL: node.js ************';
-sudo apt -y install nodejs npm;
-
 echo '*** INSTALL: yarn ***************';
 cd ~;
 pwd;
