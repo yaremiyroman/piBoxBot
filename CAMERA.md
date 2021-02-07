@@ -27,9 +27,9 @@ If the camera is not working correctly, there are number of things to try.
 • Are the ribbon connectors all firmly seated and the right way round? They must be straight in their sockets.
 • Is the camera module connector firmly attached to the camera PCB? This is the connection from the smaller black camera module itself to the camera PCB. Sometimes this connection can come loose. Using a fingernail, flip up the connector on the PCB, then reseat it with gentle pressure, it engages with a very slight click.
 • Have sudo apt-get update and sudo apt-get upgrade been run?
-• Has raspi-config been run and the camera enabled? If things are still not working, try the following:  
+• Has raspi-config been run and the camera enabled? If things are still not working, try the following: 
 Error : raspistill/raspivid not found. This probably means your update/upgrade failed in some way. Try it again.
- Error : ENOMEM displayed. Camera is not starting up. Check all connections again. 
+Error : ENOMEM displayed. Camera is not starting up. Check all connections again.
 Error : ENOSPC displayed. Camera is probably running out of GPU memory. Check config.txt in the /boot/ folder. The gpu_mem option should be at least 128.
 If, after all the above, the camera is still not working, it may have a defect (most likely because it has suffered static shock). Try posting on the Raspberry Pi forum in the camera board section to see if there is any more help available there.
  
@@ -41,24 +41,24 @@ Allows the user to define the size and location on the screen that the preview w
 Forces the preview window to use the whole screen. Note that the aspect ratio of the incoming image will be retained, so there may be bars on some edges.
 --nopreview, -n, Do not display a preview window
 Disables the preview window completely. Note that even though the preview is disabled, the camera will still be producing frames, so will be using power.
---opacity, -op Set preview window opacity 
+--opacity, -op Set preview window opacity
 Sets the opacity of the preview windows. 0 = invisible, 255 = fully opaque.
  
 Camera Control Options
 --sharpness, -sh Set image sharpness (-100 to 100) Set the sharpness of the image, 0 is the default.
 --contrast, -co Set image contrast (-100 to 100) Set the contrast of the image, 0 is the default
---brightness, -br Set image brightness (0 to 100) 
+--brightness, -br Set image brightness (0 to 100)
 Set the brightness of the image, 50 is the default. 0 is black, 100
 is white.
 --saturation, -sa Set image saturation (-100 to 100)
 Set the colour saturation of the image. 0 is the default. --ISO, -ISO Set capture ISO
- Sets the ISO to be used for captures. Range is 100 to 800. --vstab, -vs Turn on video stabilization
-In video mode only, turn on video stabilization. --ev, -ev Set EV compensation 
+Sets the ISO to be used for captures. Range is 100 to 800. --vstab, -vs Turn on video stabilization
+In video mode only, turn on video stabilization. --ev, -ev Set EV compensation
 Set the EV compensation of the image. Range is -10 to +10, default is 0.
 
 --exposure, -ex Set exposure mode Possible options are:
-off 
-auto 
+off
+auto
 night nightpreview backlight spotlight sports
 snow beach verylong fixedfps antishake fireworks
 Use automatic exposure mode Select setting for night shooting
@@ -69,9 +69,9 @@ Antishake mode
 Select setting optimized for fireworks
 Note that not all of these settings may be implemented, depending on camera tuning.
 --awb, -awb
-off 
+off
 auto
-sun  cloud shade tungsten fluorescent incandescent flash
+sun cloudshade tungsten fluorescent incandescent flash
 horizon
 Set automatic white balance (AWB)
 Turn off white balance calculation Automatic mode (default)
@@ -81,7 +81,7 @@ Tungsten lighting mode Fluorescent lighting mode Incandescent lighting mode Flas
 Horizon mode
 
 --imxfx, -ifx
-none negative solarise whiteboard blackboard sketch denoise emboss oilpaint hatch 
+none negative solarise whiteboard blackboard sketch denoise emboss oilpaint hatch
 gpen pastel watercolour film
 blur saturation colourswap washedout posterise colourpoint colourbalance cartoon
 --colfx, -cfx
@@ -102,7 +102,7 @@ Set colour effect <U:V>
 The supplied U and V parameters (range 0 to 255) are applied to the U and Y channels of the image. For example, --colfx 128:128 should result in a monochrome image.
 
 --metering, -mm
- Specify the metering
+Specify the metering
 average spot backlit matrix
 Set metering mode
 mode used for the preview and capture.
@@ -147,16 +147,16 @@ Valid options are jpg, bmp, gif and png. Note that unaccelerated image types (gi
 Allows the insertion of specific EXIF tags into the JPEG image. You can have up to 32 EXIF tge entries. This is useful for things like adding GPS metadata. For example, to set the longitude:
 --exif GPS.GPSLongitude=5/1,10/1,15/100
 would set the longitude to 5degs, 10 minutes, 15 seconds. See EXIF documentation for more details on the range of tags available; the supported tags are as follows:
-IFD0.< or 
-IFD1.< 
+IFD0.< or
+IFD1.<
 ImageWidth, ImageLength, BitsPerSample, Compression, PhotometricInterpretation, ImageDescription, Make, Model, StripOffsets, Orientation, SamplesPerPixel, RowsPerString, StripByteCounts, Xresolution, Yresolution, PlanarConfiguration, ResolutionUnit, TransferFunction, Software, DateTime, Artist, WhitePoint, PrimaryChromaticities, JPEGInterchangeFormat, JPEGInterchangeFormatLength, YcbCrCoefficients, YcbCrSubSampling, YcbCrPositioning, ReferenceBlackWhite, Copyright>
-EXIF .< 
-ExposureTime, FNumber, ExposureProgram, SpectralSensitivity, a ISOSpeedRatings, OECF, ExifVersion, DateTimeOriginal, DateTimeDigitized, ComponentsConfiguration, CompressedBitsPerPixel, ShutterSpeedValue, ApertureValue, BrightnessValue, ExposureBiasValue, MaxApertureValue, SubjectDistance, MeteringMode, LightSource, Flash, FocalLength, SubjectArea, MakerNote, UserComment, SubSecTime, SubSecTimeOriginal, SubSecTimeDigitized, FlashpixVersion, ColorSpace, PixelXDimension, PixelYDimension, RelatedSoundFile, FlashEnergy, SpacialFrequencyResponse, FocalPlaneXResolution,
+EXIF .<
+ExposureTime, FNumber, ExposureProgram, SpectralSensitivity, aISOSpeedRatings, OECF, ExifVersion, DateTimeOriginal, DateTimeDigitized, ComponentsConfiguration, CompressedBitsPerPixel, ShutterSpeedValue, ApertureValue, BrightnessValue, ExposureBiasValue, MaxApertureValue, SubjectDistance, MeteringMode, LightSource, Flash, FocalLength, SubjectArea, MakerNote, UserComment, SubSecTime, SubSecTimeOriginal, SubSecTimeDigitized, FlashpixVersion, ColorSpace, PixelXDimension, PixelYDimension, RelatedSoundFile, FlashEnergy, SpacialFrequencyResponse, FocalPlaneXResolution,
 
-FocalPlaneYResolution, FocalPlaneResolutionUnit, SubjectLocation, ExposureIndex, SensingMethod, FileSource, SceneType, CFAPattern, CustomRendered, ExposureMode, WhiteBalance, DigitalZoomRatio, FocalLengthIn35mmFilm, SceneCaptureType, GainControl, Contrast, Saturation, Sharpness, DeviceSettingDescription, SubjectDistanceRange, ImageUniqueID>
-GPS.< 
+FocalPlaneYResolution, FocalPlaneResolutionUnit, SubjectLocation, ExposureIndex, SensingMethod, FileSource, SceneType, CFAPattern, CustomRendered, ExposureMode,WhiteBalance, DigitalZoomRatio, FocalLengthIn35mmFilm, SceneCaptureType, GainControl, Contrast, Saturation, Sharpness, DeviceSettingDescription, SubjectDistanceRange, ImageUniqueID>
+GPS.<
 GPSVersionID, GPSLatitudeRef, GPSLatitude, GPSLongitudeRef, GPSLongitude, GPSAltitudeRef, GPSAltitude, GPSTimeStamp, GPSSatellites, GPSStatus, GPSMeasureMode, GPSDOP, GPSSpeedRef, GPSSpeed, GPSTrackRef, GPSTrack, GPSImgDirectionRef, GPSImgDirection, GPSMapDatum, GPSDestLatitudeRef, GPSDestLatitude, GPSDestLongitudeRef, GPSDestLongitude, GPSDestBearingRef, GPSDestBearing, GPSDestDistanceRef, GPSDestDistance, GPSProcessingMethod, GPSAreaInformation, GPSDateStamp, GPSDifferential>
-EINT .< 
+EINT .<
 InteroperabilityIndex, InteroperabilityVersion, RelatedImageFileFormat, RelatedImageWidth, RelatedImageLength>
 Note that a small subset of these tags will be set automatically by the camera system, but will be overridden by any exif options on the command line.
 --fullpreview, -fp Full Preview mode
@@ -164,16 +164,16 @@ This runs the preview windows using the full resolution capture mode. Maximum fr
 
 raspistillyuv
 Many of the options for raspistillyuv are the same as those for raspistill. This section shows the differences.
-Unsupported Options: 
+Unsupported Options:
 --exif, --encoding, --thumb, --raw, --quality
-Extra Options: 
+Extra Options:
 --rgb, -rgb Save uncompressed data as RGB888
 This option forces the image to be saved as RGB data with 8 bits per channel, rather than YUV420.
 Note that the image buffers saved in raspistillyuv are padded to a horizontal size divisible by 16 (so there may be unused bytes at the end of each line to made the width divisible by 16). Buffers are also padded vertically to be divisible by 16, and in the YUV mode, each plane of Y,U,V is padded in this way.
 raspivid
---width, -w Set image width <size> 
+--width, -w Set image width <size>
 Width of resulting video. This should be between 64 and 1920. --height, -h Set image height <size>
- Height of resulting video. This should be between 64 and 1080. --bitrate, -b Set bitrate
+Height of resulting video. This should be between 64 and 1080. --bitrate, -b Set bitrate
 Use bits per second, so 10MBits/s would be -b 10000000. For H264, 1080p a high quality bitrate would be 15Mbits/s or more.
 
 --output, -o Output filename <filename>. Specify the output filename. If not specified, no file is saved. If
@@ -204,29 +204,29 @@ raspistill -t 2000 -o image.jpg -q 5
 Force the preview to appear at coordinate 100,100, with width 300 and height 200 pixels.
 raspistill -t 2000 -o image.jpg -p 100,100,300,200
 Disable preview entirely.
- raspistill -t 2000 -o image.jpg -n
+raspistill -t 2000 -o image.jpg -n
 Save the image as a png file (lossless compression, but slower than JPEG). Note that the filename suffix is ignored when choosing the image encoding.
 raspistill -t 2000 -o image.png –e png
 Add some EXIF information to the JPEG. This sets the Artist tag name to Mooncake, and the GPS altitude to 123.5m. Note that if setting GPS tags you should set as a minimum GPSLatitude, GPSLatitudeRef, GPSLongitude, GPSLongitudeRef, GPSAltitude and GPSAltitudeRef.
 raspistill -t 2000 -o image.jpg -x IFDO.Artist=Mooncake -x GPS.GPSAltitude=1235/10
 Set an emboss style image effect.
-raspistill -t 2000 -o image.jpg -ifx emboss 
+raspistill -t 2000 -o image.jpg -ifx emboss
 Set the U and V channels of the YUV image to specific values (128:128 produces a greyscale image)
 raspistill -t 2000 -o image.jpg -cfx 128:128
 Run preview ONLY for two seconds, no saved image.
 raspistill -t 2000
 
 Take timelapse picture, one every 10 seconds for 10 minutes (10 minutes = 600000ms), named image_number_1_today.jpg, image_number_2_today.jpg onwards.
-raspistill -t 600000 -tl 10000 -o image_num_%d_today.jpg
+raspistill -t 600000 -tl 10000 -o photo_%d.jpg
 Take a picture and send image data to stdout
-raspistill -t 2000 -o - 
+raspistill -t 2000 -o -
 Take a picture and send image data to file
 raspistill -t 2000 -o - > my_file.jpg
 Video Captures
 Image size and preview settings are the same as for stills capture. Default size for video recording is 1080p (1920x1080)
 Record a 5s clip with default settings (1080p30)
 raspivid -t 5000 -o video.h264
- Record a 5s clip at a specified bitrate (3.5MBits/s)
+Record a 5s clip at a specified bitrate (3.5MBits/s)
 raspivid -t 5000 -o video.h264 -b 3500000
 Record a 5s clip at a specified framerate (5fps)
 raspivid -t 5000 -o video.h264 -f 5

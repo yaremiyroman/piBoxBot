@@ -16,17 +16,17 @@ shutdown - Turn off Pi
 # ####################################
 
 # `589756614:AAF04K1bF2kwyxT21KN1oqMNan3ahOKG0l0`
-token = `589756614:AAF04K1bF2kwyxT21KN1oqMNan3ahOKG0l0`
+token=`589756614:AAF04K1bF2kwyxT21KN1oqMNan3ahOKG0l0`
 # 285956437
-adminID = 285956437
+adminID=285956437
 # db local path
-sensorsDB = '/home/pi/piBoxBot/db/sensors.db'
-climateDB = '/home/pi/piBoxBot/db/climate.db'
+sensorsDB='/home/pi/piBoxBot/db/sensors.db'
+climateDB='/home/pi/piBoxBot/db/climate.db'
 # ###
-climatePort = /dev/ttyACM0
+climatePort=/dev/ttyACM0
 # ###
-timeout = 600
+timeout=600
 # ###
-delay = 3
+delay=3
 # ###
-splitter = '||'
+splitter='||'

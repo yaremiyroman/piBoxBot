@@ -4,7 +4,7 @@
 # Wi-Fi: create a text file called wpa_supplicant.conf near "ssh", Find piBoxBot/configs/wpa_supplicant.conf for example.ss
 $ sudo raspi-conf
 $ sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade && sudo apt-get autoremove && sudo apt-get autoclean
-$ sudo apt-get install build-essential git git-core mc rpi.gpio wiringpi bc lm-sensors arduino arduino-mk python python-dev python-pip python3 python3-dev python3-pip sqlite3 libsqlite3-dev luvcview
+$ sudo apt-get install build-essential git git-core mc rpi.gpio wiringpi bc lm-sensors arduino arduino-mk python python-is-dev python-pip python3 python3-is-dev python3-pip sqlite3 libsqlite3-dev luvcview
 
 ###########################################
 # configs
