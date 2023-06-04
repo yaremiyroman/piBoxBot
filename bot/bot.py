@@ -4,7 +4,7 @@ import time
 import math
 import telebot
 import sqlite3
-from config import config
+from  config  import config
 
 ############################################################################
 ######################## INIT ##############################################
