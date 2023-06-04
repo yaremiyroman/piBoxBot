@@ -39,6 +39,8 @@ $ stress --cpu 4
 # telebot
 ###########################################
 $ pip install PyTelegramBotAPI==2.2.3 pysqlite Adafruit_DHT
+# alternative
+$ pip install telebot
 
 ###########################################
 # RTC
