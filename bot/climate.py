@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import sqlite3
-import serial
+from serial import serial
 from config import config 
 
 climateSerial = serial.Serial(config.climatePort, 9600)

@@ -9,6 +9,14 @@ __pycache__/
 # Ignore bot config in sensitive data protetion purposes
 config.py
 
+
+
+bot/config.py
+bot/config
+bot/config/
+bot/config/*
+bot/config/config.py
+
 # Distribution / packaging
 .Python
 build/
