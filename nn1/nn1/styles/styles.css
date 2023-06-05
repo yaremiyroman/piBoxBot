@@ -1,0 +1,59 @@
+html {
+    height: 100%;
+}
+
+body {
+    background-color: rgba(47, 79, 79, 0.95);
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+h1 {
+    text-align: center;
+    font-family: 'Comic Sans MS', sans-serif;
+    color: indianred;
+    color: rgba(0, 275, 170, .75);
+    text-shadow:
+        0 0 7px rgba(0, 275, 170, .77),
+        0 0 10px rgba(0, 275, 170, .80),
+        0 0 21px rgba(0, 275, 170, .84),
+        0 0 32px rgba(0, 275, 170, .88),
+        0 0 42px rgba(0, 275, 170, .91),
+        0 0 62px rgba(0, 275, 170, .94),
+        0 0 82px rgba(0, 255, 170, .96),
+        0 0 101px rgba(0, 275, 170, .99);
+    font-size: 62px;
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+#wrapper {
+    width: 400px;
+    margin: 0 auto;
+}
+
+#paintField {
+    height: 400px;
+    width: 100%;
+    border: 1px solid black;
+}
+
+#controls {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 30px;
+}
+
+#clear,
+#train,
+#predict {
+    grid-column: 1 / -1;
+}
+
+.control {
+    font-size: 20px;
+    padding: 4px;
+    cursor: pointer;
+}
