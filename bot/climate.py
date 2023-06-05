@@ -16,7 +16,7 @@ while True:
             if (len(sensorParsed) > 1):
                 sensorName = sensorParsed[0]
                 
-                if (sensorName == 'dht1' or sensorName == 'dht2' or sensorName == 'dht3' or sensorName == 'dht4'):    
+                if (sensorName == 'dht22.a' or sensorName == 'dht2' or sensorName == 'dht3' or sensorName == 'dht4'):    
                     query = "INSERT INTO " + sensorName + " (t, h) VALUES(" + sensorParsed[1] + ", " + sensorParsed[2] + ")"
                     climateDB.execute(query)
                     climateDB.commit()
